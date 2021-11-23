@@ -8,15 +8,33 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Position2D",
+"class": "BulletSpawner",
+"language": "GDScript",
+"path": "res://game/spawner/BulletSpawner.gd"
+}, {
+"base": "Node2D",
+"class": "Pattern",
+"language": "GDScript",
+"path": "res://game/Pattern.gd"
+} ]
+_global_script_class_icons={
+"BulletSpawner": "",
+"Pattern": ""
+}
+
 [application]
 
 config/name="KumoCollab"
-run/main_scene="res://experiment/ViewportTest.tscn"
+run/main_scene="res://game/Main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
+Registry="*res://autoload/Registry.tscn"
 Blackboard="*res://autoload/Blackboard.tscn"
+BulletServer="*res://autoload/BulletServer.tscn"
 
 [debug]
 
@@ -138,6 +156,9 @@ DEBUG_F1={
 2d_physics/layer_1="player"
 2d_physics/layer_2="enemy"
 2d_physics/layer_3="wall"
+2d_physics/layer_4="player_bullet"
+2d_physics/layer_5="enemy_bullet"
+2d_physics/layer_6="hazard"
 
 [physics]
 

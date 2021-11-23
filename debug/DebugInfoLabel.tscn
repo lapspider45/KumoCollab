@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://game/DebugInfoLabel.gd" type="Script" id=1]
+
+[node name="DebugInfoLabel" type="Label"]
+margin_left = 372.0
+margin_top = 593.0
+margin_right = 464.0
+margin_bottom = 624.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "bullets: XXXXX
+FPS: XX"
+align = 2
+valign = 2
+script = ExtResource( 1 )
