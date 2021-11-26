@@ -1,3 +1,5 @@
+# Blackboard.gd
+# A singleton useful for sharing data with multiple nodes
 extends Node
 
 var SCREEN = { # this dictionary has some useful points for manipulating stuff on the screen
@@ -38,7 +40,7 @@ func init_screen_rect(rect:Rect2):
 var player_pos : Vector2 # position of the player
 var predicted_player_pos : Vector2 # position of the player 1 second into future based on current velocity
 func predict_player_pos(delta:float) -> Vector2: # position of the player 'delta' seconds into the future
-	print("predicted: %s" % player_pos.linear_interpolate(predicted_player_pos, delta))
+#	print("predicted: %s" % player_pos.linear_interpolate(predicted_player_pos, delta))
 	return player_pos.linear_interpolate(predicted_player_pos, delta)
 
 var player_autoaim_target : Vector2 # position which player's autoaim targets

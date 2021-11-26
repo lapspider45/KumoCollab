@@ -1,4 +1,5 @@
 # "Server" for processing the "simple" bullet type
+# in other words, most bullets should be handled this way
 # how to use:
 # * call process_bullets(delta) once per frame
 # * num_batches can be used to calculate slowdown
@@ -11,6 +12,8 @@ signal processed_batch
 signal batches_created(count)
 signal batches_complete
 signal bullet_collided(bullet)
+
+const COLLISION_FIRST_PASS = Rect2(-16, -16, 32, 32) # different sizes may be needed for bullets larger than 16 px radius
 
 var batch_finished = true
 var bullets: Array
@@ -54,7 +57,7 @@ func process_bullets(delta):
 	
 	var batch = batches.pop_back()
 	if batch:
-		var collision = process_single_batch(batch, delta / max(num_batches, 1))
+		var collision = process_single_batch(batch, delta * get_slowdown())
 		if collision:
 			emit_signal("bullet_collided", collision)
 	else:
@@ -67,25 +70,26 @@ func process_bullets(delta):
 		emit_signal("batches_complete")
 
 
+# it might be possible to process bullets in a thread
+# to remove slowdown completely
 
 func process_single_batch(batch:Array, delta:float):
 	var collision = null # change to array if multiple collisions are to be detected
 	for b in batch:
 		if not is_instance_valid(b):
-			print("BUG: found a deleted instance in batch")
+			push_warning("BUG: found a deleted instance in batch")
 			continue
 		# let bullet move
 		b._custom_process(delta)
 		
+		# delete bullets outside the screen
 		if not bullet_limits.has_point(b.position):
 			deletion_queue.append(b)
 			continue
 		
+		# check collision (first pass, simple and performant)
 		var difference:Vector2 = b.position - player_hitbox_pos
-		
-		# check collision (first pass)
-		var first_pass_box = Rect2(-16, -16, 32, 32) # different sizes may be needed for bullets larger than 16 px radius
-		if not first_pass_box.has_point(difference):
+		if not COLLISION_FIRST_PASS.has_point(difference):
 			continue
 			
 		# second pass collision detection
@@ -109,3 +113,7 @@ func create_batches():
 		batches.append(bullets.slice(i, i + process_batch_size - 1))
 	num_batches = batches.size()
 	emit_signal("batches_created", num_batches)
+
+
+func get_slowdown():
+	return 1.0 / max(num_batches, 1.0)

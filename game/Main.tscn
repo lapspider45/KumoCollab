@@ -1,12 +1,12 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://game/BulletTest3.tscn" type="PackedScene" id=1]
+[ext_resource path="res://game/Danmaku.tscn" type="PackedScene" id=1]
 [ext_resource path="res://utils/BasedViewport.gd" type="Script" id=2]
 [ext_resource path="res://art/placeholder/rick.jpg" type="Texture" id=3]
 [ext_resource path="res://game/Main.gd" type="Script" id=4]
 [ext_resource path="res://debug/DebugInfoLabel.tscn" type="PackedScene" id=5]
 
-[node name="ViewportTest" type="Control"]
+[node name="Main" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
@@ -41,7 +41,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 ratio = 0.75
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "note: this is to keep the game in a 3:4 ratio"
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer"]
@@ -76,7 +77,7 @@ audio_listener_enable_3d = true
 script = ExtResource( 2 )
 actual_size = Vector2( 480, 640 )
 
-[node name="BulletTest3" parent="AspectRatioContainer/MarginContainer/ViewportContainer/GameViewport" instance=ExtResource( 1 )]
+[node name="Danmaku" parent="AspectRatioContainer/MarginContainer/ViewportContainer/GameViewport" instance=ExtResource( 1 )]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0

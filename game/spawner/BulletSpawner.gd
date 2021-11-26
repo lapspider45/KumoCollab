@@ -5,8 +5,9 @@ enum NOTIFICATION {
 	CHILD_SPAWNER_ADDED = 10001
 }
 
-export var timescale := 1.0
+var children_spawners = []
 
+export var timescale := 1.0
 export var bullet_speed := 40.0
 export var bullet_lifetime := 10.0
 export var bullet_acceleration := Vector2(0,100)
@@ -16,52 +17,34 @@ export var autoaim := false
 # would be useful mostly for smoothly transitioning to/from aiming and fixed/relative
 export var aim_offset := 0.0
 
+export var disabled := false
+export var children_disabled := false
 # TODO: add a way to override properties and enable/disable per difficulty?
 # also add some functions to arrange children in various patterns
-# and maybe to add additional child spawners
+# and maybe to duplicate child spawners
 
-# export var enabled := true
-# export var children_enabled := true
 export var bullet_type := "basic1"
 var B = preload("res://game/bullets/Bullet.tscn")
-"""
-So nested spawners are pretty neat
-each parent spawner needs to:
-	(propagate) call advance(delta * timescale) on its child spawners
-	keep track of any AnimationPlayer:s
-
-here is an idea:
-	each spawner has an advance_children(delta) signal
-	reacting to NOTIFICATION_PARENTED and NOTIFICATION_UNPARENTED,
-		the child connects/disconnects the parent's signal to/from its own advance() method
-	
-	also TIL NOTIFICATION_PAUSED and NOTIFICATION_UNPAUSED might be good for actually making the pause system useful, do some testing...
-	pausing only has these effects on the nodes that get paused:
-		disabling physics (for ALL nodes!)
-		disabling _process, _physics_process and _input
-		disabling _gui_input on Control nodes
-		sending the paused and unpaused notifications as appropriate
-	a fine-grained pause system could be done with:
-		call_group
-		set_process, set_physics_process, set_process_input
-		set_internal_process?
-		
-"""
 
 
 func _shoot(params:Dictionary={}):
+
 	params.speedscale = params.get("speedscale", timescale)
 	if autoaim: aim_at_player()
-	for c in children_spawners:
-		c._shoot(params)
-	shoot(params)
+	
+	if not children_disabled:
+		for c in children_spawners:
+			c._shoot(params)
+	if not disabled:
+		shoot(params)
 
-var children_spawners = []
+
 
 func update_children():
 	children_spawners.clear()
 	for c in get_children():
-		if c.is_in_group("bulletspawner"): children_spawners.append(c)
+		if c.is_in_group("bulletspawner"):
+			children_spawners.append(c)
 
 func shoot(params={}):
 	var bullet = BulletServer.instantiate_bullet(bullet_type)
@@ -69,8 +52,10 @@ func shoot(params={}):
 	bullet.position = global_position
 	bullet.velocity = Vector2.RIGHT.rotated(global_rotation) * bullet_speed * params.get("speedscale", 1)
 	bullet.acceleration = bullet_acceleration
-#	add_child(bullet)
-	owner.add_bullet2(bullet) # owner needs to be the BulletWorld...
+	owner.add_bullet(bullet) # This should lead to the SimpleBulletServer
+
+func add_bullet(bullet):
+	owner.add_bullet(bullet)
 
 func aim_at_player():
 	look_at(get_player_pos())
@@ -85,8 +70,6 @@ func _custom_process(delta:float):
 		anim.advance(delta * timescale)
 	else:
 		print("animation palyer not found")
-
-
 
 func _notification(what):
 	match what:

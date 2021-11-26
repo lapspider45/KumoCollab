@@ -3,7 +3,6 @@ extends Area2D
 
 
 func physics_query():
-	pass
 	var shape:Shape2D = $CollisionShape2D.shape
 	var shape_transform:Transform2D = $CollisionShape2D.get_viewport_transform()
 	var query := Physics2DShapeQueryParameters.new()
@@ -14,7 +13,7 @@ func physics_query():
 	var collisions = get_world_2d().direct_space_state.intersect_shape(query, 1)
 	if collisions.size() >= 1:
 		assert (collisions[0] is Dictionary)
-		print(collisions)
+		print(collisions[0])
 		return collisions[0]
 
 
