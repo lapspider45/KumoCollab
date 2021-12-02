@@ -17,3 +17,6 @@ func _custom_process(delta):
 	velocity += acceleration * delta
 	translate(velocity * delta)
 	lifetime -= delta
+
+func on_hit():
+	queue_free()
