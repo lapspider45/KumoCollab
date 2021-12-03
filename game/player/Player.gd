@@ -22,9 +22,6 @@ var bullets = []
 
 func _ready():
 	set_invincible(false)
-	$BulletSpawner.B = preload("res://game/bullets/AreaBullet.tscn")
-	$BulletSpawner2.B = preload("res://game/bullets/AreaBullet.tscn")
-	$BulletSpawner3.B = preload("res://game/bullets/AreaBullet.tscn")
 
 
 func get_movement_dir()-> Vector2:
@@ -40,14 +37,15 @@ func shoot():
 	get_tree().call_group("player_bulletspawner", "shoot")
 
 func add_bullet(bullet):
-	get_parent().add_bullet(bullet)
-func add_bullet2(bullet):
-	get_parent().add_bullet2(bullet)
+	bullet.set_collision_layers(8)
+#	get_parent().add_bullet(bullet)
+	DanmakuServer.add_bullet(bullet)
 
-func _physics_process(delta):
+
+func _physics_process(_delta):
 	update_blackboard()
 
-func _custom_process(delta):
+func advance(delta):
 	var speed := MOVE_SPEED
 	if Input.is_action_pressed("slow"):
 		speed = SLOW_SPEED
@@ -62,10 +60,13 @@ func _custom_process(delta):
 	$ShootAnimation.advance(delta * Blackboard.slowdown)
 
 func set_shooting(shoot:bool):
-	pass
+	if shoot:
+		$ShootAnimation.play("shoot")
+	else:
+		$ShootAnimation.stop()
 
-func _on_collision():
-	hurt()
+#func _on_collision():
+#	hurt()
 
 func hurt(dmg:=1):
 	if invincible:
@@ -82,8 +83,8 @@ func hurt(dmg:=1):
 	$AnimationPlayer.play("invincible")
 #	$hurtSFX.play()
 
-func _on_Player_area_shape_entered(area_id, area, area_shape, self_shape):
-	_on_collision()
+#func _on_Player_area_shape_entered(area_id, area, area_shape, self_shape):
+#	_on_collision()
 
 func set_invincible(v:bool):
 #	$Hitbox.set_deferred("monitoring", v)

@@ -5,7 +5,7 @@
 # * num_batches can be used to calculate slowdown
 # * tweak the values to change the behavior
 # * don't spawn more than 15000 bullets per second
-
+class_name SimpleBulletServer
 extends Node2D
 
 signal processed_batch
@@ -36,9 +36,11 @@ export var bullet_limits: Rect2
 
 var deletion_queue := []
 
+func _ready():
+	DanmakuServer.current_server = self
 
 func add_bullet(bullet):
-	assert(bullet.has_method("_custom_process"), "simple bullets must have _custom_process method")
+	assert(bullet.has_method("advance"), "simple bullets must have advance method")
 	if bullet_count >= max_bullets:
 		bullet.queue_free()
 		return
@@ -61,13 +63,14 @@ func process_bullets(delta):
 		if collision:
 			emit_signal("bullet_collided", collision)
 	else:
-		print("nothing to process")
+		pass
+#		print("nothing to process")
 	
 	batches_remaining = batches.size()
-	batch_finished = batches_remaining == 0
+	batch_finished = (batches_remaining == 0)
 	if batch_finished:
-		process_deletion_queue() # since no batches are queued, it's safe to delete bullets (again)
 		emit_signal("batches_complete")
+	process_deletion_queue()
 
 
 # it might be possible to process bullets in a thread
@@ -80,7 +83,7 @@ func process_single_batch(batch:Array, delta:float):
 			push_warning("BUG: found a deleted instance in batch")
 			continue
 		# let bullet move
-		b._custom_process(delta)
+		b.advance(delta)
 		
 		# delete bullets outside the screen
 		if not bullet_limits.has_point(b.position):
@@ -99,7 +102,7 @@ func process_single_batch(batch:Array, delta:float):
 	return collision
 
 func process_deletion_queue():
-	for i in range(min(256, deletion_queue.size())):
+	for _i in range(min(256, deletion_queue.size())):
 		var b = deletion_queue.pop_back()
 		if is_instance_valid(b):
 			b.queue_free()

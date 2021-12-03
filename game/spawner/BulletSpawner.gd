@@ -24,7 +24,6 @@ export var children_disabled := false
 # and maybe to duplicate child spawners
 
 export var bullet_type := "basic1"
-var B = preload("res://game/bullets/Bullet.tscn")
 
 
 func _shoot(params:Dictionary={}):
@@ -47,15 +46,13 @@ func update_children():
 			children_spawners.append(c)
 
 func shoot(params={}):
-	var bullet = BulletServer.instantiate_bullet(bullet_type)
+	# TODO: duplicate a cached copy instead, update it if the type changes
+	var bullet = DanmakuServer.instantiate_bullet(bullet_type)
 	bullet.set_as_toplevel(true)
 	bullet.position = global_position
 	bullet.velocity = Vector2.RIGHT.rotated(global_rotation) * bullet_speed * params.get("speedscale", 1)
 	bullet.acceleration = bullet_acceleration
-	owner.add_bullet(bullet) # This should lead to the SimpleBulletServer
-
-func add_bullet(bullet):
-	owner.add_bullet(bullet)
+	DanmakuServer.add_bullet(bullet)
 
 func aim_at_player():
 	look_at(get_player_pos())
@@ -64,7 +61,7 @@ func aim_at_player():
 func get_player_pos(): # TODO
 	return Blackboard.player_pos
 
-func _custom_process(delta:float):
+func advance(delta:float):
 	var anim = get_node_or_null("AnimationPlayer")
 	if anim is AnimationPlayer:
 		anim.advance(delta * timescale)
