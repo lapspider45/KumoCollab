@@ -74,13 +74,14 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CircleShape2D" id=6]
 radius = 3.0
 
 [sub_resource type="Animation" id=5]
 resource_name = "shoot"
 length = 0.4
 loop = true
+step = 0.0333333
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -88,9 +89,12 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2, 0.266667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "shoot"
+}, {
 "args": [  ],
 "method": "shoot"
 }, {
@@ -117,7 +121,7 @@ invincible = true
 max_hp = 6
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 1, 0.733333, 0.666667, 0.929412 )
+modulate = Color( 1, 0.231373, 0.137255, 0.376471 )
 self_modulate = Color( 0.588235, 0.588235, 0.588235, 1 )
 position = Vector2( 0, -4 )
 texture = ExtResource( 1 )
@@ -134,8 +138,8 @@ anims/reset = SubResource( 3 )
 collision_layer = 1
 collision_mask = 50
 
-[node name="CollisionShape2D" parent="Hitbox" index="0"]
-shape = SubResource( 4 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource( 6 )
 
 [node name="ExplosionParticles1" parent="." instance=ExtResource( 3 )]
 

@@ -13,7 +13,10 @@ func query_collisions(player:Vector2):
 	pass
 	var collisions = get_world_2d().direct_space_state.intersect_point(position, 1, [], PLAYER_LAYER, true, false)
 
-func _custom_process(delta):
+func advance(delta):
 	velocity += acceleration * delta
 	translate(velocity * delta)
 	lifetime -= delta
+
+func on_hit():
+	queue_free()

@@ -1,23 +1,15 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://game/components/SimpleBulletServer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game/patterns/Medium.tscn" type="PackedScene" id=2]
 [ext_resource path="res://game/Danmaku.gd" type="Script" id=3]
-[ext_resource path="res://debug/DebugInfoLabel.tscn" type="PackedScene" id=4]
-[ext_resource path="res://game/player/Player.tscn" type="PackedScene" id=5]
-[ext_resource path="res://game/items/Item.tscn" type="PackedScene" id=6]
+[ext_resource path="res://game/player/Player.tscn" type="PackedScene" id=8]
 
 [node name="Danmaku" type="Node2D"]
 script = ExtResource( 3 )
 
 [node name="SimpleBulletServer" parent="." instance=ExtResource( 1 )]
 process_batch_size = 900
-
-[node name="DebugInfoLabel" parent="." instance=ExtResource( 4 )]
-margin_left = 249.0
-margin_top = 491.0
-margin_right = 341.0
-margin_bottom = 522.0
 
 [node name="MediumPattern" parent="." instance=ExtResource( 2 )]
 

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://game/bullets/SimpleBullet.gd" type="Script" id=1]
+[ext_resource path="res://art/bullets/Bullet_Medium2.png" type="Texture" id=2]
+
+[node name="Bullet" type="Sprite"]
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+collision_radius = 4.0

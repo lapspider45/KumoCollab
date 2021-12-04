@@ -23,11 +23,23 @@ _global_script_classes=[ {
 "class": "Pattern",
 "language": "GDScript",
 "path": "res://game/Pattern.gd"
+}, {
+"base": "Sprite",
+"class": "SimpleBullet",
+"language": "GDScript",
+"path": "res://game/bullets/SimpleBullet.gd"
+}, {
+"base": "Node2D",
+"class": "SimpleBulletServer",
+"language": "GDScript",
+"path": "res://game/components/SimpleBulletServer.gd"
 } ]
 _global_script_class_icons={
 "BulletSpawner": "",
 "ClydeDialogue": "",
-"Pattern": ""
+"Pattern": "",
+"SimpleBullet": "",
+"SimpleBulletServer": ""
 }
 
 [application]
@@ -40,7 +52,7 @@ config/icon="res://icon.png"
 
 Registry="*res://autoload/Registry.tscn"
 Blackboard="*res://autoload/Blackboard.tscn"
-BulletServer="*res://autoload/BulletServer.tscn"
+DanmakuServer="*res://autoload/DanmakuServer.tscn"
 
 [debug]
 

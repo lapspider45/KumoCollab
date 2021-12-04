@@ -6,7 +6,7 @@
 [sub_resource type="RayShape2D" id=1]
 length = 5.0
 
-[node name="AreaBullet" type="Area2D"]
+[node name="AreaBullet" type="Area2D" groups=["bullets"]]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource( 1 )
