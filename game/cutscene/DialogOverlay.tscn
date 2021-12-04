@@ -1,0 +1,230 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://art/placeholder/TestPatchRect.png" type="Texture" id=1]
+[ext_resource path="res://art/characters/hakki/hakki_1b_test_sprite.png" type="Texture" id=2]
+[ext_resource path="res://art/characters/lana/lana_text.png" type="Texture" id=3]
+[ext_resource path="res://game/cutscene/fade_in.tres" type="Animation" id=4]
+[ext_resource path="res://game/cutscene/DialogOverlay.gd" type="Script" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_local_to_scene = true
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -200, 262 ), Vector2( 15, 262 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "move_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 550, 262 ), Vector2( 275, 262 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "RESET"
+
+[sub_resource type="Animation" id=6]
+resource_name = "move_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 5, 720 ), Vector2( 5, 520 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="DialogOverlay" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpeakerBox" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Speaker1" type="TextureRect" parent="SpeakerBox"]
+modulate = Color( 0.603922, 0.603922, 0.603922, 1 )
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = 242.0
+margin_right = 633.0
+margin_bottom = 1529.0
+rect_scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpeakerBox/Speaker1" groups=["dialog_animation"]]
+anims/fade_in = ExtResource( 4 )
+anims/move_in = SubResource( 1 )
+
+[node name="Speaker2" type="TextureRect" parent="SpeakerBox"]
+modulate = Color( 0.603922, 0.603922, 0.603922, 1 )
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 510.0
+margin_top = 242.0
+margin_right = 1136.0
+margin_bottom = 882.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpeakerBox/Speaker2" groups=["dialog_animation"]]
+anims/fade_in = ExtResource( 4 )
+anims/move_in = SubResource( 3 )
+
+[node name="TextBox" type="NinePatchRect" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = -120.0
+margin_right = -5.0
+margin_bottom = -5.0
+rect_min_size = Vector2( 470, 110 )
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 39, 39 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 12
+patch_margin_bottom = 11
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Speaker1Name" type="NinePatchRect" parent="TextBox"]
+visible = false
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 20.0
+margin_top = -77.0
+margin_right = 140.0
+margin_bottom = -41.0
+rect_min_size = Vector2( 120, 36 )
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 39, 39 )
+patch_margin_left = 11
+patch_margin_top = 11
+patch_margin_right = 11
+patch_margin_bottom = 11
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Speaker1Label" type="Label" parent="TextBox/Speaker1Name" groups=["speaker_label"]]
+modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 6.0
+margin_top = 6.0
+margin_right = -6.0
+margin_bottom = -6.0
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Speaker2Name" type="NinePatchRect" parent="TextBox"]
+visible = false
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -140.0
+margin_top = -77.0
+margin_right = -20.0
+margin_bottom = -41.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 120, 36 )
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 39, 39 )
+patch_margin_left = 11
+patch_margin_top = 11
+patch_margin_right = 11
+patch_margin_bottom = 11
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Speaker2Label" type="Label" parent="TextBox/Speaker2Name" groups=["speaker_label"]]
+modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 6.0
+margin_top = 6.0
+margin_right = -6.0
+margin_bottom = -6.0
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="TextBox"]
+modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextBox" groups=["dialog_animation"]]
+anims/RESET = SubResource( 7 )
+anims/move_in = SubResource( 6 )

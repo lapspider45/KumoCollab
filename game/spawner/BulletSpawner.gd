@@ -84,3 +84,7 @@ func _notification(what):
 			update_children()
 		_:
 			pass
+
+
+func _on_PatternTimer_timeout():
+	pass # Replace with function body.

@@ -18,7 +18,7 @@ margin_top = 491.0
 margin_right = 341.0
 margin_bottom = 522.0
 
-[node name="MediumPattern" parent="." instance=ExtResource( 2 )]
-
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 208, 505 )
+
+[node name="MediumPattern" parent="." instance=ExtResource( 2 )]
