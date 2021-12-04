@@ -1,6 +1,8 @@
 -- test dialog for lana vs hakki
-{set speaker1 = "Lana", Speaker2 = "Hakki"}Lana: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam.
-Hakki: What?
+{set speaker1 = "Lana", Speaker2 = "Hakki"}
+Hakki: Hey you!
+Lana: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam.
+Hakki: What\?
 Lana: Hello World.
 Hakki: I don't understand what you are saying.
 Hakki: Go home. You're drunk.

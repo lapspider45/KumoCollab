@@ -3,8 +3,9 @@ extends Control
 signal dialog_over
 var speaker := []
 export var dialog_script := "test_dialog"
-var _dialogue
-var is_text_animating = null
+var _dialogue: ClydeDialogue
+var is_text_animating := false
+var skip := false
 
 
 func _ready():
@@ -18,13 +19,14 @@ func _ready():
 	_get_next_dialogue_line()
 
 
-func _input(event):
-	if event.is_action_pressed("shoot"):
+func _physics_process(delta):
+	if Input.is_action_just_released("shoot"):
 		if is_text_animating:
 			is_text_animating = false
 			return
 		_get_next_dialogue_line()
-	if event.is_action("ui_accept"):
+	if Input.is_action_pressed("bomb"):
+		skip = true
 		_get_next_dialogue_line()
 
 
@@ -48,15 +50,15 @@ func _get_next_dialogue_line():
 
 func _set_up_line(content):
 	var is_speaker1 = speaker[0] == content.get("speaker")
-	if $TextBox/Speaker1Name.visible != is_speaker1: 
+	if $TextBox/Speaker1Name.visible != is_speaker1 or $TextBox/Speaker1Name.visible == $TextBox/Speaker2Name.visible: 
 		var offset = 0 if is_speaker1 else 1
 		get_tree().get_nodes_in_group("dialog_animation")[0 + offset].play("fade_in")
 		get_tree().get_nodes_in_group("dialog_animation")[1 - offset].play("fade_in", -1, -1.0, true)
 	$TextBox/Speaker1Name.visible = is_speaker1
 	$TextBox/Speaker2Name.visible = not is_speaker1
-	
 	$TextBox/Text.text = content.text
 	$TextBox/Text.visible_characters = 0
+	
 	var length :int = content.text.length()
 	is_text_animating = true
 	for i in length:

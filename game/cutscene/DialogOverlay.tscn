@@ -72,6 +72,8 @@ tracks/1/keys = {
 [node name="DialogOverlay" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = -32.0
+margin_bottom = -32.0
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -85,7 +87,7 @@ __meta__ = {
 }
 
 [node name="Speaker1" type="TextureRect" parent="SpeakerBox"]
-modulate = Color( 0.603922, 0.603922, 0.603922, 1 )
+modulate = Color( 0.466667, 0.466667, 0.466667, 1 )
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = -200.0
@@ -128,10 +130,8 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
-margin_top = -120.0
+margin_top = -112.0
 margin_right = -5.0
-margin_bottom = -5.0
-rect_min_size = Vector2( 470, 110 )
 texture = ExtResource( 1 )
 region_rect = Rect2( 0, 0, 39, 39 )
 patch_margin_left = 13
