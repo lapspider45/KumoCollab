@@ -133,7 +133,7 @@ resource_name = "asd"
 length = 4.2
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:timescale")
+tracks/0/path = NodePath(".:speedscale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -556,7 +556,6 @@ __meta__ = {
 }
 bullet_speed = 100.0
 autoaim = true
-aim_offset = Vector2( 0, 0 )
 
 [node name="l1" parent="." instance=ExtResource( 2 )]
 position = Vector2( 0, -10 )

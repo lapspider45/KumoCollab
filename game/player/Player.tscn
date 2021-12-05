@@ -138,22 +138,24 @@ shape = SubResource( 6 )
 
 [node name="ExplosionParticles1" parent="." instance=ExtResource( 3 )]
 
-[node name="BulletSpawner" parent="." groups=["player_bulletspawner"] instance=ExtResource( 4 )]
+[node name="Guns" type="Node2D" parent="."]
+
+[node name="BulletSpawner" parent="Guns" groups=["player_bulletspawner"] instance=ExtResource( 4 )]
 position = Vector2( 0, -16 )
 rotation = -1.57079
 bullet_speed = 600.0
 bullet_acceleration = Vector2( 0, -10 )
 bullet_type = "complex1"
 
-[node name="BulletSpawner2" parent="." groups=["player_bulletspawner"] instance=ExtResource( 4 )]
-position = Vector2( -17, -18 )
+[node name="BulletSpawner2" parent="Guns" groups=["player_bulletspawner"] instance=ExtResource( 4 )]
+position = Vector2( -9, -16 )
 rotation = -1.65806
 bullet_speed = 600.0
 bullet_acceleration = Vector2( 0, -10 )
 bullet_type = "complex1"
 
-[node name="BulletSpawner3" parent="." groups=["player_bulletspawner"] instance=ExtResource( 4 )]
-position = Vector2( 17, -17 )
+[node name="BulletSpawner3" parent="Guns" groups=["player_bulletspawner"] instance=ExtResource( 4 )]
+position = Vector2( 9, -16 )
 rotation = -1.48353
 bullet_speed = 600.0
 bullet_acceleration = Vector2( 0, -10 )

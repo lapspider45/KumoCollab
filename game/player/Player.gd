@@ -21,6 +21,7 @@ var bullets = []
 
 
 func _ready():
+	setup_guns()
 	set_invincible(false)
 
 
@@ -34,11 +35,12 @@ func get_movement_dir()-> Vector2:
 		return vec
 
 func shoot():
-	get_tree().call_group("player_bulletspawner", "shoot")
+#	get_tree().call_group("player_bulletspawner", "shoot")
+	for g in $Guns.get_children():
+		g.shoot()
 
 func add_bullet(bullet):
 	bullet.set_collision_layers(8)
-#	get_parent().add_bullet(bullet)
 	DanmakuServer.add_bullet(bullet)
 
 
@@ -109,3 +111,7 @@ func set_bullet_speed(v):
 	bullet_speed = v
 	for s in get_spawners():
 		s.bullet_speed = v
+
+func setup_guns():
+	for g in $Guns.get_children():
+		g.set_bullet_collision(8)

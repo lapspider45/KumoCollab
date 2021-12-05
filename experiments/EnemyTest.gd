@@ -3,8 +3,8 @@ extends Node2D
 signal tick(delta)
 
 func _connect():
-	connect("tick", $Player, "_custom_process")
-	connect("tick", $Enemy, "advance")
+	connect("tick", $Player, "advance")
+#	connect("tick", $Enemy, "advance")
 
 func _process(delta):
 	emit_signal("tick", delta)
