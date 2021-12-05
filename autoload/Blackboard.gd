@@ -44,6 +44,8 @@ func predict_player_pos(delta:float) -> Vector2: # position of the player 'delta
 	return player_pos.linear_interpolate(predicted_player_pos, delta)
 
 var player_autoaim_target : Vector2 # position which player's autoaim targets
+var player_pickup_radius = 48.0
+var player_pickup_line = 200
 
 var slowdown = 1 # multiply with delta
 
