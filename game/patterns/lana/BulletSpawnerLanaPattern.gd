@@ -9,7 +9,7 @@ func _on_PatternTimer_timeout():
 
 #override
 func shoot(params={}):
-	var bullet = BulletServer.instantiate_bullet(bullet_type)
+	var bullet = DanmakuServer.instantiate_bullet(bullet_type)
 	bullet.set_as_toplevel(true)
 	bullet.position = global_position
 	bullet.velocity = Vector2.RIGHT.rotated(global_rotation) * bullet_speed * params.get("speedscale", 1)
