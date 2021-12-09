@@ -9,7 +9,7 @@ func _process(delta):
 	Blackboard.slowdown = slowdown
 	$SimpleBulletServer.process_bullets(delta)
 	get_tree().call_group("TickedAnimationPlayer", "advance", delta * slowdown)
-	$Player.advance(delta * slowdown)
+#	$Player.advance(delta * slowdown)
 #	if $SimpleBulletServer.batch_finished:
 
 func add_bullet(bullet):

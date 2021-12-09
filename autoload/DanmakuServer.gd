@@ -5,6 +5,7 @@ var current_server
 const BULLETS = {
 	"basic1": preload("res://game/bullets/SimpleBullet.tscn"),
 	"complex1": preload("res://game/bullets/AreaBullet.tscn"),
+	"color1": preload("res://experiments/ColorBullet.tscn"),
 }
 
 
