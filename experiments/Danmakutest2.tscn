@@ -1,13 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://game/spawner/BulletSpawner.gd" type="Script" id=1]
+[ext_resource path="res://experiments/BulletSpawnerRandomColor.gd" type="Script" id=1]
 [ext_resource path="res://game/Danmaku.gd" type="Script" id=2]
-[ext_resource path="res://game/Pattern.gd" type="Script" id=3]
+[ext_resource path="res://experiments/PatternCircleaccelerationtest.gd" type="Script" id=3]
 [ext_resource path="res://game/components/SimpleBulletServer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://icon.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "New Anim"
-length = 0.3
+length = 0.6
 loop = true
 tracks/0/type = "method"
 tracks/0/path = NodePath("BulletSpawner")
@@ -24,6 +25,63 @@ tracks/0/keys = {
 } ]
 }
 
+[sub_resource type="Animation" id=2]
+resource_name = "New Anim"
+length = 25.0
+loop = true
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath("thepoint:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 9.06666, 17.0667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 223, 540 ), Vector2( 143, 548 ), Vector2( 316, 544 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BulletSpawner:seq_id")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 5.79999, 11.7667, 19.47 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("thepoint:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 35, 42 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BulletSpawner:seq_id")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
 [node name="Danmaku" type="Node2D"]
 script = ExtResource( 2 )
 
@@ -36,8 +94,27 @@ script = ExtResource( 3 )
 [node name="BulletSpawner" type="Position2D" parent="Pattern"]
 position = Vector2( 220, 168 )
 script = ExtResource( 1 )
+bullet_speed = 140.0
 bullet_type = "color1"
+
+[node name="Icon" type="Sprite" parent="Pattern/BulletSpawner"]
+texture = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pattern"]
 autoplay = "New Anim"
 "anims/New Anim" = SubResource( 1 )
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Pattern"]
+autoplay = "New Anim"
+playback_speed = 1.5
+"anims/New Anim" = SubResource( 2 )
+anims/RESET = SubResource( 3 )
+
+[node name="thepoint" type="Position2D" parent="Pattern"]
+position = Vector2( 35, 42 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Icon" type="Sprite" parent="Pattern/thepoint"]
+texture = ExtResource( 5 )

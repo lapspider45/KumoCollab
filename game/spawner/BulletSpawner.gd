@@ -60,6 +60,9 @@ func set_param(k, v):
 	bullet_params[k] = v
 
 func shoot():
+	shoot_single()
+
+func shoot_single():
 	var bullet = bullet_template.duplicate(DUPLICATE_GROUPS + DUPLICATE_SCRIPTS)
 	bullet.set_as_toplevel(true)
 	bullet.position = global_position
@@ -67,9 +70,19 @@ func shoot():
 	bullet.acceleration = bullet_acceleration
 	DanmakuServer.add_bullet(bullet)
 
+func shoot_ring(num_spokes:int):
+	var rot_angle := TAU / num_spokes
+	for i in range(num_spokes):
+		shoot()
+		rotate(rot_angle)
+
+
 func aim_at_player():
 	look_at(get_player_pos())
-	rotate(deg2rad(aim_offset))
+#	rotate(deg2rad(aim_offset))
+
+func accelerate_towards_point(point:Vector2, magnitude:float):
+	bullet_acceleration = global_position.direction_to(point) * magnitude
 
 func get_player_pos(): # TODO
 	return Blackboard.player_pos
