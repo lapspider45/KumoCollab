@@ -1,9 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://game/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game/player/lana/PlayerLana.gd" type="Script" id=2]
 [ext_resource path="res://art/characters/lana/PlayerSpriteLana.png" type="Texture" id=3]
 [ext_resource path="res://game/spawner/BulletSpawner.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+resource_local_to_scene = true
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id=2]
+resource_local_to_scene = true
+radius = 65.0077
 
 [node name="Player" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -14,9 +22,11 @@ invincible = false
 max_hp = 30
 
 [node name="Sprite" parent="." index="0"]
-modulate = Color( 1, 0.231373, 0.137255, 0.376471 )
 self_modulate = Color( 1, 1, 1, 1 )
 texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 1 )
 
 [node name="BulletSpawner" parent="." index="5"]
 position = Vector2( -8, 0 )
@@ -35,5 +45,8 @@ rotation = -1.57079
 bullet_speed = 600.0
 bullet_acceleration = Vector2( 0, -10 )
 bullet_type = "complex1"
+
+[node name="ItemCollectionCircle" parent="ItemPickupBox" index="0"]
+shape = SubResource( 2 )
 
 [editable path="Hitbox"]

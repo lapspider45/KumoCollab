@@ -9,6 +9,8 @@ func _physics_process(delta):
 	if item_pickup_box_found :
 		_homing()
 	position += direction * speed * delta
+	if position.y > get_viewport().size.y:
+		queue_free()
 
 
 func _homing():
@@ -16,6 +18,6 @@ func _homing():
 	direction = (difference).normalized() * 4
 
 
-func _on_Item_area_entered(area):
-	print("Power Up")
+func _on_Item_area_entered(_area):
+	print(_area.name)
 	queue_free()

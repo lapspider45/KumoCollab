@@ -31,6 +31,8 @@ func _physics_process(delta):
 
 
 func _get_next_dialogue_line():
+	if _dialogue == null:
+		return
 	var content = _dialogue.get_content()
 	if not content:
 		var dialog_animation_group = get_tree().get_nodes_in_group("dialog_animation")
