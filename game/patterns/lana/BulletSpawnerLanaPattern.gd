@@ -1,16 +1,8 @@
 extends BulletSpawner
 
-export var explosion_amount := 5
+export var explosion_amount := 2
 export var explosion_speed := 50
 export var explosion_acceleration := Vector2(0, 20)
-
-
-
-func _on_PatternTimer_timeout():
-#	for i in get_tree().get_nodes_in_group("stopbullets"):
-#		if is_instance_valid(i):
-#			i.velocity = Vector2(0, 0)
-	pass
 
 
 #override
@@ -27,14 +19,14 @@ func shoot(params={}):
 func _stop_bullet_to_explode():
 	for i in get_tree().get_nodes_in_group("stopbullets"):
 		if is_instance_valid(i):
-			i.velocity = Vector2(0, 0)
+			i.freeze()
 
 
 func _bullets_explode():
 	for i in get_tree().get_nodes_in_group("stopbullets"):
 		if is_instance_valid(i):
 			for _j in explosion_amount:
-				var bullet = DanmakuServer.instantiate_bullet(bullet_type)
+				var bullet = DanmakuServer.instantiate_bullet("lana_sparkle")
 				bullet.set_as_toplevel(true)
 				bullet.position = i.global_position
 				var random_direction := Vector2.RIGHT.rotated(deg2rad(rand_range(0, 360)))
