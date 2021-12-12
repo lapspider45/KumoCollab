@@ -28,25 +28,35 @@ texture = ExtResource( 3 )
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource( 1 )
 
-[node name="BulletSpawner" parent="." index="5"]
+[node name="ItemCollectionCircle" parent="ItemPickupBox" index="0"]
+shape = SubResource( 2 )
+
+[node name="BulletSpawner" parent="." index="7" groups=["player_bulletspawner"] instance=ExtResource( 4 )]
 position = Vector2( -8, 0 )
-
-[node name="BulletSpawner2" parent="." index="6"]
-position = Vector2( -16, 0 )
-rotation = -1.91986
-
-[node name="BulletSpawner3" parent="." index="7"]
-position = Vector2( 16, 0 )
-rotation = -1.22173
-
-[node name="BulletSpawner4" parent="." index="9" groups=["player_bulletspawner"] instance=ExtResource( 4 )]
-position = Vector2( 8, 0 )
 rotation = -1.57079
 bullet_speed = 600.0
 bullet_acceleration = Vector2( 0, -10 )
 bullet_type = "complex1"
 
-[node name="ItemCollectionCircle" parent="ItemPickupBox" index="0"]
-shape = SubResource( 2 )
+[node name="BulletSpawner2" parent="." index="8" groups=["player_bulletspawner"] instance=ExtResource( 4 )]
+position = Vector2( -16, 0 )
+rotation = -1.91986
+bullet_speed = 600.0
+bullet_acceleration = Vector2( 0, -10 )
+bullet_type = "complex1"
+
+[node name="BulletSpawner3" parent="." index="9" groups=["player_bulletspawner"] instance=ExtResource( 4 )]
+position = Vector2( 16, 0 )
+rotation = -1.22173
+bullet_speed = 600.0
+bullet_acceleration = Vector2( 0, -10 )
+bullet_type = "complex1"
+
+[node name="BulletSpawner4" parent="." index="10" groups=["player_bulletspawner"] instance=ExtResource( 4 )]
+position = Vector2( 8, 0 )
+rotation = -1.57079
+bullet_speed = 600.0
+bullet_acceleration = Vector2( 0, -10 )
+bullet_type = "complex1"
 
 [editable path="Hitbox"]

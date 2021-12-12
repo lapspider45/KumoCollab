@@ -35,7 +35,7 @@ func get_movement_dir()-> Vector2:
 		return vec
 
 func shoot():
-#	get_tree().call_group("player_bulletspawner", "shoot")
+	get_tree().call_group("player_bulletspawner", "shoot")
 	for g in $Guns.get_children():
 		g.shoot()
 

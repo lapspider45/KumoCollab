@@ -1,9 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://game/player/Player.gd" type="Script" id=2]
 [ext_resource path="res://art/particles/ExplosionParticles1.tscn" type="PackedScene" id=3]
-[ext_resource path="res://game/spawner/BulletSpawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://art/particles/ring.png" type="Texture" id=5]
 [ext_resource path="res://game/components/Hitbox.tscn" type="PackedScene" id=6]
 
@@ -144,29 +143,6 @@ shape = SubResource( 6 )
 
 [node name="ExplosionParticles1" parent="." instance=ExtResource( 3 )]
 
-[node name="Guns" type="Node2D" parent="."]
-
-[node name="BulletSpawner" parent="Guns" groups=["player_bulletspawner"] instance=ExtResource( 4 )]
-position = Vector2( 0, -16 )
-rotation = -1.57079
-bullet_speed = 600.0
-bullet_acceleration = Vector2( 0, -10 )
-bullet_type = "complex1"
-
-[node name="BulletSpawner2" parent="Guns" groups=["player_bulletspawner"] instance=ExtResource( 4 )]
-position = Vector2( -9, -16 )
-rotation = -1.65806
-bullet_speed = 600.0
-bullet_acceleration = Vector2( 0, -10 )
-bullet_type = "complex1"
-
-[node name="BulletSpawner3" parent="Guns" groups=["player_bulletspawner"] instance=ExtResource( 4 )]
-position = Vector2( 9, -16 )
-rotation = -1.48353
-bullet_speed = 600.0
-bullet_acceleration = Vector2( 0, -10 )
-bullet_type = "complex1"
-
 [node name="ShootAnimation" type="AnimationPlayer" parent="."]
 autoplay = "shoot"
 playback_process_mode = 2
@@ -180,5 +156,7 @@ monitorable = false
 
 [node name="ItemCollectionCircle" type="CollisionShape2D" parent="ItemPickupBox"]
 shape = SubResource( 8 )
+
+[node name="Guns" type="Node2D" parent="."]
 
 [editable path="Hitbox"]
