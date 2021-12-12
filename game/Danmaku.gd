@@ -1,6 +1,10 @@
 extends Node2D
 
+var player
+
+
 func _ready():
+	player = $Player
 	Registry.register("current_gamescene", self)
 	$SimpleBulletServer.connect("bullet_collided", self, "on_collision")
 
@@ -9,7 +13,7 @@ func _process(delta):
 	Blackboard.slowdown = slowdown
 	$SimpleBulletServer.process_bullets(delta)
 	get_tree().call_group("TickedAnimationPlayer", "advance", delta * slowdown)
-#	$Player.advance(delta * slowdown)
+	if player: player.advance(delta * slowdown)
 #	if $SimpleBulletServer.batch_finished:
 
 func add_bullet(bullet):
