@@ -5,6 +5,8 @@ var current_server
 const BULLETS = {
 	"basic1": preload("res://game/bullets/SimpleBullet.tscn"),
 	"complex1": preload("res://game/bullets/AreaBullet.tscn"),
+	"lana_bomb": preload("res://game/bullets/LanaBombSprite.tscn"),
+	"lana_sparkle": preload("res://game/bullets/LanaSparkleSprite.tscn"),
 }
 
 

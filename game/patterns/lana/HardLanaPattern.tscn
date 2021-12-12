@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://game/TickedAnimationPlayer.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -493,87 +493,7 @@ tracks/7/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=3]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 240, 114 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath(".:aim_offset")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ) ]
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "asda"
-length = 30.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/keys = {
-"times": PoolRealArray( 0, 15, 30 ),
-"transitions": PoolRealArray( -2, -2, -2 ),
-"update": 0,
-"values": [ Vector2( 100, 150 ), Vector2( 380, 150 ), Vector2( 100, 150 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/keys = {
-"times": PoolRealArray( 0, 11.6, 22.2, 23.4, 27.5, 29.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 2, 2 ), Vector2( 1, 1 ), Vector2( 2, -2 ), Vector2( 2, -2 ), Vector2( 1, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath(".:aim_offset")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/keys = {
-"times": PoolRealArray( 0, 8, 17.9 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ 0.0, 30.0, -30.0 ]
-}
-
-[node name="EasyLanaPattern" type="Position2D" groups=["bulletspawner"]]
+[node name="HardLanaPattern" type="Position2D" groups=["bulletspawner"]]
 position = Vector2( 240, 114 )
 rotation = 1.5708
 script = ExtResource( 4 )
@@ -581,6 +501,9 @@ bullet_speed = 200.0
 bullet_acceleration = Vector2( 0, 0 )
 aim_offset = Vector2( 0, 0 )
 bullet_type = "lana_bomb"
+explosion_amount = 10
+explosion_speed = 80
+explosion_acceleration = Vector2( 0, 50 )
 
 [node name="l1" type="Position2D" parent="." groups=["bulletspawner"]]
 position = Vector2( 0, -10 )
@@ -610,6 +533,12 @@ bullet_type = "lana_bomb"
 rotation = 0.261799
 script = ExtResource( 4 )
 bullet_speed = 200.0
+bullet_acceleration = Vector2( 0, 0 )
+bullet_type = "lana_bomb"
+
+[node name="tail4" type="Position2D" parent="l1" groups=["bulletspawner"]]
+rotation = -0.907571
+script = ExtResource( 4 )
 bullet_acceleration = Vector2( 0, 0 )
 bullet_type = "lana_bomb"
 
@@ -644,9 +573,16 @@ bullet_speed = 200.0
 bullet_acceleration = Vector2( 0, 0 )
 bullet_type = "lana_bomb"
 
+[node name="tail4" type="Position2D" parent="r1" groups=["bulletspawner"]]
+position = Vector2( 0, 1.52588e-05 )
+rotation = 0.907571
+script = ExtResource( 4 )
+bullet_acceleration = Vector2( 0, 0 )
+bullet_type = "lana_bomb"
+
 [node name="reverse" type="Position2D" parent="." groups=["bulletspawner"]]
 position = Vector2( -47, 0.000167847 )
-rotation = 1.5708
+rotation = 1.72788
 script = ExtResource( 3 )
 bullet_speed = 200.0
 
@@ -662,6 +598,9 @@ script = ExtResource( 3 )
 bullet_speed = -75.0
 bullet_acceleration = Vector2( 0, 40 )
 
+[node name="PatternTimer" type="Timer" parent="."]
+wait_time = 5.0
+
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -25, 9.15527e-05 )
 rotation = -1.5708
@@ -674,11 +613,6 @@ anims/RESET = SubResource( 5 )
 anims/asd = SubResource( 6 )
 script = ExtResource( 1 )
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
-autoplay = "asda"
-playback_speed = 4.0
-anims/RESET = SubResource( 3 )
-anims/asda = SubResource( 4 )
-script = ExtResource( 1 )
-
 [node name="Node2D" type="Node2D" parent="."]
+
+[connection signal="timeout" from="PatternTimer" to="." method="_on_PatternTimer_timeout"]

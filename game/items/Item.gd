@@ -22,6 +22,6 @@ func _homing(delta):
 	velocity = velocity + direction * acceleration * delta
 
 
-func _on_Item_area_entered(area):
-	print("Power Up")
+func _on_Item_area_entered(_area):
+	print(_area.name)
 	queue_free()
