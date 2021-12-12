@@ -51,4 +51,5 @@ var slowdown = 1 # multiply with delta
 
 var boss_pos : Vector2
 
-
+var fields = {}
+var FIELD_EMPTY = VectorField.new()

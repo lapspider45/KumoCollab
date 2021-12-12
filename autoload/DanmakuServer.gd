@@ -8,6 +8,7 @@ const BULLETS = {
 	"lana_bomb": preload("res://game/bullets/LanaBombSprite.tscn"),
 	"lana_sparkle": preload("res://game/bullets/LanaSparkleSprite.tscn"),
 	"color1": preload("res://experiments/ColorBullet.tscn"),
+	"fieldtest": preload("res://game/bullets/FieldBullet.tscn"),
 }
 
 

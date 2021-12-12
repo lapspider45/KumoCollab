@@ -73,7 +73,7 @@ func shoot_single():
 func shoot_ring(num_spokes:int):
 	var rot_angle := TAU / num_spokes
 	for i in range(num_spokes):
-		shoot()
+		shoot_single()
 		rotate(rot_angle)
 
 

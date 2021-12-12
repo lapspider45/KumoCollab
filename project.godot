@@ -38,6 +38,11 @@ _global_script_classes=[ {
 "class": "SimpleBulletServer",
 "language": "GDScript",
 "path": "res://game/components/SimpleBulletServer.gd"
+}, {
+"base": "Reference",
+"class": "VectorField",
+"language": "GDScript",
+"path": "res://utils/Field.gd"
 } ]
 _global_script_class_icons={
 "BulletSpawner": "",
@@ -45,7 +50,8 @@ _global_script_class_icons={
 "LanaBombSprite": "",
 "Pattern": "",
 "SimpleBullet": "",
-"SimpleBulletServer": ""
+"SimpleBulletServer": "",
+"VectorField": ""
 }
 
 [application]
