@@ -1,14 +1,14 @@
 extends SimpleBullet
 
 var field : Reference
-var field_strength = 300.0
+var field_strength = 300.0 # rename to field_influence
 
 func advance(delta):
 	velocity += acceleration * delta
 	if field is VectorField:
 		acceleration = field.sample_vector(position) * field_strength
 	else:
-		velocity = Vector2.ZERO
+		acceleration = Vector2.ZERO
 	translate(velocity * delta)
 	lifetime -= delta
 	

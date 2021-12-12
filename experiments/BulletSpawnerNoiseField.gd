@@ -1,7 +1,7 @@
 extends BulletSpawner
 
 func shoot():
-	shoot_ring(7)
+	shoot_ring(9)
 
 #func _ready():
 #	bullet_template.set("field_strength", 160)

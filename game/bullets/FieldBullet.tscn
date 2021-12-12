@@ -8,3 +8,4 @@
 texture = ExtResource( 3 )
 script = ExtResource( 2 )
 collision_radius = 8.0
+radius = 8.0
