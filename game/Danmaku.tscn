@@ -11,6 +11,7 @@ script = ExtResource( 3 )
 
 [node name="SimpleBulletServer" parent="." instance=ExtResource( 1 )]
 process_batch_size = 900
+player_hitbox_radius = 2.0
 
 [node name="HardLanaPattern" parent="." instance=ExtResource( 4 )]
 
