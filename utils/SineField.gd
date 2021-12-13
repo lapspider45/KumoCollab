@@ -4,10 +4,10 @@ var _min = Vector2(-1.0, -1.0)
 var _max = Vector2(1.0, 1.0)
 var period = Vector2(TAU, TAU)
 
-func my_sin(x:float, _min:float, _max:float, period:float, offset:float):
-	var center:float = lerp(_min, _max, 0.5)
-	var magnitude := _max - _min
-	var freq := TAU / period
+func my_sin(x:float, __min:float, __max:float, _period:float, offset:float):
+	var center:float = lerp(__min, __max, 0.5)
+	var magnitude := __max - __min
+	var freq := TAU / _period
 #	var phase := offset / period
 	return center + magnitude * sin(freq * x + offset)
 

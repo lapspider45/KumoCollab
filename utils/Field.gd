@@ -11,6 +11,9 @@ func sample_scalar(pos:Vector2)->float:
 func sample_vector(pos:Vector2)->Vector2:
 	return Vector2()
 
+func sample_bool(pos:Vector2)->bool:
+	return false
+
 var CENTER = Vector2(480,640) * 0.5
 
 func away_from_center(pos:Vector2, tresh=0.1):

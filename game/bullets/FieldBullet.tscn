@@ -7,5 +7,4 @@
 [node name="FieldBullet" instance=ExtResource( 1 )]
 texture = ExtResource( 3 )
 script = ExtResource( 2 )
-collision_radius = 8.0
 radius = 8.0

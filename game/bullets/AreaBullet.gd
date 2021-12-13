@@ -1,6 +1,5 @@
 extends Area2D
 
-export var collision_radius = -100000
 export var radius = -10000
 export var velocity:Vector2
 export var lifetime := 10.0

@@ -31,8 +31,10 @@ export var bullet_type := "basic1" setget set_bullet_type
 var bullet_template: Node
 var bullet_params := {}
 
-func _ready():
+func _init():
 	bullet_group_id = generate_unique_group_id()
+
+func _ready():
 	set_bullet_type(bullet_type)
 
 func _shoot(params:Dictionary={}):
