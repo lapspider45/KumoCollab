@@ -24,7 +24,7 @@ var batches_remaining: int
 var num_batches: int
 
 export var process_batch_size = 1200
-#export var max_batches = 2
+export var max_batches = 3
 #export var dynamic_batch_size = false
 #export var smooth_slowdown = false
 export var max_bullets = 3600
@@ -111,10 +111,16 @@ func create_batches():
 	bullets = get_children()
 	bullet_count = bullets.size()
 	
-	# split bullets into batches of size 'process_batch_size'
-	for i in range(0, bullet_count, process_batch_size):
-		batches.append(bullets.slice(i, i + process_batch_size - 1))
+	if bullet_count == 0:
+		return
+	
+	# split bullets evenly into the minimum number of batches smaller than 'process_batch_size'
+	var batches_needed = min(ceil(float(bullet_count) / process_batch_size), max_batches)
+	var batch_size = ceil(float(bullet_count) / batches_needed)
+	for i in range(0, bullet_count, batch_size):
+		batches.append(bullets.slice(i, i + batch_size - 1))
 	num_batches = batches.size()
+	assert(num_batches == batches_needed)
 	emit_signal("batches_created", num_batches)
 
 
