@@ -37,7 +37,7 @@ func init_screen_rect(rect:Rect2):
 	init_screen_points(rect.position.x, rect.end.x, rect.position.y, rect.end.y)
 
 ## these values are to be pushed by the player, so if there is no player they are simply ZERO
-var player_pos : Vector2 # position of the player
+var player_pos : Vector2  = Vector2(240, 900) # position of the player
 var predicted_player_pos : Vector2 # position of the player 1 second into future based on current velocity
 func predict_player_pos(delta:float) -> Vector2: # position of the player 'delta' seconds into the future
 #	print("predicted: %s" % player_pos.linear_interpolate(predicted_player_pos, delta))

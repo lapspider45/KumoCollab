@@ -103,6 +103,7 @@ func process_single_batch(batch:Array, delta:float):
 	return collision
 
 func process_deletion_queue():
+	# maximum bullets to delete per frame, otherwise there will be stutter
 	for _i in range(min(256, deletion_queue.size())):
 		var b = deletion_queue.pop_back()
 		if is_instance_valid(b):

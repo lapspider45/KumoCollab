@@ -11,7 +11,8 @@ func start():
 func stop():
 	pass
 
-
+func reset():
+	pass
 
 
 
