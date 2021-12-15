@@ -4,6 +4,7 @@ export var radius = -10000
 export var velocity:Vector2
 export var lifetime := 10.0
 export var acceleration:Vector2
+export var delete_outside_screen := true
 
 #const SHAPE = preload("res://default_bullet_shape.tres")
 const PLAYER_LAYER = 1

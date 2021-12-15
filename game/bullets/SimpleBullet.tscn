@@ -6,4 +6,3 @@
 [node name="Bullet" type="Sprite"]
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
-collision_radius = 4.0

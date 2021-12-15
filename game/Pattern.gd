@@ -8,7 +8,7 @@ signal finished
 func start():
 	pass
 
-func finish():
+func stop():
 	pass
 
 

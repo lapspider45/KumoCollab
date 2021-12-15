@@ -87,7 +87,8 @@ func process_single_batch(batch:Array, delta:float):
 		
 		# delete bullets outside the screen
 		if not bullet_limits.has_point(b.position):
-			deletion_queue.append(b)
+			if b.delete_outside_screen:
+				deletion_queue.append(b)
 			continue
 		
 		# check collision (first pass, simple and performant)
