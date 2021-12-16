@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://game/Pattern.tscn" type="PackedScene" id=1]
+[ext_resource path="res://game/patterns/test/PolygonPattern.gd" type="Script" id=2]
+[ext_resource path="res://game/spawner/BulletSpawner.tscn" type="PackedScene" id=3]
+[ext_resource path="res://game/spawner/PolygonSpawner.gd" type="Script" id=4]
+[ext_resource path="res://utils/TickedAnimationPlayer.gd" type="Script" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "shoot"
+length = 0.7
+loop = true
+step = 0.0666667
+tracks/0/type = "method"
+tracks/0/path = NodePath("BulletSpawner")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "shoot"
+} ]
+}
+
+[node name="PolygonPattern" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="BulletSpawner" parent="." index="0" instance=ExtResource( 3 )]
+position = Vector2( 234, 181 )
+rotation = 1.5708
+script = ExtResource( 4 )
+bullet_speed = 300.0
+bullet_lifetime = 20.0
+bullet_acceleration = Vector2( 0, 0 )
+edges = 13
+shots_p_edge = 12
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BulletSpawner" index="0"]
+root_node = NodePath("../..")
+anims/shoot = SubResource( 1 )
+script = ExtResource( 5 )

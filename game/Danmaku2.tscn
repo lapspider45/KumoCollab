@@ -7,3 +7,4 @@
 script = ExtResource( 1 )
 
 [node name="SimpleBulletServer" parent="." instance=ExtResource( 2 )]
+process_batch_size = 2400
