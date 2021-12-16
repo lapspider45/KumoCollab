@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://experiments/Danmakutest_rings.tscn" type="PackedScene" id=1]
+[ext_resource path="res://game/Danmaku2.tscn" type="PackedScene" id=1]
 [ext_resource path="res://utils/BasedViewport.gd" type="Script" id=2]
 [ext_resource path="res://art/placeholder/rick.jpg" type="Texture" id=3]
 [ext_resource path="res://game/Main.gd" type="Script" id=4]

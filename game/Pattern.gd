@@ -13,6 +13,7 @@ func stop():
 
 func reset():
 	pass
+	print("unimplemented pattern reset")
 
 
 
