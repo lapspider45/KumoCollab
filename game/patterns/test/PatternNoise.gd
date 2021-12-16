@@ -12,8 +12,11 @@ func _ready():
 	noisefield.noise_x.period = 130
 	noisefield.noise_y.period = 130
 	
-	
-	pass
+	set_physics_process(false)
+
+func start():
+	set_physics_process(true)
+	$BulletSpawner/shoot.play("shoot")
 
 
 func _physics_process(delta):

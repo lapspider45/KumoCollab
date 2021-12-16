@@ -4,6 +4,10 @@ var sinefield
 export var field_strength := 1.0 setget set_field_strength
 export var rot_speed := 1.0
 
+func start():
+	$BulletSpawner/shoot.play("shoot2")
+	$AnimationPlayer.play("vary_strength")
+
 func _ready():
 	# add a sine field
 	sinefield = preload("res://utils/SineField.gd").new()

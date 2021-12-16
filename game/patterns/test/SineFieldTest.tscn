@@ -1,11 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://game/Danmaku.gd" type="Script" id=1]
-[ext_resource path="res://experiments/BulletSpawnerNoiseField.gd" type="Script" id=2]
-[ext_resource path="res://experiments/PatternSinefield.gd" type="Script" id=3]
-[ext_resource path="res://game/components/SimpleBulletServer.tscn" type="PackedScene" id=4]
-[ext_resource path="res://icon.png" type="Texture" id=5]
-[ext_resource path="res://utils/TickedAnimationPlayer.gd" type="Script" id=6]
+[ext_resource path="res://game/patterns/test/BulletSpawnerNoiseField.gd" type="Script" id=1]
+[ext_resource path="res://game/patterns/test/PatternSinefield.gd" type="Script" id=2]
+[ext_resource path="res://utils/TickedAnimationPlayer.gd" type="Script" id=3]
+[ext_resource path="res://icon.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -173,32 +171,26 @@ tracks/2/keys = {
 "values": [ 240.0, 240.0, 240.0, 80.0, 140.0, 200.0 ]
 }
 
-[node name="Danmaku" type="Node2D"]
-script = ExtResource( 1 )
-
-[node name="SimpleBulletServer" parent="." instance=ExtResource( 4 )]
-process_batch_size = 900
-
-[node name="Pattern" type="Node2D" parent="."]
-script = ExtResource( 3 )
-
-[node name="BulletSpawner" type="Position2D" parent="Pattern"]
-position = Vector2( 220, 168 )
+[node name="SineFieldTest" type="Node2D"]
 script = ExtResource( 2 )
+
+[node name="BulletSpawner" type="Position2D" parent="."]
+position = Vector2( 220, 168 )
+script = ExtResource( 1 )
 bullet_speed = 160.0
 bullet_acceleration = Vector2( 0, 0 )
 bullet_type = "LanaSparkleSprite"
 
-[node name="Icon" type="Sprite" parent="Pattern/BulletSpawner"]
-texture = ExtResource( 5 )
+[node name="Icon" type="Sprite" parent="BulletSpawner"]
+texture = ExtResource( 4 )
 
-[node name="shoot" type="AnimationPlayer" parent="Pattern/BulletSpawner"]
+[node name="shoot" type="AnimationPlayer" parent="BulletSpawner"]
 anims/RESET = SubResource( 4 )
 anims/shoot = SubResource( 1 )
 anims/shoot2 = SubResource( 5 )
-script = ExtResource( 6 )
+script = ExtResource( 3 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Pattern"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 3 )
 anims/vary_strength = SubResource( 2 )
-script = ExtResource( 6 )
+script = ExtResource( 3 )

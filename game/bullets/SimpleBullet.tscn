@@ -6,3 +6,4 @@
 [node name="Bullet" type="Sprite"]
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
+radius = 3.0
