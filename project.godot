@@ -22,7 +22,7 @@ _global_script_classes=[ {
 "base": "Sprite",
 "class": "LanaBombSprite",
 "language": "GDScript",
-"path": "res://LanaBombSprite.gd"
+"path": "res://game/bullets/LanaBombSprite.gd"
 }, {
 "base": "Node2D",
 "class": "Pattern",

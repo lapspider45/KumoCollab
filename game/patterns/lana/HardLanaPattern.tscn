@@ -499,7 +499,6 @@ rotation = 1.5708
 script = ExtResource( 4 )
 bullet_speed = 200.0
 bullet_acceleration = Vector2( 0, 0 )
-aim_offset = Vector2( 0, 0 )
 bullet_type = "lana_bomb"
 explosion_amount = 10
 explosion_speed = 80
