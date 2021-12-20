@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://game/patterns/test/BulletSpawnerNoiseField.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://game/patterns/test/PatternNoise.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "shoot"
+length = 0.2
+loop = true
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "shoot"
+} ]
+}
+
+[node name="NoiseTest" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="BulletSpawner" type="Position2D" parent="."]
+position = Vector2( 220, 168 )
+script = ExtResource( 1 )
+bullet_speed = 150.0
+bullet_acceleration = Vector2( 0, 0 )
+bullet_type = "fieldtest"
+
+[node name="Icon" type="Sprite" parent="BulletSpawner"]
+texture = ExtResource( 2 )
+
+[node name="shoot" type="AnimationPlayer" parent="BulletSpawner"]
+anims/shoot = SubResource( 1 )

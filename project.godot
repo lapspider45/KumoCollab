@@ -19,7 +19,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/clyde/ClydeDialogue.gd"
 }, {
-"base": "Sprite",
+"base": "Directory",
+"class": "DirUtils",
+"language": "GDScript",
+"path": "res://utils/DirUtils.gd"
+}, {
+"base": "SimpleBullet",
 "class": "LanaBombSprite",
 "language": "GDScript",
 "path": "res://game/bullets/LanaBombSprite.gd"
@@ -38,14 +43,21 @@ _global_script_classes=[ {
 "class": "SimpleBulletServer",
 "language": "GDScript",
 "path": "res://game/components/SimpleBulletServer.gd"
+}, {
+"base": "Reference",
+"class": "VectorField",
+"language": "GDScript",
+"path": "res://utils/Field.gd"
 } ]
 _global_script_class_icons={
 "BulletSpawner": "",
 "ClydeDialogue": "",
+"DirUtils": "",
 "LanaBombSprite": "",
 "Pattern": "",
 "SimpleBullet": "",
-"SimpleBulletServer": ""
+"SimpleBulletServer": "",
+"VectorField": ""
 }
 
 [application]
@@ -63,6 +75,9 @@ DanmakuServer="*res://autoload/DanmakuServer.tscn"
 [debug]
 
 settings/fps/force_fps=60
+gdscript/warnings/unused_variable=false
+gdscript/warnings/unused_argument=false
+gdscript/warnings/return_value_discarded=false
 
 [display]
 

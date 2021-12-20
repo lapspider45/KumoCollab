@@ -8,10 +8,12 @@ signal finished
 func start():
 	pass
 
-func finish():
+func stop():
 	pass
 
-
+func reset():
+	pass
+	print("unimplemented pattern reset")
 
 
 

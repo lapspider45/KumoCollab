@@ -22,3 +22,4 @@ func add_bullet(bullet):
 func on_collision(_bullet):
 #	print("collision with %s!" % bullet)
 	$SimpleBulletServer.clear_bullets()
+	$Pattern.reset()

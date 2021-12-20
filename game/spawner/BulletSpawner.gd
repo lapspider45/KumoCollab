@@ -1,11 +1,14 @@
 class_name BulletSpawner
 extends Position2D
 
+signal spawned(bullet_ref)
+
 enum NOTIFICATION {
 	CHILD_SPAWNER_ADDED = 10001
 }
 
 var children_spawners = []
+var bullet_group_id := ""
 
 export var timescale := 1.0
 export var speedscale := 1.0
@@ -27,6 +30,9 @@ export var children_disabled := false
 export var bullet_type := "basic1" setget set_bullet_type
 var bullet_template: Node
 var bullet_params := {}
+
+func _init():
+	bullet_group_id = generate_unique_group_id()
 
 func _ready():
 	set_bullet_type(bullet_type)
@@ -69,11 +75,12 @@ func shoot_single():
 	bullet.velocity = Vector2.RIGHT.rotated(global_rotation) * bullet_speed * speedscale
 	bullet.acceleration = bullet_acceleration
 	DanmakuServer.add_bullet(bullet)
+	emit_signal("spawned", bullet)
 
 func shoot_ring(num_spokes:int):
 	var rot_angle := TAU / num_spokes
 	for i in range(num_spokes):
-		shoot()
+		shoot_single()
 		rotate(rot_angle)
 
 
@@ -111,7 +118,15 @@ func _notification(what):
 func set_bullet_type(t:String):
 	bullet_type = t
 	bullet_template = DanmakuServer.instantiate_bullet(bullet_type)
+	bullet_template.add_to_group(bullet_group_id)
 
 func set_bullet_collision(c:int):
 	if bullet_template is Area2D:
 		bullet_template.collision_layer = c
+
+
+func generate_unique_group_id():
+	return "bullet@%s" % get_instance_id()
+
+func get_spawned_bullets():
+	return get_tree().get_nodes_in_group(bullet_group_id)

@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://game/TickedAnimationPlayer.gd" type="Script" id=1]
+[ext_resource path="res://game/Pattern.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game/spawner/BulletSpawner.tscn" type="PackedScene" id=2]
 [ext_resource path="res://game/spawner/BulletSpawner.gd" type="Script" id=3]
-[ext_resource path="res://icon.png" type="Texture" id=4]
+[ext_resource path="res://utils/TickedAnimationPlayer.gd" type="Script" id=4]
+[ext_resource path="res://icon.png" type="Texture" id=5]
+[ext_resource path="res://game/patterns/test/TestPattern.gd" type="Script" id=6]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -133,7 +135,7 @@ resource_name = "asd"
 length = 4.2
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:timescale")
+tracks/0/path = NodePath(".:speedscale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -548,7 +550,10 @@ tracks/2/keys = {
 "values": [ 0.0, 30.0, -30.0 ]
 }
 
-[node name="HardPattern" type="Position2D" groups=["bulletspawner"]]
+[node name="MediumTestPattern" instance=ExtResource( 1 )]
+script = ExtResource( 6 )
+
+[node name="Pattern" type="Position2D" parent="." index="0" groups=["bulletspawner"]]
 position = Vector2( 194, 114 )
 script = ExtResource( 3 )
 __meta__ = {
@@ -558,85 +563,87 @@ bullet_speed = 100.0
 autoaim = true
 aim_offset = Vector2( 0, 0 )
 
-[node name="l1" parent="." instance=ExtResource( 2 )]
+[node name="l1" parent="Pattern" index="0" instance=ExtResource( 2 )]
 position = Vector2( 0, -10 )
 rotation = -0.523599
 bullet_speed = 120.0
+children_disabled = true
 
-[node name="tail1" parent="l1" instance=ExtResource( 2 )]
+[node name="tail1" parent="Pattern/l1" index="0" instance=ExtResource( 2 )]
 bullet_speed = 100.0
 
-[node name="tail2" parent="l1" instance=ExtResource( 2 )]
+[node name="tail2" parent="Pattern/l1" index="1" instance=ExtResource( 2 )]
 bullet_speed = 80.0
 
-[node name="tail3" parent="l1" instance=ExtResource( 2 )]
+[node name="tail3" parent="Pattern/l1" index="2" instance=ExtResource( 2 )]
 bullet_speed = 60.0
 
-[node name="tail4" parent="l1" instance=ExtResource( 2 )]
+[node name="tail4" parent="Pattern/l1" index="3" instance=ExtResource( 2 )]
 
-[node name="l2" parent="." instance=ExtResource( 2 )]
+[node name="l2" parent="Pattern" index="1" instance=ExtResource( 2 )]
 position = Vector2( 0, -20 )
 rotation = -1.0472
 bullet_speed = 120.0
+children_disabled = true
 
-[node name="tail1" parent="l2" instance=ExtResource( 2 )]
+[node name="tail1" parent="Pattern/l2" index="0" instance=ExtResource( 2 )]
 bullet_speed = 80.0
 
-[node name="tail2" parent="l2" instance=ExtResource( 2 )]
+[node name="tail2" parent="Pattern/l2" index="1" instance=ExtResource( 2 )]
 bullet_speed = 60.0
 
-[node name="tail3" parent="l2" instance=ExtResource( 2 )]
+[node name="tail3" parent="Pattern/l2" index="2" instance=ExtResource( 2 )]
 
-[node name="tail4" parent="l2" instance=ExtResource( 2 )]
+[node name="tail4" parent="Pattern/l2" index="3" instance=ExtResource( 2 )]
 
-[node name="r1" parent="." instance=ExtResource( 2 )]
+[node name="r1" parent="Pattern" index="2" instance=ExtResource( 2 )]
 position = Vector2( 0, 10 )
 rotation = 0.523599
 bullet_speed = 120.0
+children_disabled = true
 
-[node name="tail1" parent="r1" instance=ExtResource( 2 )]
+[node name="tail1" parent="Pattern/r1" index="0" instance=ExtResource( 2 )]
 bullet_speed = 80.0
 
-[node name="tail2" parent="r1" instance=ExtResource( 2 )]
+[node name="tail2" parent="Pattern/r1" index="1" instance=ExtResource( 2 )]
 bullet_speed = 60.0
 
-[node name="tail3" parent="r1" instance=ExtResource( 2 )]
+[node name="tail3" parent="Pattern/r1" index="2" instance=ExtResource( 2 )]
 
-[node name="tail4" parent="r1" instance=ExtResource( 2 )]
+[node name="tail4" parent="Pattern/r1" index="3" instance=ExtResource( 2 )]
 
-[node name="r2" parent="." instance=ExtResource( 2 )]
+[node name="r2" parent="Pattern" index="3" instance=ExtResource( 2 )]
 position = Vector2( 0, 20 )
 rotation = 1.0472
 bullet_speed = 120.0
+children_disabled = true
 
-[node name="tail1" parent="r2" instance=ExtResource( 2 )]
+[node name="tail1" parent="Pattern/r2" index="0" instance=ExtResource( 2 )]
 bullet_speed = 80.0
 
-[node name="tail2" parent="r2" instance=ExtResource( 2 )]
+[node name="tail2" parent="Pattern/r2" index="1" instance=ExtResource( 2 )]
 bullet_speed = 60.0
 
-[node name="tail3" parent="r2" instance=ExtResource( 2 )]
+[node name="tail3" parent="Pattern/r2" index="2" instance=ExtResource( 2 )]
 
-[node name="tail4" parent="r2" instance=ExtResource( 2 )]
+[node name="tail4" parent="Pattern/r2" index="3" instance=ExtResource( 2 )]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "asd"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pattern" index="4"]
 playback_speed = 3.0
 anims/RESET = SubResource( 1 )
 anims/asd = SubResource( 2 )
-script = ExtResource( 1 )
+script = ExtResource( 4 )
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
-autoplay = "asda"
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Pattern" index="5"]
 playback_speed = 4.0
 anims/RESET = SubResource( 3 )
 anims/asda = SubResource( 4 )
-script = ExtResource( 1 )
+script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite" type="Sprite" parent="Pattern" index="6"]
 rotation = -1.5708
 scale = Vector2( 0.6, 0.6 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Node2D" type="Node2D" parent="Pattern" index="7"]
 scale = Vector2( 1, -1 )
