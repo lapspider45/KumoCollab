@@ -8,7 +8,7 @@ func shoot_ngon(edges:int, shots_per_edge:int, skip:int=1):
 	var points := []
 	for i in range(edges):
 		var angle = global_rotation + (i/float(edges) * TAU)
-		var point = Vector2(1, 0).rotated(angle)
+		var point = Vector2.RIGHT.rotated(angle)
 		points.append(point)
 	for i in range(points.size()):
 		var pointA:Vector2 = points[i]
