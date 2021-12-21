@@ -30,7 +30,7 @@ func _process(delta):
 func on_collision(_bullet):
 #	print("collision with %s!" % bullet)
 	$SimpleBulletServer.clear_bullets()
-	if current_pattern: 
+	if is_instance_valid(current_pattern): 
 		current_pattern.reset()
 
 func load_pattern(ptn:String):

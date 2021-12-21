@@ -27,6 +27,9 @@ export var children_disabled := false
 # also add some functions to arrange children in various patterns
 # and maybe to duplicate child spawners
 
+export var follow_node:NodePath
+export var enable_follow_node := false
+
 export var bullet_type := "basic1" setget set_bullet_type
 var bullet_template: Node
 var bullet_params := {}
@@ -95,11 +98,10 @@ func get_player_pos(): # TODO
 	return Blackboard.player_pos
 
 func advance(delta:float):
-	var anim = get_node_or_null("AnimationPlayer")
-	if anim is AnimationPlayer:
-		anim.advance(delta * timescale)
-	else:
-		print("animation palyer not found")
+	if enable_follow_node:
+		var node = get_node_or_null(follow_node) as Node2D
+		if node:
+			global_position = node.global_position
 
 func _notification(what):
 	match what:
