@@ -9,11 +9,11 @@ func _ready():
 	Registry.register("current_gamescene", self)
 	server.connect("bullet_collided", self, "on_collision")
 	
-	load_pattern("test/PolygonPattern")
-#	yield(demo_pattern_dir("lana", 10), "completed")
-#	yield(demo_pattern_dir("test", 10), "completed")
-#	print("all done!")
-#	current_pattern.queue_free()
+#	load_pattern("test/PolygonPattern")
+	yield(demo_pattern_dir("lana", 10), "completed")
+	yield(demo_pattern_dir("test", 10), "completed")
+	print("all done!")
+	current_pattern.queue_free()
 #	load_pattern("test/SineFieldTest")
 #	yield(get_tree().create_timer(15), "timeout")
 #	load_pattern("lana/Hard1")
@@ -24,6 +24,7 @@ func _process(delta):
 	
 	server.process_bullets(delta)
 	get_tree().call_group("TickedAnimationPlayer", "advance", delta * slowdown)
+	get_tree().call_group("autoadvance", "advance", delta * slowdown)
 	if player:
 		player.advance(delta * slowdown)
 
@@ -34,7 +35,7 @@ func on_collision(_bullet):
 		current_pattern.reset()
 
 func load_pattern(ptn:String):
-	if current_pattern:
+	if is_instance_valid(current_pattern):
 		current_pattern.stop()
 		current_pattern.queue_free()
 	if !ptn.ends_with(".tscn"):
@@ -54,4 +55,6 @@ func demo_pattern_dir(dir:String, time:float):
 	for pattern in D.ls(): if pattern.name.ends_with(".tscn"):
 		print("Demoing pattern: %s" % pattern.name)
 		load_pattern(dir.plus_file(pattern.name))
-		yield(get_tree().create_timer(time), "timeout")
+		yield(Blackboard.start_timeout(time), "completed")
+		current_pattern.stop()
+		yield(get_tree().create_timer(1.5), "timeout")
