@@ -29,10 +29,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://game/bullets/LanaBombSprite.gd"
 }, {
-"base": "Node2D",
+"base": "Reference",
 "class": "Pattern",
 "language": "GDScript",
-"path": "res://game/Pattern.gd"
+"path": "res://game/patterns/Pattern.gd"
 }, {
 "base": "Sprite",
 "class": "SimpleBullet",

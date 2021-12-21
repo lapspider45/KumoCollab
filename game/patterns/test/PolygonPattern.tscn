@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://game/Pattern.tscn" type="PackedScene" id=1]
+[ext_resource path="res://game/patterns/Pattern.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game/patterns/test/PolygonPattern.gd" type="Script" id=2]
 [ext_resource path="res://game/spawner/BulletSpawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://game/spawner/PolygonSpawner.gd" type="Script" id=4]
@@ -26,6 +26,38 @@ tracks/0/keys = {
 } ]
 }
 
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("BulletSpawner:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 234, 181 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "default"
+length = 15.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("BulletSpawner:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.4, 4, 6.3, 8.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 232, 184 ), Vector2( 232, 184 ), Vector2( 321, 177 ), Vector2( 223, 175 ), Vector2( 125, 173 ) ]
+}
+
 [node name="PolygonPattern" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
@@ -43,3 +75,8 @@ shots_p_edge = 12
 root_node = NodePath("../..")
 anims/shoot = SubResource( 1 )
 script = ExtResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+autoplay = "default"
+anims/RESET = SubResource( 2 )
+anims/default = SubResource( 3 )
