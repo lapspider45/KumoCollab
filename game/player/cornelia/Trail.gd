@@ -8,6 +8,7 @@ var index := 0
 
 
 func _ready():
+	# aha, so this is a buffer which delays the movement by 6 frames...
 	for i in 6 :
 		last_movement.append(Vector2.ZERO)
 		last_z_index.append(0)

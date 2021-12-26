@@ -10,6 +10,9 @@ func _ready():
 	orbit_options.append(orbit_option.instance())
 	orbit_options.append(orbit_option.instance())
 	orbit_options.append(orbit_option.instance())
+	
+	_on_Cheat_pressed()
+	_on_Cheat_pressed()
 
 
 func _on_Cheat_pressed():

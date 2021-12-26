@@ -8,7 +8,7 @@ func _ready():
 	Registry.register("current_gamescene", self)
 	server.connect("bullet_collided", self, "on_collision")
 	
-	load_pattern("test/PolygonPattern")
+#	load_pattern("test/PolygonPattern")
 #	yield(demo_pattern_dir("lana", 10), "completed")
 #	yield(demo_pattern_dir("test", 10), "completed")
 #	print("all done!")
