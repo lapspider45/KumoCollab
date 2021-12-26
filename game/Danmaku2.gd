@@ -1,6 +1,5 @@
 extends Node2D
 
-onready var player = $Player
 onready var server = $SimpleBulletServer
 
 var current_pattern : Node
@@ -24,7 +23,7 @@ func _process(delta):
 	
 	server.process_bullets(delta)
 	get_tree().call_group("TickedAnimationPlayer", "advance", delta * slowdown)
-	if player:
+	for player in get_tree().get_nodes_in_group("player"):
 		player.advance(delta * slowdown)
 
 func on_collision(_bullet):
