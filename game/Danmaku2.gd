@@ -1,6 +1,5 @@
 extends Node2D
 
-onready var player = $Player
 onready var server = $SimpleBulletServer
 
 var current_pattern : Node
@@ -25,7 +24,7 @@ func _process(delta):
 	server.process_bullets(delta)
 	get_tree().call_group("TickedAnimationPlayer", "advance", delta * slowdown)
 	get_tree().call_group("autoadvance", "advance", delta * slowdown)
-	if player:
+	for player in get_tree().get_nodes_in_group("player"):
 		player.advance(delta * slowdown)
 
 func on_collision(_bullet):
@@ -40,7 +39,8 @@ func load_pattern(ptn:String):
 		current_pattern.queue_free()
 	if !ptn.ends_with(".tscn"):
 		ptn += ".tscn"
-	var pattern = load("res://game/patterns/".plus_file(ptn)).instance() # preloading or caching could be a plus
+	var packed:PackedScene = load("res://game/patterns/".plus_file(ptn))
+	var pattern = packed.instance() # preloading or caching could be a plus
 	add_child(pattern)
 	current_pattern = pattern
 	server.clear_bullets()

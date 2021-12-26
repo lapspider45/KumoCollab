@@ -1,0 +1,139 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://game/patterns/Pattern.tscn" type="PackedScene" id=1]
+[ext_resource path="res://utils/TickedAnimationPlayer.gd" type="Script" id=2]
+[ext_resource path="res://game/spawner/BulletSpawner.gd" type="Script" id=3]
+[ext_resource path="res://icon.png" type="Texture" id=4]
+[ext_resource path="res://game/patterns/lana/EasyLanaCircular.gd" type="Script" id=5]
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:timescale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -90.0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "asd"
+length = 7.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -90.0, 1350.0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 4.2, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ {
+} ],
+"method": "_shoot"
+}, {
+"args": [ {
+} ],
+"method": "_shoot"
+}, {
+"args": [ {
+} ],
+"method": "_shoot"
+}, {
+"args": [ {
+} ],
+"method": "_shoot"
+}, {
+"args": [ {
+} ],
+"method": "_shoot"
+}, {
+"args": [  ],
+"method": "_stop_bullet_to_explode"
+}, {
+"args": [  ],
+"method": "_bullets_explode"
+} ]
+}
+
+[node name="EasyLanaCircular" instance=ExtResource( 1 )]
+script = ExtResource( 5 )
+
+[node name="EasyLanaCircularPattern" type="Position2D" parent="." index="0" groups=["bulletspawner"]]
+position = Vector2( 240, 114 )
+rotation = 1.5708
+script = ExtResource( 3 )
+
+[node name="BulletSpawner" type="Position2D" parent="EasyLanaCircularPattern" index="0" groups=["bulletspawner"]]
+rotation = 1.0472
+script = ExtResource( 3 )
+bullet_speed = 100.0
+bullet_acceleration = Vector2( 0, 0 )
+
+[node name="BulletSpawner" type="Position2D" parent="EasyLanaCircularPattern/BulletSpawner" index="0" groups=["bulletspawner"]]
+rotation = 1.0472
+script = ExtResource( 3 )
+bullet_speed = 100.0
+bullet_acceleration = Vector2( 0, 0 )
+
+[node name="BulletSpawner2" type="Position2D" parent="EasyLanaCircularPattern/BulletSpawner/BulletSpawner" index="0" groups=["bulletspawner"]]
+rotation = 1.0472
+script = ExtResource( 3 )
+bullet_speed = 100.0
+bullet_acceleration = Vector2( 0, 0 )
+
+[node name="BulletSpawner3" type="Position2D" parent="EasyLanaCircularPattern/BulletSpawner/BulletSpawner/BulletSpawner2" index="0" groups=["bulletspawner"]]
+rotation = 1.0472
+script = ExtResource( 3 )
+bullet_speed = 100.0
+bullet_acceleration = Vector2( 0, 0 )
+
+[node name="BulletSpawner4" type="Position2D" parent="EasyLanaCircularPattern/BulletSpawner/BulletSpawner/BulletSpawner2/BulletSpawner3" index="0" groups=["bulletspawner"]]
+rotation = 1.0472
+script = ExtResource( 3 )
+bullet_speed = 100.0
+bullet_acceleration = Vector2( 0, 0 )
+
+[node name="Sprite" type="Sprite" parent="EasyLanaCircularPattern" index="1"]
+position = Vector2( -25, 9.15527e-05 )
+rotation = -1.5708
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EasyLanaCircularPattern" index="2"]
+playback_speed = 1.5
+anims/RESET = SubResource( 5 )
+anims/asd = SubResource( 6 )
+script = ExtResource( 2 )
+
+[node name="Node2D" type="Node2D" parent="EasyLanaCircularPattern" index="3"]
