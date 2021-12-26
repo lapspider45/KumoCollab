@@ -2,7 +2,7 @@
 
 [ext_resource path="res://game/spawner/BulletSpawner.gd" type="Script" id=1]
 [ext_resource path="res://game/player/cornelia_following_orb/OrbitOption2.gd" type="Script" id=2]
-[ext_resource path="res://art/characters/cornelia/cornelia options.png" type="Texture" id=4]
+[ext_resource path="res://art/characters/cornelia/cornelia option.png" type="Texture" id=4]
 
 [node name="OrbitOption" type="Sprite" groups=["orbitoption"]]
 z_index = 1

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://game/player/cornelia_following_orb/Trail2.gd" type="Script" id=1]
-[ext_resource path="res://art/characters/cornelia/cornelia options.png" type="Texture" id=2]
+[ext_resource path="res://art/characters/cornelia/cornelia options trail.png" type="Texture" id=2]
 [ext_resource path="res://game/player/cornelia/TrailNode.gd" type="Script" id=3]
 
 [node name="TrailNode" type="Node2D" groups=["trails"]]
