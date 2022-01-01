@@ -3,7 +3,7 @@ extends Node
 signal registry_updated
 var node_registry := {}
 
-
+# adds a node to the Registry, making it globally accessible
 func register(name:String, ref:Node):
 	node_registry[name] = ref
 	emit_signal("registry_updated")

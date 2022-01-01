@@ -4,11 +4,13 @@ onready var server = $SimpleBulletServer
 
 var current_pattern : Node
 
+var popper:Node
+
 func _ready():
 	Registry.register("current_gamescene", self)
 	server.connect("bullet_collided", self, "on_collision")
 	
-#	load_pattern("test/PolygonPattern")
+	popper = yield(Registry.wait_for_node("LabelPopper"), "completed")
 	yield(demo_pattern_dir("lana", 10), "completed")
 	yield(demo_pattern_dir("test", 10), "completed")
 	print("all done!")
@@ -30,8 +32,6 @@ func _process(delta):
 func on_collision(_bullet):
 #	print("collision with %s!" % bullet)
 	$SimpleBulletServer.clear_bullets()
-	if is_instance_valid(current_pattern): 
-		current_pattern.reset()
 
 func load_pattern(ptn:String):
 	if is_instance_valid(current_pattern):
@@ -58,3 +58,13 @@ func demo_pattern_dir(dir:String, time:float):
 		yield(Blackboard.start_timeout(time), "completed")
 		current_pattern.stop()
 		yield(get_tree().create_timer(1.5), "timeout")
+
+func on_bomb():
+	$SimpleBulletServer.clear_bullets()
+	for d in $SimpleBulletServer.deletion_queue:
+		if is_instance_valid(d):
+			popper.queue_popup(d.position, 250)
+
+func _input(event):
+	if event.is_action_pressed("bomb"):
+		on_bomb()
