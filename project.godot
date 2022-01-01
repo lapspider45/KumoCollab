@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Pattern",
 "language": "GDScript",
-"path": "res://game/Pattern.gd"
+"path": "res://game/patterns/Pattern.gd"
 }, {
 "base": "Sprite",
 "class": "SimpleBullet",

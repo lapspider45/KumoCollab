@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://game/patterns/Pattern.tscn" type="PackedScene" id=1]
 [ext_resource path="res://utils/TickedAnimationPlayer.gd" type="Script" id=2]
@@ -87,58 +87,60 @@ tracks/1/keys = {
 } ]
 }
 
-[node name="EasyLanaCircularPattern" type="Position2D" groups=["bulletspawner"]]
+[node name="EasyLanaCircular" instance=ExtResource( 1 )]
+script = ExtResource( 5 )
+
+[node name="EasyLanaCircularPattern" type="Position2D" parent="." index="0" groups=["bulletspawner"]]
 position = Vector2( 240, 114 )
 rotation = 1.5708
 script = ExtResource( 6 )
 bullet_speed = 100.0
 bullet_type = "LanaBombSprite"
 
-[node name="BulletSpawner" type="Position2D" parent="." groups=["bulletspawner"]]
+[node name="BulletSpawner" type="Position2D" parent="EasyLanaCircularPattern" index="0" groups=["bulletspawner"]]
 rotation = 1.0472
 script = ExtResource( 6 )
 bullet_speed = 100.0
 bullet_acceleration = Vector2( 0, 0 )
 bullet_type = "LanaBombSprite"
 
-[node name="BulletSpawner" type="Position2D" parent="BulletSpawner" groups=["bulletspawner"]]
+[node name="BulletSpawner" type="Position2D" parent="EasyLanaCircularPattern/BulletSpawner" index="0" groups=["bulletspawner"]]
 rotation = 1.0472
 script = ExtResource( 6 )
 bullet_speed = 100.0
 bullet_acceleration = Vector2( 0, 0 )
 bullet_type = "LanaBombSprite"
 
-[node name="BulletSpawner2" type="Position2D" parent="BulletSpawner/BulletSpawner" groups=["bulletspawner"]]
+[node name="BulletSpawner2" type="Position2D" parent="EasyLanaCircularPattern/BulletSpawner/BulletSpawner" index="0" groups=["bulletspawner"]]
 rotation = 1.0472
 script = ExtResource( 6 )
 bullet_speed = 100.0
 bullet_acceleration = Vector2( 0, 0 )
 bullet_type = "LanaBombSprite"
 
-[node name="BulletSpawner3" type="Position2D" parent="BulletSpawner/BulletSpawner/BulletSpawner2" groups=["bulletspawner"]]
+[node name="BulletSpawner3" type="Position2D" parent="EasyLanaCircularPattern/BulletSpawner/BulletSpawner/BulletSpawner2" index="0" groups=["bulletspawner"]]
 rotation = 1.0472
 script = ExtResource( 6 )
 bullet_speed = 100.0
 bullet_acceleration = Vector2( 0, 0 )
 bullet_type = "LanaBombSprite"
 
-[node name="BulletSpawner4" type="Position2D" parent="BulletSpawner/BulletSpawner/BulletSpawner2/BulletSpawner3" groups=["bulletspawner"]]
+[node name="BulletSpawner4" type="Position2D" parent="EasyLanaCircularPattern/BulletSpawner/BulletSpawner/BulletSpawner2/BulletSpawner3" index="0" groups=["bulletspawner"]]
 rotation = 1.0472
 script = ExtResource( 6 )
 bullet_speed = 100.0
 bullet_acceleration = Vector2( 0, 0 )
 bullet_type = "LanaBombSprite"
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite" type="Sprite" parent="EasyLanaCircularPattern" index="1"]
 position = Vector2( -25, 9.15527e-05 )
 rotation = -1.5708
 texture = ExtResource( 4 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "asd"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EasyLanaCircularPattern" index="2"]
 playback_speed = 1.5
 anims/RESET = SubResource( 5 )
 anims/asd = SubResource( 6 )
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Node2D" type="Node2D" parent="EasyLanaCircularPattern" index="3"]

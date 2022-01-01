@@ -1,6 +1,6 @@
 extends Node
 
-var current_server
+var current_server:Node
 
 var BULLET_PATH = "res://game/bullets/"
 
@@ -22,7 +22,7 @@ func instantiate_bullet(type:String):
 	return bullets.get(type).instance()
 
 
-
+	
 func add_bullet(bullet:Node2D):
 	if current_server is SimpleBulletServer:
 		current_server.add_bullet(bullet)

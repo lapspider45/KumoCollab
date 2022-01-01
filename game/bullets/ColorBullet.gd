@@ -10,7 +10,7 @@ export var rot_velocity = 2.5
 
 func set_color(c:int):
 	color = c
-	frame = color
+	frame = color % hframes
 
 
 func advance(delta):

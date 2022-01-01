@@ -2,6 +2,8 @@
 # A singleton useful for sharing data with multiple nodes
 extends Node
 
+signal nodes_updated
+
 var SCREEN = { # this dictionary has some useful points for manipulating stuff on the screen
 	TOPLEFT = Vector2(),
 	TOPRIGHT = Vector2(),
@@ -53,3 +55,11 @@ var boss_pos : Vector2
 
 var fields = {}
 var FIELD_EMPTY = VectorField.new()
+
+
+var pattern_timer : Node # the visible countdown that times out a boss pattern or bonus section
+
+func start_timeout(time:float):
+	while !is_instance_valid(pattern_timer):
+		yield(self, "nodes_updated")
+	yield(pattern_timer.start_timer(time), "completed")
