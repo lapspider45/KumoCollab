@@ -21,7 +21,7 @@ func advance(delta):
 	lifetime -= delta
 	emit_signal("tick")
 	
-	rotate(delta)
+#	rotate(delta)
 	
 	if lifetime < 0:
 		queue_free()

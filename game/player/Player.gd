@@ -1,23 +1,24 @@
 extends Node2D
 
-export var MOVE_SPEED := 150
-export var SLOW_SPEED := 75
+export var MOVE_SPEED := 150.0
+export var SLOW_SPEED := 75.0
 
 
 export var bullet_speed := 100 setget set_bullet_speed
 
-var main:Node = null
-
 var velocity := Vector2.ZERO
+var bullets = []
 
 export var invincible := false setget set_invincible
-
 export var screen_rect := Rect2(0,0,480,640)
-
 export var max_hp := 30
+
 onready var hp = max_hp
 
-var bullets = []
+var movement_frame:int = 0
+var last_pos := Vector2.ZERO
+
+
 
 
 func _ready():
@@ -47,12 +48,24 @@ func add_bullet(bullet):
 func _physics_process(_delta):
 	update_blackboard()
 
+
 func advance(delta):
 	var speed := MOVE_SPEED
 	if Input.is_action_pressed("slow"):
 		speed = SLOW_SPEED
 	
-	velocity = get_movement_dir() * speed
+	var dir := get_movement_dir()
+	# limit movement speed for 2 frames after started moving
+	# this increases precision when tapping
+	if movement_frame <= 2:
+		speed *= 0.5
+	movement_frame += 1
+	if dir == Vector2.ZERO:
+		movement_frame -= 1
+# warning-ignore:narrowing_conversion
+		movement_frame = clamp(movement_frame, 0, 3)
+	
+	velocity = dir * speed
 	translate(velocity * delta)
 	
 	set_shooting(Input.is_action_pressed("shoot"))
@@ -67,9 +80,6 @@ func set_shooting(shoot:bool):
 	else:
 		$ShootAnimation.stop()
 
-#func _on_collision():
-#	hurt()
-
 func hurt(dmg:=1):
 	if invincible:
 		return
@@ -83,10 +93,7 @@ func hurt(dmg:=1):
 #		Global.emit_signal("player_died")
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play("invincible")
-#	$hurtSFX.play()
 
-#func _on_Player_area_shape_entered(area_id, area, area_shape, self_shape):
-#	_on_collision()
 
 func set_invincible(v:bool):
 #	$Hitbox.set_deferred("monitoring", v)
