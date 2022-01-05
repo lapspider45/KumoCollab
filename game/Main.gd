@@ -17,6 +17,11 @@ func _unhandled_key_input(event):
 	if event.is_action_pressed("restart"):
 		print("RESTARTING NOW!")
 		get_tree().reload_current_scene()
+	if event.is_action_pressed("DEBUG_FULLSCREEN"):
+		OS.window_fullscreen = not OS.window_fullscreen
+	if event.is_action_pressed("DEBUG_QUIT"):
+		"DEBUG_QUIT key pressed, quitting..."
+		get_tree().quit()
 
 
 func init_danmaku():
