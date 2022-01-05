@@ -26,11 +26,6 @@ func queue_popup(vec:Vector2, number):
 		popup_buckets[bucket] = []
 	popup_buckets[bucket].append_array([vec, number])
 
-func _input(event):
-	if event is InputEventMouseButton:
-		if event.pressed and event.button_index == BUTTON_LEFT:
-			popup_at(event.position, 250)
-
 func _process(_delta):
 	frame += 1
 

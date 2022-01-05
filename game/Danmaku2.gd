@@ -11,13 +11,6 @@ func _ready():
 	server.connect("bullet_collided", self, "on_collision")
 	
 	popper = yield(Registry.wait_for_node("LabelPopper"), "completed")
-	yield(demo_pattern_dir("lana", 10), "completed")
-	yield(demo_pattern_dir("test", 10), "completed")
-	print("all done!")
-	current_pattern.queue_free()
-#	load_pattern("test/SineFieldTest")
-#	yield(get_tree().create_timer(15), "timeout")
-#	load_pattern("lana/Hard1")
 
 func _process(delta):
 	var slowdown:float = $SimpleBulletServer.get_slowdown()

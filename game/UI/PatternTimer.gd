@@ -19,6 +19,7 @@ func as_text():
 func start_timer(time:float):
 	time_remaining = time
 	active = true
+	show()
 	emit_signal("started")
 	$AnimationPlayer.play("RESET")
 	yield(self, "timeout")
