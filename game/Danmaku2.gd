@@ -24,6 +24,9 @@ func _process(delta):
 
 func on_collision(_bullet):
 #	print("collision with %s!" % bullet)
+	# this isn't the best way to find the player...
+	for p in get_tree().get_nodes_in_group("player"):
+		p.hurt()
 	DanmakuServer.clear_bullets()
 
 func load_pattern(ptn:String):

@@ -10,6 +10,7 @@ func take_damage(dmg=1):
 	# give player score
 
 func die():
+	SFX.play("boom1")
 	queue_free()
 	pass
 	# give player score

@@ -1,19 +1,11 @@
 extends Node2D
 
-signal tick(delta)
-
-func _connect():
-	connect("tick", $Player, "advance")
-#	connect("tick", $Enemy, "advance")
-
-func _process(delta):
-	emit_signal("tick", delta)
-	$SimpleBulletServer.process_bullets(delta)
-
-
-func add_bullet(b:Node):
-#	connect("tick", b, "_custom_process")
-	$SimpleBulletServer.add_bullet(b)
-
 func _ready():
-	_connect()
+	DanmakuServer.connect("bullet_hit", self, "bullet_hit_sfx")
+
+func bullet_hit_sfx(bullet):
+	
+	var vrect := get_viewport_rect()
+	var pan_position := 2 * (inverse_lerp(vrect.position.x, vrect.end.x, bullet.position.x) - 0.5)
+	
+	SFX.play("hit", pan_position)

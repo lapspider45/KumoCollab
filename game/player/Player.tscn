@@ -110,8 +110,6 @@ tracks/0/keys = {
 
 [node name="Player" type="Node2D" groups=["player"]]
 script = ExtResource( 2 )
-MOVE_SPEED = 320
-SLOW_SPEED = 160
 bullet_speed = 480
 invincible = true
 max_hp = 6

@@ -13,6 +13,9 @@ func _ready():
 	
 	_on_Cheat_pressed()
 	_on_Cheat_pressed()
+	
+	for o in orbit_options:
+		o.connect("spawned", self, "_on_bullet_shot")
 
 
 func _on_Cheat_pressed():
@@ -22,3 +25,8 @@ func _on_Cheat_pressed():
 	index += 1
 	for i in get_tree().get_nodes_in_group("orbitoption"):
 		i.reset()
+
+func _on_bullet_shot(bullet):
+	var vrect := get_viewport_rect()
+	var pan_position := 2 * (inverse_lerp(vrect.position.x, vrect.end.x, position.x) - 0.5)
+	SFX.play("shoot1", pan_position)

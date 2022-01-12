@@ -14,6 +14,7 @@ var index_in_group := 0
 
 
 func _ready():
+	set_player(true)
 	reset()
 
 

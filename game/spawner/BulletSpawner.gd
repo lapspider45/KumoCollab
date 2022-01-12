@@ -162,6 +162,8 @@ func set_bullet_collision(c:int):
 	if bullet_template is Area2D:
 		bullet_template.collision_layer = c
 
+func set_player(v=true): # belongs to player
+	set_bullet_collision(8 if v else 16)
 
 func generate_unique_group_id():
 	return "bullet@%s" % get_instance_id()

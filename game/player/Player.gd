@@ -1,7 +1,7 @@
 extends Node2D
 
-export var MOVE_SPEED := 150.0
-export var SLOW_SPEED := 75.0
+export var MOVE_SPEED := 320.0
+export var SLOW_SPEED := 160.0
 
 
 export var bullet_speed := 100 setget set_bullet_speed
@@ -85,6 +85,7 @@ func hurt(dmg:=1):
 		return
 	invincible = true
 	$ExplosionParticles1.restart()
+	SFX.play("boom1")
 	print("player got hit")
 	print("ouch for %d dmg" % dmg)
 	hp -= 1
@@ -121,4 +122,6 @@ func set_bullet_speed(v):
 
 func setup_guns():
 	for g in $Guns.get_children():
-		g.set_bullet_collision(8)
+		g.set_player()
+	for s in get_spawners():
+		s.set_player()

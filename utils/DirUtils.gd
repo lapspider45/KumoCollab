@@ -2,7 +2,7 @@ class_name DirUtils
 extends Directory
 
 enum {
-	TYPE_NONE,
+	TYPE_INVALID,
 	TYPE_FILE,
 	TYPE_DIR,
 }
@@ -34,3 +34,6 @@ func ls()->Array:
 	
 	list_dir_end() # just to be sure
 	return contents
+
+func entry_is_imported(entry:Dictionary):
+	return entry.get("type") == TYPE_FILE and entry.get("name", "").ends_with(".import")
