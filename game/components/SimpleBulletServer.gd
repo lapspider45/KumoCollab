@@ -36,9 +36,6 @@ export var bullet_limits: Rect2
 
 var deletion_queue := []
 
-func _ready():
-	DanmakuServer.current_server = self
-
 func add_bullet(bullet):
 	assert(bullet.has_method("advance"), "simple bullets must have advance method")
 	if bullet_count >= max_bullets:

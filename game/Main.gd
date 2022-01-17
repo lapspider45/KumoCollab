@@ -31,6 +31,10 @@ func init_danmaku():
 	_danmaku.name = "Danmaku"
 	game_viewport.add_child(_danmaku)
 	Danmaku = _danmaku
+	
+	yield(get_tree(), "idle_frame")
+	DanmakuServer.reparent(game_viewport)
+	
 
 func set_player(player_name:String):
 	var player_scene: PackedScene

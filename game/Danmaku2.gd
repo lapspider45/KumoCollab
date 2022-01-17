@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var server = $SimpleBulletServer
+onready var server = DanmakuServer
 
 var current_pattern : Node
 
@@ -13,7 +13,7 @@ func _ready():
 	popper = yield(Registry.wait_for_node("LabelPopper"), "completed")
 
 func _process(delta):
-	var slowdown:float = $SimpleBulletServer.get_slowdown()
+	var slowdown:float = DanmakuServer.get_slowdown()
 	Blackboard.slowdown = slowdown
 	
 	server.process_bullets(delta)
@@ -24,7 +24,7 @@ func _process(delta):
 
 func on_collision(_bullet):
 #	print("collision with %s!" % bullet)
-	$SimpleBulletServer.clear_bullets()
+	DanmakuServer.clear_bullets()
 
 func load_pattern(ptn:String):
 	if is_instance_valid(current_pattern):
@@ -54,8 +54,8 @@ func demo_pattern_dir(dir:String, time:float):
 		yield(get_tree().create_timer(1.5), "timeout")
 
 func on_bomb():
-	$SimpleBulletServer.clear_bullets()
-	for d in $SimpleBulletServer.deletion_queue:
+	DanmakuServer.clear_bullets()
+	for d in DanmakuServer.deletion_queue:
 		if is_instance_valid(d):
 			popper.queue_popup(d.position, 250)
 
