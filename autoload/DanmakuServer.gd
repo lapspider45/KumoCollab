@@ -1,5 +1,6 @@
 extends SimpleBulletServer
 
+# warning-ignore:unused_signal
 signal bullet_hit(bullet)
 
 var BULLET_PATH = "res://game/bullets/"
