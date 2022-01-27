@@ -1,19 +1,18 @@
 extends Area2D
 
+export var damage_disabled := false
+export var damage_multiplier := 1.0 # for making "weak spots"
 
+signal took_damage(value)
 
-func physics_query():
-	var shape:Shape2D = $CollisionShape2D.shape
-	var shape_transform:Transform2D = $CollisionShape2D.get_viewport_transform()
-	var query := Physics2DShapeQueryParameters.new()
-	query.set_shape(shape)
-	query.collide_with_areas = true
-	query.collision_layer = collision_mask
-	query.transform = shape_transform
-	var collisions = get_world_2d().direct_space_state.intersect_shape(query, 1)
-	if collisions.size() >= 1:
-		assert (collisions[0] is Dictionary)
-		print(collisions[0])
-		return collisions[0]
+func _init():
+	connect("area_entered", self, "on_got_hit")
+
+func on_got_hit(by:Area2D):
+	if damage_disabled:
+		return
+	if by.get("damage") != null: # check if this node actually has the "damage" property
+		by.call("on_hit") # notify the bullet that it hit something
+		emit_signal("took_damage", by.get("damage") * damage_multiplier)
 
 

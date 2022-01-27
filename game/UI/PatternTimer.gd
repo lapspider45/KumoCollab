@@ -19,10 +19,16 @@ func as_text():
 func start_timer(time:float):
 	time_remaining = time
 	active = true
-	show()
+	enable()
 	emit_signal("started")
-	$AnimationPlayer.play("RESET")
 	yield(self, "timeout")
+
+func enable():
+	show()
+	$AnimationPlayer.play("RESET")
+
+func disable():
+	$AnimationPlayer.play("fadeout")
 
 func advance(delta:float):
 	if active:
@@ -31,4 +37,4 @@ func advance(delta:float):
 	if time_remaining <= 0.0:
 		active = false
 		emit_signal("timeout")
-		$AnimationPlayer.play("timeout_flash")
+#		$AnimationPlayer.play("timeout_flash")
