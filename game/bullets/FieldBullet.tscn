@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://olyisx7c0v1j"]
 
-[ext_resource path="res://game/bullets/SimpleBullet.tscn" type="PackedScene" id=1]
-[ext_resource path="res://game/bullets/FieldBullet.gd" type="Script" id=2]
-[ext_resource path="res://art/bullets/lana_bomb_sprite.png" type="Texture" id=3]
+[ext_resource type="PackedScene" uid="uid://nf01qlw0a24g" path="res://game/bullets/SimpleBullet.tscn" id="1"]
+[ext_resource type="Script" path="res://game/bullets/FieldBullet.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://2t14xv5daefw" path="res://art/bullets/lana_bomb_sprite.png" id="3"]
 
-[node name="FieldBullet" instance=ExtResource( 1 )]
-texture = ExtResource( 3 )
-script = ExtResource( 2 )
+[node name="FieldBullet" instance=ExtResource( "1" )]
+texture = ExtResource( "3" )
+script = ExtResource( "2" )
 radius = 8.0

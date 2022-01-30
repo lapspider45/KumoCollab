@@ -1,10 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://dysv630diuncl"]
 
-[ext_resource path="res://game/bullets/LanaBombSprite.gd" type="Script" id=1]
-[ext_resource path="res://art/bullets/lana_bomb_sprite.png" type="Texture" id=2]
+[ext_resource type="Script" path="res://game/bullets/LanaBombSprite.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://2t14xv5daefw" path="res://art/bullets/lana_bomb_sprite.png" id="2"]
 
-
-[node name="LanaBombSprite" type="Sprite"]
-texture = ExtResource( 2 )
-script = ExtResource( 1 )
+[node name="LanaBombSprite" type="Sprite2D"]
+texture = ExtResource( "2" )
+script = ExtResource( "1" )
 radius = 10.0

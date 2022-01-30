@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://5dd6lkpyop68"]
 
-[ext_resource path="res://autoload/SFX.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://autoload/SFX.gd" id="1"]
 
 [node name="SFX" type="Node2D"]
-script = ExtResource( 1 )
+script = ExtResource( "1" )

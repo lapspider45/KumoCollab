@@ -1,284 +1,294 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://o8c3air00j31"]
 
-[ext_resource path="res://game/patterns/Pattern.tscn" type="PackedScene" id=1]
-[ext_resource path="res://game/patterns/test/Crosswinds.gd" type="Script" id=2]
-[ext_resource path="res://game/spawner/BulletSpawner.tscn" type="PackedScene" id=3]
-[ext_resource path="res://game/spawner/SpawnerGroup.gd" type="Script" id=4]
-[ext_resource path="res://game/spawner/SpawnerWithDefaultMode.gd" type="Script" id=5]
+[ext_resource type="PackedScene" path="res://game/patterns/Pattern.tscn" id="1"]
+[ext_resource type="Script" path="res://game/patterns/test/Crosswinds.gd" id="2"]
+[ext_resource type="PackedScene" path="res://game/spawner/BulletSpawner.tscn" id="3"]
+[ext_resource type="Script" path="res://game/spawner/SpawnerGroup.gd" id="4"]
+[ext_resource type="Script" path="res://game/spawner/SpawnerWithDefaultMode.gd" id="5"]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id="2"]
 length = 0.001
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("BulletSpawner/ring:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ 0.0 ]
+"values": [0.0]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("BulletSpawner/ring:bullet_speed")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ 240.0 ]
+"values": [240.0]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("BulletSpawner/ring:ray_min_speedf")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ 0.15 ]
+"values": [0.15]
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath("BulletSpawner/ring:ray_max_speedf")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ 1.0 ]
+"values": [1.0]
 }
 tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
 tracks/4/path = NodePath("BulletSpawner/ring:bullet_acceleration")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id="1"]
 resource_name = "shoot"
 length = 6.0
-loop = true
 tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("BulletSpawner/left")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "shoot"
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"shoot"
 }, {
-"args": [  ],
-"method": "shoot"
+"args": [],
+"method": &"shoot"
 }, {
-"args": [  ],
-"method": "shoot"
+"args": [],
+"method": &"shoot"
 }, {
-"args": [  ],
-"method": "shoot"
+"args": [],
+"method": &"shoot"
 }, {
-"args": [  ],
-"method": "shoot"
+"args": [],
+"method": &"shoot"
 }, {
-"args": [  ],
-"method": "shoot"
+"args": [],
+"method": &"shoot"
 }, {
-"args": [  ],
-"method": "shoot"
+"args": [],
+"method": &"shoot"
 }, {
-"args": [  ],
-"method": "shoot"
+"args": [],
+"method": &"shoot"
 }, {
-"args": [  ],
-"method": "shoot"
+"args": [],
+"method": &"shoot"
 }, {
-"args": [  ],
-"method": "shoot"
+"args": [],
+"method": &"shoot"
 }, {
-"args": [  ],
-"method": "shoot"
+"args": [],
+"method": &"shoot"
 }, {
-"args": [  ],
-"method": "shoot"
-} ]
+"args": [],
+"method": &"shoot"
+}]
 }
 tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("BulletSpawner/right")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "shoot"
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"shoot"
 }, {
-"args": [  ],
-"method": "shoot"
+"args": [],
+"method": &"shoot"
 }, {
-"args": [  ],
-"method": "shoot"
+"args": [],
+"method": &"shoot"
 }, {
-"args": [  ],
-"method": "shoot"
+"args": [],
+"method": &"shoot"
 }, {
-"args": [  ],
-"method": "shoot"
+"args": [],
+"method": &"shoot"
 }, {
-"args": [  ],
-"method": "shoot"
+"args": [],
+"method": &"shoot"
 }, {
-"args": [  ],
-"method": "shoot"
+"args": [],
+"method": &"shoot"
 }, {
-"args": [  ],
-"method": "shoot"
+"args": [],
+"method": &"shoot"
 }, {
-"args": [  ],
-"method": "shoot"
+"args": [],
+"method": &"shoot"
 }, {
-"args": [  ],
-"method": "shoot"
+"args": [],
+"method": &"shoot"
 }, {
-"args": [  ],
-"method": "shoot"
+"args": [],
+"method": &"shoot"
 }, {
-"args": [  ],
-"method": "shoot"
-} ]
+"args": [],
+"method": &"shoot"
+}]
 }
 tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("BulletSpawner/ring")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 1, 1.2, 1.4, 1.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "shoot"
+"times": PackedFloat32Array(1, 1.2, 1.4, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"shoot"
 }, {
-"args": [  ],
-"method": "shoot"
+"args": [],
+"method": &"shoot"
 }, {
-"args": [  ],
-"method": "shoot"
+"args": [],
+"method": &"shoot"
 }, {
-"args": [  ],
-"method": "shoot"
-} ]
+"args": [],
+"method": &"shoot"
+}]
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath("BulletSpawner/ring:rotation_degrees")
 tracks/3/interp = 0
 tracks/3/loop_wrap = false
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.9, 1.1, 1.3, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0.9, 1.1, 1.3, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 2,
-"values": [ 0.0, 10.0, 20.0, 30.0 ]
+"values": [0.0, 10.0, 20.0, 30.0]
 }
 tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
 tracks/4/path = NodePath("BulletSpawner/ring:ray_min_speedf")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0.9, 1.1, 1.3, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0.9, 1.1, 1.3, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [ 0.16, 0.14, 0.12, 0.1 ]
+"values": [0.16, 0.14, 0.12, 0.1]
 }
 tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
 tracks/5/path = NodePath("BulletSpawner/ring:ray_max_speedf")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.9, 1.1, 1.3, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0.9, 1.1, 1.3, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [ 1.0, 1.2, 1.3, 1.4 ]
+"values": [1.0, 1.2, 1.3, 1.4]
 }
 tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
 tracks/6/path = NodePath("BulletSpawner/ring:bullet_acceleration")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0.9, 1.1, 1.3, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0.9, 1.1, 1.3, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [ Vector2( 0, 20 ), Vector2( 0, 15 ), Vector2( 0, 10 ), Vector2( 0, 5 ) ]
+"values": [Vector2(0, 20), Vector2(0, 15), Vector2(0, 10), Vector2(0, 5)]
 }
 
-[node name="Crosswinds" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
+[node name="Crosswinds" instance=ExtResource( "1" )]
+script = ExtResource( "2" )
 
-[node name="BulletSpawner" parent="." index="0" instance=ExtResource( 3 )]
-position = Vector2( 230, 129 )
+[node name="BulletSpawner" parent="." index="0" instance=ExtResource( "3" )]
+position = Vector2(230, 129)
 rotation = 1.5708
-script = ExtResource( 4 )
+script = ExtResource( "4" )
+rot_speed = 0.392699
 
-[node name="left" parent="BulletSpawner" index="0" instance=ExtResource( 3 )]
-position = Vector2( 0, 96 )
+[node name="left" parent="BulletSpawner" index="0" instance=ExtResource( "3" )]
+position = Vector2(0, 96)
 rotation = 1.5708
-script = ExtResource( 5 )
+script = ExtResource( "5" )
 bullet_speed = 85.0
-bullet_acceleration = Vector2( 30, 30 )
+bullet_acceleration = Vector2(30, 30)
 bullet_type = "ColorBullet"
 mode = 4
 spokes = 5
+ray_count = 5
 rot_velocity = -1.05
+ray_min_speedf = 0.2
+ray_max_speedf = 1.0
 arc_spread_rad = 1.57
 
-[node name="right" parent="BulletSpawner" index="1" instance=ExtResource( 3 )]
-position = Vector2( 0, -96 )
-script = ExtResource( 5 )
+[node name="right" parent="BulletSpawner" index="1" instance=ExtResource( "3" )]
+position = Vector2(0, -96)
+script = ExtResource( "5" )
 bullet_speed = 85.0
-bullet_acceleration = Vector2( -30, 30 )
+bullet_acceleration = Vector2(-30, 30)
 bullet_type = "ColorBullet"
 mode = 4
 spokes = 5
+ray_count = 5
 rot_velocity = 0.78
+ray_min_speedf = 0.2
+ray_max_speedf = 1.0
 arc_spread_rad = 1.57
 
-[node name="ring" parent="BulletSpawner" index="2" instance=ExtResource( 3 )]
-script = ExtResource( 5 )
+[node name="ring" parent="BulletSpawner" index="2" instance=ExtResource( "3" )]
+script = ExtResource( "5" )
 bullet_speed = 240.0
-bullet_acceleration = Vector2( 0, 0 )
+bullet_acceleration = Vector2(0, 0)
 bullet_type = "RotAlignBullet"
 mode = 3
+spokes = 9
 ray_count = 8
+rot_velocity = 0.0
 ray_min_speedf = 0.15
+ray_max_speedf = 1.0
+arc_spread_rad = 1.5708
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
-anims/RESET = SubResource( 2 )
-anims/shoot = SubResource( 1 )
+anims/RESET = SubResource( "2" )
+anims/shoot = SubResource( "1" )

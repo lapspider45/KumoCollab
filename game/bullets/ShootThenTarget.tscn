@@ -1,9 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://b62w0r2kobsxv"]
 
-[ext_resource path="res://game/bullets/SimpleBullet.tscn" type="PackedScene" id=1]
-[ext_resource path="res://game/bullets/ShootThenTarget.gd" type="Script" id=2]
+[ext_resource type="PackedScene" uid="uid://nf01qlw0a24g" path="res://game/bullets/SimpleBullet.tscn" id="1"]
+[ext_resource type="Script" path="res://game/bullets/ShootThenTarget.gd" id="2"]
 
-[node name="ShootThenTarget" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
-radius = 3.0
+[node name="ShootThenTarget" instance=ExtResource( "1" )]
+script = ExtResource( "2" )
 wait_duration = 0.7

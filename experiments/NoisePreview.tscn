@@ -1,17 +1,16 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://bkvyeq2rqjacx"]
 
-[sub_resource type="OpenSimplexNoise" id=1]
+[sub_resource type="OpenSimplexNoise" id="1"]
 seed = 300
 octaves = 1
 period = 133.3
 
-[sub_resource type="NoiseTexture" id=2]
-flags = 0
+[sub_resource type="NoiseTexture" id="2"]
 width = 480
 height = 640
 bump_strength = 32.0
-noise = SubResource( 1 )
+noise = SubResource( "1" )
 
-[node name="NoisePreview" type="Sprite"]
-texture = SubResource( 2 )
+[node name="NoisePreview" type="Sprite2D"]
+texture = SubResource( "2" )
 centered = false

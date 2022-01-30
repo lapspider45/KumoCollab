@@ -1,50 +1,50 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://eaau0a3uveq"]
 
-[ext_resource path="res://art/characters/lana/PlayerSpriteLana.png" type="Texture" id=2]
-[ext_resource path="res://game/player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://game/spawner/BulletSpawner.tscn" type="PackedScene" id=4]
+[ext_resource type="Texture2D" uid="uid://bl5nsnp7hxti7" path="res://art/characters/lana/PlayerSpriteLana.png" id="2"]
+[ext_resource type="PackedScene" path="res://game/player/Player.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://game/spawner/BulletSpawner.tscn" id="4"]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id="1"]
 resource_local_to_scene = true
 radius = 5.0
 
-[node name="Player" instance=ExtResource( 3 )]
+[node name="Player" instance=ExtResource( "3" )]
 bullet_speed = 100
 max_hp = 30
 
 [node name="Sprite" parent="." index="1"]
-self_modulate = Color( 1, 1, 1, 1 )
-texture = ExtResource( 2 )
+self_modulate = Color(1, 1, 1, 1)
+texture = ExtResource( "2" )
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-shape = SubResource( 1 )
+shape = SubResource( "1" )
 
-[node name="BulletSpawner" parent="." index="7" groups=["player_bulletspawner"] instance=ExtResource( 4 )]
-position = Vector2( -8, 0 )
+[node name="BulletSpawner" parent="." index="7" groups=["player_bulletspawner"] instance=ExtResource( "4" )]
+position = Vector2(-8, 0)
 rotation = -1.57079
 bullet_speed = 600.0
-bullet_acceleration = Vector2( 0, -10 )
+bullet_acceleration = Vector2(0, -10)
 bullet_type = "complex1"
 
-[node name="BulletSpawner2" parent="." index="8" groups=["player_bulletspawner"] instance=ExtResource( 4 )]
-position = Vector2( -16, 0 )
+[node name="BulletSpawner2" parent="." index="8" groups=["player_bulletspawner"] instance=ExtResource( "4" )]
+position = Vector2(-16, 0)
 rotation = -1.91986
 bullet_speed = 600.0
-bullet_acceleration = Vector2( 0, -10 )
+bullet_acceleration = Vector2(0, -10)
 bullet_type = "complex1"
 
-[node name="BulletSpawner3" parent="." index="9" groups=["player_bulletspawner"] instance=ExtResource( 4 )]
-position = Vector2( 16, 0 )
+[node name="BulletSpawner3" parent="." index="9" groups=["player_bulletspawner"] instance=ExtResource( "4" )]
+position = Vector2(16, 0)
 rotation = -1.22173
 bullet_speed = 600.0
-bullet_acceleration = Vector2( 0, -10 )
+bullet_acceleration = Vector2(0, -10)
 bullet_type = "complex1"
 
-[node name="BulletSpawner4" parent="." index="10" groups=["player_bulletspawner"] instance=ExtResource( 4 )]
-position = Vector2( 8, 0 )
+[node name="BulletSpawner4" parent="." index="10" groups=["player_bulletspawner"] instance=ExtResource( "4" )]
+position = Vector2(8, 0)
 rotation = -1.57079
 bullet_speed = 600.0
-bullet_acceleration = Vector2( 0, -10 )
+bullet_acceleration = Vector2(0, -10)
 bullet_type = "complex1"
 
 [editable path="Hitbox"]

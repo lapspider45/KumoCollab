@@ -1,82 +1,80 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://bc2lp2045cdfq"]
 
-[ext_resource path="res://game/patterns/Pattern.tscn" type="PackedScene" id=1]
-[ext_resource path="res://game/patterns/test/PolygonPattern.gd" type="Script" id=2]
-[ext_resource path="res://game/spawner/BulletSpawner.tscn" type="PackedScene" id=3]
-[ext_resource path="res://game/spawner/PolygonSpawner.gd" type="Script" id=4]
-[ext_resource path="res://utils/TickedAnimationPlayer.gd" type="Script" id=5]
+[ext_resource type="PackedScene" path="res://game/patterns/Pattern.tscn" id="1"]
+[ext_resource type="Script" path="res://game/patterns/test/PolygonPattern.gd" id="2"]
+[ext_resource type="PackedScene" path="res://game/spawner/BulletSpawner.tscn" id="3"]
+[ext_resource type="Script" path="res://game/spawner/PolygonSpawner.gd" id="4"]
+[ext_resource type="Script" path="res://utils/TickedAnimationPlayer.gd" id="5"]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id="1"]
 resource_name = "shoot"
 length = 0.7
-loop = true
 step = 0.0666667
 tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("BulletSpawner")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "shoot"
-} ]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot"
+}]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id="2"]
 length = 0.001
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("BulletSpawner:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector2( 234, 181 ) ]
+"values": [Vector2(234, 181)]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id="3"]
 resource_name = "default"
 length = 15.0
-loop = true
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("BulletSpawner:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.4, 4, 6.3, 8.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 1.4, 4, 6.3, 8.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [ Vector2( 232, 184 ), Vector2( 232, 184 ), Vector2( 321, 177 ), Vector2( 223, 175 ), Vector2( 125, 173 ) ]
+"values": [Vector2(232, 184), Vector2(232, 184), Vector2(321, 177), Vector2(223, 175), Vector2(125, 173)]
 }
 
-[node name="PolygonPattern" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
+[node name="PolygonPattern" instance=ExtResource( "1" )]
+script = ExtResource( "2" )
 
-[node name="BulletSpawner" parent="." index="0" instance=ExtResource( 3 )]
-position = Vector2( 234, 181 )
+[node name="BulletSpawner" parent="." index="0" instance=ExtResource( "3" )]
+position = Vector2(234, 181)
 rotation = 1.5708
-script = ExtResource( 4 )
+script = ExtResource( "4" )
 bullet_speed = 300.0
 bullet_lifetime = 20.0
-bullet_acceleration = Vector2( 0, 0 )
+bullet_acceleration = Vector2(0, 0)
 edges = 13
 shots_p_edge = 12
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BulletSpawner" index="0"]
 root_node = NodePath("../..")
-anims/shoot = SubResource( 1 )
-script = ExtResource( 5 )
+anims/shoot = SubResource( "1" )
+script = ExtResource( "5" )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 autoplay = "default"
-anims/RESET = SubResource( 2 )
-anims/default = SubResource( 3 )
+anims/RESET = SubResource( "2" )
+anims/default = SubResource( "3" )

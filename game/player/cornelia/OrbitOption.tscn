@@ -1,15 +1,15 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://b65j5kui7wrsc"]
 
-[ext_resource path="res://art/characters/cornelia/cornelia option.png" type="Texture" id=2]
-[ext_resource path="res://game/player/cornelia/OrbitOption.gd" type="Script" id=3]
+[ext_resource type="Texture2D" uid="uid://lrno7bqrwtm3" path="res://art/characters/cornelia/cornelia option.png" id="2"]
+[ext_resource type="Script" path="res://game/player/cornelia/OrbitOption.gd" id="3"]
 
 [node name="OrbitOption" type="Position2D" groups=["bulletspawner", "orbitoption", "player_bulletspawner"]]
 rotation = 4.71239
-script = ExtResource( 3 )
+script = ExtResource( "3" )
 bullet_speed = 1000.0
-bullet_acceleration = Vector2( 0, 0 )
+bullet_acceleration = Vector2(0, 0)
 bullet_type = "complex1"
 
-[node name="OrbitOptionSprite" type="Sprite" parent="."]
+[node name="OrbitOptionSprite" type="Sprite2D" parent="."]
 z_index = 1
-texture = ExtResource( 2 )
+texture = ExtResource( "2" )
