@@ -83,7 +83,7 @@ func advance(delta):
 	
 	set_shooting(Input.is_action_pressed("shoot"))
 	
-	global_position = clip_vec(global_position, screen_rect)
+	global_position = clip_vec(global_position, Rect2(Vector2i.ZERO, get_viewport().size))
 	
 	$ShootAnimation.advance(delta * Blackboard.slowdown)
 

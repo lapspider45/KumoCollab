@@ -36,7 +36,7 @@ func shoot():
 
 func shoot_velocity(velocity:Vector2):
 	var bullet = bullet_template.duplicate(DUPLICATE_GROUPS + DUPLICATE_SCRIPTS)
-	bullet.set_as_toplevel(true)
+	bullet.top_level = true
 	bullet.position = global_position
 	bullet.velocity = velocity * speedscale
 	bullet.acceleration = bullet_acceleration

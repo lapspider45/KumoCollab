@@ -10,7 +10,7 @@ func _init():
 
 func _ready():
 	init_danmaku()
-	set_player("cornelia")
+	set_player("lana")
 #	Danmaku.demo_pattern_dir("lana", 25)
 
 func _unhandled_key_input(event):
@@ -26,6 +26,7 @@ func _unhandled_key_input(event):
 
 func init_danmaku():
 	var game_viewport = $AspectRatioContainer/MarginContainer/ViewportContainer/GameViewport
+	game_viewport.size_changed.emit() # correct size at init of game
 	# todo: check that this isn't run twice
 	var _danmaku:Node = DANMAKU_SCENE.instantiate()
 	_danmaku.name = "Danmaku"

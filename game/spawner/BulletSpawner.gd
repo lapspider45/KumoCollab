@@ -74,7 +74,7 @@ func shoot():
 
 func shoot_single():
 	var bullet = bullet_template.duplicate(DUPLICATE_GROUPS + DUPLICATE_SCRIPTS)
-	bullet.set_as_toplevel(true)
+	bullet.top_level = true
 	bullet.position = global_position
 	bullet.velocity = Vector2.RIGHT.rotated(global_rotation) * bullet_speed * speedscale
 	bullet.acceleration = bullet_acceleration
@@ -83,7 +83,7 @@ func shoot_single():
 
 func shoot_velocity(velocity:Vector2):
 	var bullet = bullet_template.duplicate(DUPLICATE_GROUPS + DUPLICATE_SCRIPTS)
-	bullet.set_as_toplevel(true)
+	bullet.top_level = true
 	bullet.position = global_position
 	bullet.velocity = velocity * speedscale
 	bullet.acceleration = bullet_acceleration
