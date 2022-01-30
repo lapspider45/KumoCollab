@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/shoot1.wav-f6c74e66e6970416ab3e0f813ec10598.sample"
+uid="uid://beyhy0nu611yx"
+path="res://.godot/imported/shoot1.wav-f6c74e66e6970416ab3e0f813ec10598.sample"
 
 [deps]
 
 source_file="res://sfx/shoot1.wav"
-dest_files=[ "res://.import/shoot1.wav-f6c74e66e6970416ab3e0f813ec10598.sample" ]
+dest_files=["res://.godot/imported/shoot1.wav-f6c74e66e6970416ab3e0f813ec10598.sample"]
 
 [params]
 

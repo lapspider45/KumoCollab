@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/boom1.wav-cb5d3bbd16e71235ea126bf9650209d1.sample"
+uid="uid://dpe0wa61k0itt"
+path="res://.godot/imported/boom1.wav-cb5d3bbd16e71235ea126bf9650209d1.sample"
 
 [deps]
 
 source_file="res://sfx/boom1.wav"
-dest_files=[ "res://.import/boom1.wav-cb5d3bbd16e71235ea126bf9650209d1.sample" ]
+dest_files=["res://.godot/imported/boom1.wav-cb5d3bbd16e71235ea126bf9650209d1.sample"]
 
 [params]
 
