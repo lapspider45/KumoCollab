@@ -8,22 +8,22 @@ enum modes {
 	ARC
 }
 
-export(modes) var mode := 0
+@export_enum(modes) var mode := 0
 
 
 
-export var spokes:int = 9
-export var ray_count:int = 5
-export var rot_velocity := deg2rad(0.0)
-export var ray_min_speedf = 0.2
-export var ray_max_speedf = 1.0
-export var arc_spread_rad = deg2rad(90)
+@export var spokes:int = 9
+@export var ray_count:int = 5
+@export var rot_velocity := deg2rad(0.0)
+@export var ray_min_speedf = 0.2
+@export var ray_max_speedf = 1.0
+@export var arc_spread_rad = deg2rad(90)
 func _init():
 	add_to_group("autoadvance")
 
 func advance(delta):
 	rotate(delta * rot_velocity)
-	.advance(delta)
+	super(delta)
 
 func shoot():
 	if disabled: return

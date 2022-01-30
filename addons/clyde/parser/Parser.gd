@@ -1,4 +1,4 @@
-extends Reference
+extends RefCounted
 
 const Lexer = preload("./Lexer.gd")
 const TokenWalker = preload("./TokenWalker.gd")
@@ -7,7 +7,7 @@ var _is_multiline_enabled = true
 
 const _variations_modes = ['sequence', 'once', 'cycle', 'shuffle', 'shuffle sequence', 'shuffle once', 'shuffle cycle' ]
 
-const operators = {
+var operators = {
 	Lexer.TOKEN_AND: { "precedence": 1, "associative": 'LEFT' },
 	Lexer.TOKEN_OR: { "precedence": 1, "associative": 'LEFT' },
 	Lexer.TOKEN_EQUAL: { "precedence": 2, "associative": 'LEFT' },

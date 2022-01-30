@@ -1,8 +1,9 @@
 extends Pattern
 
 var sinefield
-export var field_strength := 1.0 setget set_field_strength
-export var rot_speed := 1.0
+@export var field_strength := 1.0:
+	set(v): set_field_strength(v)
+@export var rot_speed := 1.0
 
 func start():
 	$BulletSpawner/shoot.play("shoot2")

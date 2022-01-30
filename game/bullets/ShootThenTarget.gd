@@ -1,13 +1,13 @@
 extends SimpleBullet
 
-export var wait_duration := 0.3
+@export var wait_duration := 0.3
 
 func _ready():
-	yield(timer(wait_duration), "completed")
+	await timer(wait_duration)
 	
 	velocity *= 0.1
 	acceleration *= 0
 	
-	yield(timer(0.5), "completed")
+	await timer(0.5)
 	
 	velocity = position.direction_to(Blackboard.player_pos) * 200

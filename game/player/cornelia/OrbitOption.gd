@@ -1,13 +1,13 @@
 extends BulletSpawner
 
 
-export var speed := 120
-export var acceleration := -20
-onready var inward_acceleration := Vector2(acceleration, 0)
+@export var speed := 120
+@export var acceleration := -20
+@onready var inward_acceleration := Vector2(acceleration, 0)
 var total_vector := Vector2(0, 100)
-onready var has_trail := true
-onready var trail_group := get_tree().get_nodes_in_group("trails")
-export var radius := 50
+@onready var has_trail := true
+@onready var trail_group := get_tree().get_nodes_in_group("trails")
+@export var radius := 50
 var previous_length := 50.0
 var is_grow := true
 var index_in_group := 0

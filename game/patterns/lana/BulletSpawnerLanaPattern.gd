@@ -1,8 +1,8 @@
 extends BulletSpawner
 
-export var explosion_amount := 2
-export var explosion_speed := 50
-export var explosion_acceleration := Vector2(0, 20)
+@export var explosion_amount := 2
+@export var explosion_speed := 50
+@export var explosion_acceleration := Vector2(0, 20)
 
 
 #override
@@ -29,7 +29,7 @@ func _bullets_explode():
 				var bullet = DanmakuServer.instantiate_bullet("lana_sparkle")
 				bullet.set_as_toplevel(true)
 				bullet.position = i.global_position
-				var random_direction := Vector2.RIGHT.rotated(deg2rad(rand_range(0, 360)))
+				var random_direction := Vector2.RIGHT.rotated(deg2rad(randf_range(0, 360)))
 				bullet.velocity = random_direction.rotated(global_rotation) * explosion_speed
 				bullet.acceleration = Vector2(0, 20)
 				DanmakuServer.add_bullet(bullet)

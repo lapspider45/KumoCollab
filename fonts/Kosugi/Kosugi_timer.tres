@@ -1,11 +1,6 @@
-[gd_resource type="DynamicFont" load_steps=2 format=2]
+[gd_resource type="Font" load_steps=2 format=3 uid="uid://cnb4n4i24xocw"]
 
-[ext_resource path="res://fonts/Kosugi/Kosugi-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource type="FontData" uid="uid://dyascuqaa5iis" path="res://fonts/Kosugi/Kosugi-Regular.ttf" id="1"]
 
 [resource]
-size = 48
-outline_size = 3
-outline_color = Color( 0, 0, 0, 1 )
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 1 )
+data/0 = ExtResource( "1" )

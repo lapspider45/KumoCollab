@@ -1,6 +1,6 @@
 extends BulletSpawner
 
-export var ring_size := 16
+@export var ring_size := 16
 
 var bullet_parameters := {}
 
@@ -48,7 +48,7 @@ func shoot_single():
 	emit_signal("spawned", bullet)
 
 func _notification(what):
-	._notification(what)
+	super(what)
 
 
 func update_children():

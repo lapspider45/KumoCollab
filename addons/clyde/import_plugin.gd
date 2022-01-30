@@ -1,5 +1,6 @@
-tool
+@tool
 extends EditorImportPlugin
+
 
 const Parser = preload("./parser/Parser.gd")
 

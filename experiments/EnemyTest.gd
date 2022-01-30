@@ -1,7 +1,7 @@
 extends Node2D
 
 func _ready():
-	DanmakuServer.connect("bullet_hit", self, "bullet_hit_sfx")
+	DanmakuServer.bullet_hit.connect(bullet_hit_sfx)
 
 func bullet_hit_sfx(bullet):
 	

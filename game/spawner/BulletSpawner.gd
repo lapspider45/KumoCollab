@@ -10,27 +10,28 @@ enum NOTIFICATION {
 var children_spawners = []
 var bullet_group_id := ""
 
-export var timescale := 1.0
-export var speedscale := 1.0
-export var bullet_speed := 40.0
-export var bullet_lifetime := 10.0
-export var bullet_acceleration := Vector2(0,100)
-export(float, 0, 1) var bullet_damping := 0.0
-export var autoaim := false
+@export var timescale := 1.0
+@export var speedscale := 1.0
+@export var bullet_speed := 40.0
+@export var bullet_lifetime := 10.0
+@export var bullet_acceleration := Vector2(0,100)
+@export_range(0, 1) var bullet_damping := 0.0
+@export var autoaim := false
 # IDEA: allow autoaim strengths between 0-1; 0 means no autoaim, 0.5 means aiming has a 50% influence
 # would be useful mostly for smoothly transitioning to/from aiming and fixed/relative
-export var aim_offset := 0.0
+@export var aim_offset := 0.0
 
-export var disabled := false
-export var children_disabled := false
+@export var disabled := false
+@export var children_disabled := false
 # TODO: add a way to override properties and enable/disable per difficulty?
 # also add some functions to arrange children in various patterns
 # and maybe to duplicate child spawners
 
-export var follow_node:NodePath
-export var enable_follow_node := false
+@export var follow_node:NodePath
+@export var enable_follow_node := false
 
-export var bullet_type := "basic1" setget set_bullet_type
+@export var bullet_type := "basic1":
+	set(v): set_bullet_type(v)
 var bullet_template: Node
 var bullet_params := {}
 
@@ -154,7 +155,7 @@ func _notification(what):
 			pass
 
 func set_bullet_type(t:String):
-	bullet_type = t
+#	bullet_type = t
 	bullet_template = DanmakuServer.instantiate_bullet(bullet_type)
 	bullet_template.add_to_group(bullet_group_id)
 

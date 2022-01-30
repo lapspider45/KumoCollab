@@ -12,7 +12,7 @@ func my_sin(x:float, __min:float, __max:float, _period:float, offset:float):
 	return center + magnitude * sin(freq * x + offset)
 
 func sample_vector(pos:Vector2)->Vector2:
-	var _pos = sample_transform.xform(pos)
+	var _pos = pos * sample_transform
 	return Vector2(
 		my_sin(_pos.x, _min.x, _max.x, period.x, offset.x),
 		my_sin(_pos.y, _min.y, _max.y, period.y, offset.y)

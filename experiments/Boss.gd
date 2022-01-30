@@ -12,20 +12,20 @@ func _ready():
 	add_spell("test2", preload("res://game/patterns/test/RingsTest.tscn")).set_timeout(10.0)
 	add_spell("test3", preload("res://game/patterns/lana/Hard1.tscn")).set_timeout(55.0)
 	
-	game = yield(Registry.wait_for_node("current_gamescene"), "completed")
+	game = await Registry.wait_for_node("current_gamescene")
 	
 #	for spell_data in __spells:
 #		load_spell(spell_data)
-#		yield(self, "phase_completed")
+#		await phase_completed
 	
 
 func load_spell(spell:Dictionary):
 	if is_instance_valid(current_pattern): current_pattern.queue_free()
-	current_pattern = spell.get("spell").instance()
+	current_pattern = spell.get("spell").instantiate()
 	game.add_child(current_pattern)
 	
 	current_pattern.start()
-	Blackboard.pattern_timer.connect("timeout", self, "pattern_timeout")
+	Blackboard.pattern_timer.timeout.connect(pattern_timeout)
 	Blackboard.start_timeout(spell.get("timeout", 99.0))
 
 func pattern_timeout():
@@ -37,12 +37,12 @@ func add_spell(label:String, spell):
 	var sdata := SpellData.new(seq_id, label, spell)
 	
 	__spells.append(sdata.data)
-	return sdata # Reference:s are supposed to be passed by reference, so you can edit it after the fact
+	return sdata # RefCounted:s are supposed to be passed by reference, so you can edit it after the fact
 
 func add_event(label:String, data:=[]): # events are used to trigger scripting inbetween spells
 	pass
 
-class SpellData extends Reference:
+class SpellData extends RefCounted:
 	var data : Dictionary
 	
 	func _init(seq_id:int, label:="", spell=null):

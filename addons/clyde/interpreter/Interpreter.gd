@@ -1,4 +1,4 @@
-extends Reference
+extends RefCounted
 
 signal variable_changed(name, value, previous_value)
 signal event_triggered(event_name)
@@ -17,7 +17,7 @@ func init(document):
 	_doc = document
 	_doc._index = 1
 	_mem = Memory.new()
-	_mem.connect("variable_changed", self, "_trigger_variable_changed")
+	_mem.variable_changed.connect(_trigger_variable_changed)
 	_logic = LogicInterpreter.new()
 	_logic.init(_mem)
 
@@ -117,18 +117,18 @@ func _generate_index():
 
 func _initialize_handlers():
 	_handlers = {
-		"document": funcref(self, "_handle_document_node"),
-		"content": funcref(self, "_handle_content_node"),
-		"line": funcref(self, "_handle_line_node"),
-		"options": funcref(self, "_handle_options_node"),
-		"option": funcref(self, "_handle_option_node"),
-		"action_content": funcref(self, "_handle_action_content_node"),
-		"conditional_content": funcref(self, "_handle_conditional_content_node"),
-		"variations": funcref(self, "_handle_variations_node"),
-		"block": funcref(self, "_handle_block_node"),
-		"divert": funcref(self, "_handle_divert_node"),
-		"assignments": funcref(self, "_handle_assignments_node"),
-		"events": funcref(self, "_handle_events_node"),
+		"document": Callable(self, "_handle_document_node"),
+		"content": Callable(self, "_handle_content_node"),
+		"line": Callable(self, "_handle_line_node"),
+		"options": Callable(self, "_handle_options_node"),
+		"option": Callable(self, "_handle_option_node"),
+		"action_content": Callable(self, "_handle_action_content_node"),
+		"conditional_content": Callable(self, "_handle_conditional_content_node"),
+		"variations": Callable(self, "_handle_variations_node"),
+		"block": Callable(self, "_handle_block_node"),
+		"divert": Callable(self, "_handle_divert_node"),
+		"assignments": Callable(self, "_handle_assignments_node"),
+		"events": Callable(self, "_handle_events_node"),
 	}
 
 
@@ -190,15 +190,15 @@ func _handle_options_node(options_node):
 		"id": options_node.get("id"),
 		"tags": options_node.get("tags"),
 		"name": _replace_variables(_translate_text(options_node.get("id"), options_node.get("name"))),
-		"options": _map(funcref(self, "_map_option"), options),
+		"options": _map(Callable(self, "_map_option"), options),
 	}
 
 
 func _get_visible_options(options):
 	return _filter(
-		funcref(self, "_check_if_option_not_accessed"),
+		Callable(self, "_check_if_option_not_accessed"),
 		_map(
-			funcref(self, "_prepare_option"),
+			Callable(self, "_prepare_option"),
 			options
 		)
 	)
@@ -432,19 +432,19 @@ func _handle_shuffle_variation(variations, mode = 'cycle'):
 	return index;
 
 
-func _map(function: FuncRef, array: Array) -> Array:
+func _map(function: Callable, array: Array) -> Array:
 	var output = []
 	var index = 0
 	for item in array:
-		output.append(function.call_func(item, index))
+		output.append(function.call(item, index))
 		index += 1
 	return output
 
 
-func _filter(function: FuncRef, array: Array) -> Array:
+func _filter(function: Callable, array: Array) -> Array:
 	var output = []
 	for item in array:
-		if function.call_func(item):
+		if function.call(item):
 			output.append(item)
 	return output
 

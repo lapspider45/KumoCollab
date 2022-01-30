@@ -16,7 +16,8 @@ func ls()->Array:
 	var contents := []
 	var path := get_current_dir()
 	
-	var err := list_dir_begin(true)
+	include_hidden = true
+	var err := list_dir_begin()
 	if err:
 		push_error("failed to begin dir listing of %s with code %d" % [path, err])
 	while true:

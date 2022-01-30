@@ -23,16 +23,16 @@ var batches: Array #[[bullet, bullet, bullet], [], []]
 var batches_remaining: int
 var num_batches: int
 
-export var process_batch_size = 1200
-export var max_batches = 3
-#export var dynamic_batch_size = false
-#export var smooth_slowdown = false
-export var max_bullets = 3600
+@export var process_batch_size = 1200
+@export var max_batches = 3
+#@export var dynamic_batch_size = false
+#@export var smooth_slowdown = false
+@export var max_bullets = 3600
 
-export var player_hitbox_pos : Vector2
-export var player_hitbox_radius : float = 1.0
+@export var player_hitbox_pos : Vector2
+@export var player_hitbox_radius : float = 1.0
 
-export var bullet_limits: Rect2
+@export var bullet_limits: Rect2
 
 var deletion_queue := []
 

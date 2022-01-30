@@ -44,7 +44,7 @@ var player_pos : Vector2  = Vector2(240, 900) # position of the player
 var predicted_player_pos : Vector2 # position of the player 1 second into future based on current velocity
 func predict_player_pos(delta:float) -> Vector2: # position of the player 'delta' seconds into the future
 #	print("predicted: %s" % player_pos.linear_interpolate(predicted_player_pos, delta))
-	return player_pos.linear_interpolate(predicted_player_pos, delta)
+	return player_pos.lerp(predicted_player_pos, delta)
 
 var player_autoaim_target : Vector2 # position which player's autoaim targets
 var player_pickup_radius = 48.0
@@ -62,5 +62,5 @@ var pattern_timer : Node # the visible countdown that times out a boss pattern o
 
 func start_timeout(time:float):
 	while !is_instance_valid(pattern_timer):
-		yield(self, "nodes_updated")
-	yield(pattern_timer.start_timer(time), "completed")
+		await nodes_updated
+	await pattern_timer.start_timer(time)

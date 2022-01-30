@@ -1,6 +1,6 @@
 extends Node2D
 
-export var hp = 10.0
+@export var hp = 10.0
 
 func take_damage(dmg=1):
 	pass

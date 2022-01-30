@@ -4,9 +4,10 @@ enum Colors {
 	GREEN, CYAN, BLUE, PURPLE, PINK, RED, ORANGE, YELLOW
 }
 
-export(Colors) var color = 0 setget set_color
+@export_enum(Colors) var color = 0:
+	set(v): set_color(v)
 
-export var rot_velocity = 2.5
+@export var rot_velocity = 2.5
 
 func set_color(c:int):
 	color = c % hframes
@@ -16,21 +17,21 @@ func cycle_color():
 	self.color += 1
 
 
-export var wait_duration := 0.7
+@export var wait_duration := 0.7
 
 func _ready():
 	var return_time = wait_duration + 0.05
 	
-	yield(timer(wait_duration), "completed")
+	await timer(wait_duration)
 	
 	velocity *= 0.1
 	acceleration *= 0
 	
-	yield(timer(0.5), "completed")
+	await timer(0.5)
 	
 	velocity *= -10.0
 	
-	yield(timer(return_time), "completed")
+	await timer(return_time)
 	
 	lifetime = 0.0 # kill it once it returns
 	

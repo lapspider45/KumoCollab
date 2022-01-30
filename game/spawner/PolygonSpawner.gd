@@ -1,7 +1,7 @@
 extends BulletSpawner
 
-export var edges:int = 3
-export var shots_p_edge:int = 6
+@export var edges:int = 3
+@export var shots_p_edge:int = 6
 
 func shoot_ngon(edges:int, shots_per_edge:int, skip:int=1):
 	assert(edges >= 3)
@@ -14,7 +14,7 @@ func shoot_ngon(edges:int, shots_per_edge:int, skip:int=1):
 		var pointA:Vector2 = points[i]
 		var pointB:Vector2 = points[(i + skip) % points.size()]
 		for j in range(shots_per_edge):
-			var shoot_direction := pointA.linear_interpolate(pointB, float(j)/shots_per_edge)
+			var shoot_direction := pointA.lerp(pointB, float(j)/shots_per_edge)
 			shoot_velocity(bullet_speed * shoot_direction)
 
 

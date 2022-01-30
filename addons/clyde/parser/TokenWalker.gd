@@ -1,4 +1,4 @@
-extends Reference
+extends RefCounted
 
 const Lexer = preload('./Lexer.gd')
 
@@ -43,11 +43,4 @@ func _wrong_token_error(token, expected):
 	for e in expected:
 		expected_hints.push_back(Lexer.get_token_friendly_hint(e))
 
-	assert(false,
-		"Unexpected token \"%s\" on line %s column %s. Expected %s" % [
-			Lexer.get_token_friendly_hint(token.token),
-			token.line+1,
-			token.column+1,
-			expected_hints
-		]
-	)
+	assert(false, "Unexpected token.")

@@ -38,7 +38,7 @@ func setup_player_2d(sfx_name:String):
 	assert(player.stream is AudioStream, "Something went wrong, possibly there is no SFX of that name")
 	add_child(player)
 
-func set_pool_size(sfx_name:String, size:int):
+func set_pool_size(_sfx_name:String, _size:int):
 	# Pooling is not implemented yet, but here are some considerations:
 	# 1. Limit the number of sounds playing at once
 	# 2. Don't spawn the same sfx more than once in the same frame

@@ -1,6 +1,6 @@
-extends Viewport
+extends SubViewport
 
-export var actual_size = Vector2(360,640)
+@export var actual_size = Vector2(360,640)
 
 func _on_Viewport_size_changed():
 	size = actual_size # wtf is this workaround

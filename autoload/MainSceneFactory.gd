@@ -28,7 +28,7 @@ func check_main_scene():
 func redirect_scene_to_pattern(path:String):
 	print("redirecting main scene and loading %s" % path)
 	var err = get_tree().change_scene("res://game/Main.tscn")
-	yield(get_tree(), "idle_frame") # according to the docs, new scene is available on the next frame
+	await get_tree().process_frame # according to the docs, new scene is available on the next frame
 	var main = get_tree().current_scene
 	print("factory: main scene was redirected to %s" % [main])
 	
@@ -38,7 +38,7 @@ func redirect_scene_to_pattern(path:String):
 func redirect_test_scene(path:String):
 	print("redirecting main scene and loading %s" % path)
 	var err = get_tree().change_scene("res://game/Main.tscn")
-	yield(get_tree(), "idle_frame") # according to the docs, new scene is available on the next frame
+	await get_tree().process_frame # according to the docs, new scene is available on the next frame
 	var main = get_tree().current_scene
 	print("factory: main scene was redirected to %s" % [main])
 	
@@ -46,4 +46,4 @@ func redirect_test_scene(path:String):
 	var scn:PackedScene = load(path)
 	main.get_node(
 		"AspectRatioContainer/MarginContainer/ViewportContainer/GameViewport"
-		).add_child(scn.instance())
+		).add_child(scn.instantiate())

@@ -2,7 +2,7 @@ extends Control
 
 signal dialog_over
 var speaker := []
-export var dialog_script := "test_dialog"
+@export var dialog_script := "test_dialog"
 var _dialogue: ClydeDialogue
 var is_text_animating := false
 var skip := false
@@ -11,11 +11,11 @@ var skip := false
 func _ready():
 	for i in get_tree().get_nodes_in_group("dialog_animation"):
 		i.play("move_in")
-	yield(get_tree().create_timer(0.5), "timeout")
+	await get_tree().create_timer(0.5).timeout
 	_dialogue = ClydeDialogue.new()
 	_dialogue.load_dialogue("test_dialog")
-	_dialogue.connect("event_triggered", self, "_on_event_triggered")
-	_dialogue.connect("variable_changed", self, "_on_variable_changed")
+	_dialogue.event_triggered.connect(_on_event_triggered)
+	_dialogue.variable_changed.connect(_on_variable_changed)
 	_get_next_dialogue_line()
 
 
@@ -38,7 +38,7 @@ func _get_next_dialogue_line():
 		var dialog_animation_group = get_tree().get_nodes_in_group("dialog_animation")
 		for i in 3:
 			dialog_animation_group[i].play( "move_in", -1, -1.0, true )
-		yield(dialog_animation_group[2], "animation_finished")
+		await dialog_animation_group[2].animation_finished
 		emit_signal("dialog_over")
 		queue_free()
 		return
@@ -65,7 +65,7 @@ func _set_up_line(content):
 	is_text_animating = true
 	for i in length:
 		$TextBox/Text.visible_characters = i
-		yield(get_tree().create_timer(0.005), "timeout")
+		await get_tree().create_timer(0.005).timeout
 		if not is_text_animating:
 			$TextBox/Text.visible_characters = length
 			break

@@ -1,11 +1,12 @@
 extends Label
 
-export var acceleration := Vector2.ZERO
-export var velocity := Vector2.ZERO
-export var value = 0 setget set_value
+@export var acceleration := Vector2.ZERO
+@export var velocity := Vector2.ZERO
+@export var value = 0:
+	set(v): set_value(v)
 
 func _ready():
-	$AnimationPlayer.playback_speed = rand_range(0.7, 1.3)
+	$AnimationPlayer.playback_speed = randf_range(0.7, 1.3)
 
 
 func popup_at(pos:Vector2):

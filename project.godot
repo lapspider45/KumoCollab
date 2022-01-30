@@ -9,6 +9,16 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "Position2D",
+"class": &"BulletSpawner",
+"language": &"GDScript",
+"path": "res://game/spawner/BulletSpawner.gd"
+}, {
+"base": "RefCounted",
+"class": &"ClydeDialogue",
+"language": &"GDScript",
+"path": "res://addons/clyde/ClydeDialogue.gd"
+}, {
 "base": "Directory",
 "class": &"DirUtils",
 "language": &"GDScript",
@@ -28,12 +38,32 @@ _global_script_classes=[{
 "class": &"Pattern",
 "language": &"GDScript",
 "path": "res://game/patterns/Pattern.gd"
+}, {
+"base": "Sprite2D",
+"class": &"SimpleBullet",
+"language": &"GDScript",
+"path": "res://game/bullets/SimpleBullet.gd"
+}, {
+"base": "Node2D",
+"class": &"SimpleBulletServer",
+"language": &"GDScript",
+"path": "res://game/components/SimpleBulletServer.gd"
+}, {
+"base": "RefCounted",
+"class": &"VectorField",
+"language": &"GDScript",
+"path": "res://utils/Field.gd"
 }]
 _global_script_class_icons={
+"BulletSpawner": "",
+"ClydeDialogue": "",
 "DirUtils": "",
 "FXPool": "",
 "LanaBombSprite": "",
-"Pattern": ""
+"Pattern": "",
+"SimpleBullet": "",
+"SimpleBulletServer": "",
+"VectorField": ""
 }
 
 [application]
@@ -55,7 +85,10 @@ SFX="*res://autoload/SFX.tscn"
 
 settings/fps/force_fps=60
 gdscript/warnings/unused_variable=false
+gdscript/warnings/unused_parameter=false
+gdscript/warnings/unused_signal=false
 gdscript/warnings/return_value_discarded=false
+gdscript/warnings/redundant_await=false
 gdscript/warnings/unused_argument=false
 
 [display]
@@ -72,10 +105,6 @@ enabled=PackedStringArray()
 [global]
 
 collision=false
-
-[gui]
-
-common/snap_controls_to_pixels=false
 
 [importer_defaults]
 
@@ -205,5 +234,6 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 2d/options/ninepatch_mode=0
+textures/canvas_textures/default_texture_filter=3
 quality/driver/fallback_to_gles2=true
 quality/dynamic_fonts/use_oversampling=false

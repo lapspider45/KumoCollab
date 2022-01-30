@@ -22,8 +22,8 @@ func reparent(to:Node):
 	to.add_child(self)
 
 func instantiate_bullet(type:String):
-	assert(type in preloaded_bullets, "'%s' is not a valid bullet" % type)
-	return preloaded_bullets.get(type).instance()
+	assert(type in preloaded_bullets, "not a valid bullet")
+	return preloaded_bullets.get(type).instantiate()
 
 func register_bullet(bullet:PackedScene, _name:String):
 	preloaded_bullets[_name] = bullet

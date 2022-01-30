@@ -1,7 +1,7 @@
 extends Area2D
 
-export var speed = 600
-export var acceleration = 1200
+@export var speed = 600
+@export var acceleration = 1200
 var velocity := Vector2.ZERO
 var direction := Vector2.DOWN
 var is_player_found := false
@@ -17,7 +17,7 @@ func _physics_process(delta):
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, acceleration * delta / 16)
 	velocity += Vector2(0,speed) * delta / 4
-	velocity = velocity.clamped(speed)
+	velocity = velocity.limit_length(speed)
 	translate(velocity * delta)
 
 
