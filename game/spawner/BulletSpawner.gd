@@ -31,7 +31,9 @@ var bullet_group_id := ""
 @export var enable_follow_node := false
 
 @export var bullet_type := "basic1":
-	set(v): set_bullet_type(v)
+	set(v):
+		bullet_type = v
+		set_bullet_type(v)
 var bullet_template: Node
 var bullet_params := {}
 

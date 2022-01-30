@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://0l4gg18hi0bv"]
+[gd_scene load_steps=2 format=3 uid="uid://0l4gg18hi0bv"]
 
-[ext_resource type="PackedScene" path="res://game/UI/PatternTimer.tscn" id="1"]
-[ext_resource type="Font" uid="uid://cnb4n4i24xocw" path="res://fonts/Kosugi/Kosugi_timer.tres" id="2_dwium"]
+[ext_resource type="PackedScene" uid="uid://dvjhlfswfin5w" path="res://game/UI/PatternTimer.tscn" id="1"]
 
 [node name="GameHUD" type="Control"]
 anchor_right = 1.0

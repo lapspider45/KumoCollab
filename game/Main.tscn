@@ -47,9 +47,9 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer"]
-offset_left = 287.0
-offset_right = 737.0
-offset_bottom = 600.0
+offset_left = 360.0
+offset_right = 840.0
+offset_bottom = 640.0
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_left = 16
@@ -61,8 +61,8 @@ __meta__ = {
 [node name="ViewportContainer" type="SubViewportContainer" parent="AspectRatioContainer/MarginContainer"]
 offset_left = 16.0
 offset_top = 16.0
-offset_right = 434.0
-offset_bottom = 584.0
+offset_right = 464.0
+offset_bottom = 624.0
 stretch = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -72,14 +72,10 @@ __meta__ = {
 audio_listener_enable_3d = true
 handle_input_locally = false
 audio_listener_enable_2d = true
-size = Vector2i(418, 568)
+size = Vector2i(448, 608)
 render_target_update_mode = 4
 script = ExtResource( "2" )
 actual_size = Vector2(480, 640)
-
-[node name="GameHUD" parent="AspectRatioContainer/MarginContainer/ViewportContainer/GameViewport" instance=ExtResource( "7" )]
-anchor_right = 0.0
-anchor_bottom = 0.0
 
 [node name="LabelPopper" parent="AspectRatioContainer/MarginContainer/ViewportContainer/GameViewport" instance=ExtResource( "9" )]
 
@@ -95,9 +91,9 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="MarginContainer"]
-offset_left = 816.0
+offset_left = 992.0
 offset_top = 16.0
-offset_right = 1008.0
+offset_right = 1184.0
 offset_bottom = 146.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -117,9 +113,17 @@ size_flags_vertical = 0
 text = "Objective: Survive!"
 
 [node name="DebugInfoLabel" parent="MarginContainer" instance=ExtResource( "5" )]
-offset_left = 899.0
-offset_top = 532.0
-offset_right = 1008.0
-offset_bottom = 584.0
+offset_left = 1075.0
+offset_top = 572.0
+offset_right = 1184.0
+offset_bottom = 624.0
+
+[node name="GameHUD" parent="MarginContainer" instance=ExtResource( "7" )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 1184.0
+offset_bottom = 624.0
 
 [connection signal="size_changed" from="AspectRatioContainer/MarginContainer/ViewportContainer/GameViewport" to="AspectRatioContainer/MarginContainer/ViewportContainer/GameViewport" method="_on_Viewport_size_changed"]
