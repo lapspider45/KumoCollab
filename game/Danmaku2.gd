@@ -6,15 +6,15 @@ var popper:Node
 
 func _ready():
 	Registry.register("current_gamescene", self)
-	DanmakuServer.connect("bullet_collided", self, "on_collision")
+	Kumo.connect("bullet_collided", self, "on_collision")
 	
 	popper = yield(Registry.wait_for_node("LabelPopper"), "completed")
 
 func _process(delta):
-	var slowdown:float = DanmakuServer.get_slowdown()
+	var slowdown:float = Kumo.get_slowdown()
 	Blackboard.slowdown = slowdown
 	
-	DanmakuServer.process_bullets(delta)
+	Kumo.process_bullets(delta)
 	get_tree().call_group("TickedAnimationPlayer", "advance", delta * slowdown)
 	get_tree().call_group("autoadvance", "advance", delta * slowdown)
 	for player in get_tree().get_nodes_in_group("player"):
@@ -37,7 +37,7 @@ func load_pattern(ptn:String):
 	var pattern = packed.instance() # preloading or caching could be a plus
 	add_child(pattern)
 	current_pattern = pattern
-	DanmakuServer.clear_bullets()
+	Kumo.clear_bullets()
 	current_pattern.start()
 
 

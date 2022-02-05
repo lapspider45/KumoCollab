@@ -20,5 +20,5 @@ func advance(delta):
 	lifetime -= delta
 
 func on_hit():
-	DanmakuServer.emit_signal("bullet_hit", self)
+	Kumo.emit_signal("bullet_hit", self)
 	queue_free()

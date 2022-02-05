@@ -13,4 +13,4 @@ func shoot_single():
 	bullet.velocity = Vector2.RIGHT.rotated(global_rotation) * bullet_speed * speedscale
 	bullet.acceleration = bullet_acceleration
 	bullet.set("field", Blackboard.fields.get("noise1", Blackboard.FIELD_EMPTY))
-	DanmakuServer.add_bullet(bullet)
+	Kumo.add_bullet(bullet)

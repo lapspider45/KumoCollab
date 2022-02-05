@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://autoload/Kumo.gd" type="Script" id=1]
+[ext_resource path="res://game/components/SimpleBulletServer.tscn" type="PackedScene" id=2]
+
+[node name="Danmakumo" instance=ExtResource( 2 )]
+script = ExtResource( 1 )
+process_batch_size = 2400

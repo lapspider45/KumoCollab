@@ -77,7 +77,7 @@ func shoot_single():
 	bullet.position = global_position
 	bullet.velocity = Vector2.RIGHT.rotated(global_rotation) * bullet_speed * speedscale
 	bullet.acceleration = bullet_acceleration
-	DanmakuServer.add_bullet(bullet)
+	Kumo.add_bullet(bullet)
 	emit_signal("spawned", bullet)
 
 func shoot_velocity(velocity:Vector2):
@@ -87,7 +87,7 @@ func shoot_velocity(velocity:Vector2):
 	bullet.velocity = velocity * speedscale
 	bullet.acceleration = bullet_acceleration
 	bullet.lifetime = bullet_lifetime
-	DanmakuServer.add_bullet(bullet)
+	Kumo.add_bullet(bullet)
 	emit_signal("spawned", bullet)
 
 func shoot_ring(num_spokes:int):
@@ -155,7 +155,7 @@ func _notification(what):
 
 func set_bullet_type(t:String):
 	bullet_type = t
-	bullet_template = DanmakuServer.instantiate_bullet(bullet_type)
+	bullet_template = Kumo.instantiate_bullet(bullet_type)
 	bullet_template.add_to_group(bullet_group_id)
 
 func set_bullet_collision(c:int):

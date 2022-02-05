@@ -9,7 +9,7 @@ func update():
 	frametime: %03.3f ms
 	""" % [fps, frametime]
 	
-	var BULLETS = DanmakuServer
+	var BULLETS = Kumo
 	if !is_instance_valid(BULLETS):
 		return
 

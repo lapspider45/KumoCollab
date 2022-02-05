@@ -76,7 +76,7 @@ config/icon="res://icon.png"
 
 Registry="*res://autoload/Registry.tscn"
 Blackboard="*res://autoload/Blackboard.tscn"
-DanmakuServer="*res://autoload/DanmakuServer.tscn"
+Kumo="*res://autoload/Kumo.tscn"
 MainSceneFactory="*res://autoload/MainSceneFactory.tscn"
 SFX="*res://autoload/SFX.tscn"
 

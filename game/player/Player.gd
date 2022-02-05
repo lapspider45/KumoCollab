@@ -38,10 +38,10 @@ func bomb():
 		print("deathbomb!")
 	$AnimationPlayer.play("bomb_invincibility")
 	
-	DanmakuServer.clear_bullets()
+	Kumo.clear_bullets()
 	var popper = Registry.get_entry("LabelPopper") as Node
 	if popper:
-		for d in DanmakuServer.deletion_queue:
+		for d in Kumo.deletion_queue:
 			if is_instance_valid(d):
 				popper.queue_popup(d.position, 250)
 	emit_signal("bombed")
@@ -51,7 +51,7 @@ func add_bullet(bullet):
 	# this function is no longer used? let's test that
 	breakpoint # if this hits, then apparently not
 	bullet.set_collision_layers(8)
-	DanmakuServer.add_bullet(bullet)
+	Kumo.add_bullet(bullet)
 
 
 func _physics_process(_delta):
@@ -106,7 +106,7 @@ func on_hit():
 func hurt(dmg:=1):
 	if invincible:
 		return
-	DanmakuServer.clear_bullets()
+	Kumo.clear_bullets()
 	$ExplosionParticles1.restart()
 	print("player got hit")
 	print("ouch for %d dmg" % dmg)

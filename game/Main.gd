@@ -33,7 +33,7 @@ func init_danmaku():
 	Danmaku = _danmaku
 	
 	yield(get_tree(), "idle_frame")
-	DanmakuServer.reparent(game_viewport)
+	Kumo.reparent(game_viewport)
 	
 
 func set_player(player_name:String):

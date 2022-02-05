@@ -44,7 +44,7 @@ func shoot_single():
 	for param in bullet_parameters:
 		bullet.set(param, bullet_parameters[param])
 	
-	DanmakuServer.add_bullet(bullet)
+	Kumo.add_bullet(bullet)
 	emit_signal("spawned", bullet)
 
 func _notification(what):

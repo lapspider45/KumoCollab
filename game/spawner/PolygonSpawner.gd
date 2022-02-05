@@ -41,5 +41,5 @@ func shoot_velocity(velocity:Vector2):
 	bullet.velocity = velocity * speedscale
 	bullet.acceleration = bullet_acceleration
 	bullet.lifetime = bullet_lifetime
-	DanmakuServer.add_bullet(bullet)
+	Kumo.add_bullet(bullet)
 	emit_signal("spawned", bullet)
