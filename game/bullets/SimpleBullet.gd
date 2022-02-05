@@ -38,4 +38,6 @@ func waitfor(end_time:float):
 	while lifetime > end_time:
 		yield(self, "tick")
 
-
+# Called when the bullet instance is shot.
+func _on_shot():
+	pass

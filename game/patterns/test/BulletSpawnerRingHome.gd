@@ -36,15 +36,12 @@ func shoot_hard():
 
 func shoot_single():
 	var bullet = bullet_template.duplicate(DUPLICATE_GROUPS + DUPLICATE_SCRIPTS)
-	bullet.set_as_toplevel(true)
-	bullet.position = global_position
-	bullet.velocity = Vector2.RIGHT.rotated(global_rotation) * bullet_speed * speedscale
 	bullet.acceleration = bullet_acceleration
 	
 	for param in bullet_parameters:
 		bullet.set(param, bullet_parameters[param])
 	
-	Kumo.add_bullet(bullet)
+	Kumo.shoot(bullet, global_position, polar2cartesian(bullet_speed, global_rotation) * speedscale)
 	emit_signal("spawned", bullet)
 
 func _notification(what):

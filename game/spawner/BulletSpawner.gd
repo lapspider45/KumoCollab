@@ -73,21 +73,15 @@ func shoot():
 
 func shoot_single():
 	var bullet = bullet_template.duplicate(DUPLICATE_GROUPS + DUPLICATE_SCRIPTS)
-	bullet.set_as_toplevel(true)
-	bullet.position = global_position
-	bullet.velocity = Vector2.RIGHT.rotated(global_rotation) * bullet_speed * speedscale
 	bullet.acceleration = bullet_acceleration
-	Kumo.add_bullet(bullet)
+	Kumo.shoot(bullet, global_position, polar2cartesian(bullet_speed, global_rotation) * speedscale)
 	emit_signal("spawned", bullet)
 
 func shoot_velocity(velocity:Vector2):
 	var bullet = bullet_template.duplicate(DUPLICATE_GROUPS + DUPLICATE_SCRIPTS)
-	bullet.set_as_toplevel(true)
-	bullet.position = global_position
-	bullet.velocity = velocity * speedscale
 	bullet.acceleration = bullet_acceleration
 	bullet.lifetime = bullet_lifetime
-	Kumo.add_bullet(bullet)
+	Kumo.shoot(bullet, global_position, velocity * speedscale)
 	emit_signal("spawned", bullet)
 
 func shoot_ring(num_spokes:int):

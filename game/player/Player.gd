@@ -46,17 +46,8 @@ func bomb():
 				popper.queue_popup(d.position, 250)
 	emit_signal("bombed")
 
-
-func add_bullet(bullet):
-	# this function is no longer used? let's test that
-	breakpoint # if this hits, then apparently not
-	bullet.set_collision_layers(8)
-	Kumo.add_bullet(bullet)
-
-
 func _physics_process(_delta):
 	update_blackboard()
-
 
 func advance(delta):
 	var speed := MOVE_SPEED

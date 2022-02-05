@@ -38,3 +38,21 @@ func autoregister_bullets():
 		if entry.type == DirUtils.TYPE_FILE and entry.name.ends_with(".tscn"):
 			var bullet_name = entry.name.trim_suffix(".tscn")
 			register_bullet(load(entry.path), bullet_name)
+
+
+
+### And now, some utility functions for shooting bullets.
+
+
+# Shoot the specified bullet from the given position, with the given velocity
+# Acceleration or other properties will not be set by this function.
+# example usage: Kumo.shoot(bullet_template.duplicate(), global_position, polar2cartesian(global_rotation, bullet_speed))
+func shoot(bullet:Node, from_pos:Vector2, velocity:Vector2):
+	bullet.set_as_toplevel(true) # TODO: this might be unnecessary
+	bullet.position = from_pos
+	bullet.velocity = velocity
+	add_bullet(bullet)
+	bullet.call("_on_shot")
+
+func shoot_at(bullet:Node, from_pos:Vector2, target_pos:Vector2, speed:float):
+	shoot(bullet, from_pos, (target_pos-from_pos).clamped(1) * speed)

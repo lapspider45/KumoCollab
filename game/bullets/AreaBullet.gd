@@ -22,3 +22,7 @@ func advance(delta):
 func on_hit():
 	Kumo.emit_signal("bullet_hit", self)
 	queue_free()
+
+# called when the bullet instance is shot.
+func _on_shot():
+	pass

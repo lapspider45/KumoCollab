@@ -8,7 +8,7 @@ func shoot_ngon(edges:int, shots_per_edge:int, skip:int=1):
 	var points := []
 	for i in range(edges):
 		var angle = global_rotation + (i/float(edges) * TAU)
-		var point = Vector2.RIGHT.rotated(angle)
+		var point = polar2cartesian(1, angle)
 		points.append(point)
 	for i in range(points.size()):
 		var pointA:Vector2 = points[i]
@@ -36,10 +36,7 @@ func shoot():
 
 func shoot_velocity(velocity:Vector2):
 	var bullet = bullet_template.duplicate(DUPLICATE_GROUPS + DUPLICATE_SCRIPTS)
-	bullet.set_as_toplevel(true)
-	bullet.position = global_position
-	bullet.velocity = velocity * speedscale
 	bullet.acceleration = bullet_acceleration
 	bullet.lifetime = bullet_lifetime
-	Kumo.add_bullet(bullet)
+	Kumo.shoot(bullet, global_position, velocity * speedscale)
 	emit_signal("spawned", bullet)

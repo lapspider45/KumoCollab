@@ -8,12 +8,10 @@ export var explosion_acceleration := Vector2(0, 20)
 #override
 func shoot(params={}):
 	var bullet = Kumo.instantiate_bullet(bullet_type)
-	bullet.set_as_toplevel(true)
-	bullet.position = global_position
-	bullet.velocity = Vector2.RIGHT.rotated(global_rotation) * bullet_speed * params.get("speedscale", 1)
+	var velocity = polar2cartesian(bullet_speed, global_rotation) * params.get("speedscale", 1)
 	bullet.acceleration = bullet_acceleration
 	bullet.add_to_group("stopbullets")
-	Kumo.add_bullet(bullet) # This should lead to the SimpleBulletServer
+	Kumo.shoot(bullet, global_position, velocity) # This should lead to the SimpleBulletServer
 
 
 func _stop_bullet_to_explode():
@@ -27,10 +25,7 @@ func _bullets_explode():
 		if is_instance_valid(i):
 			for _j in explosion_amount:
 				var bullet = Kumo.instantiate_bullet("lana_sparkle")
-				bullet.set_as_toplevel(true)
-				bullet.position = i.global_position
-				var random_direction := Vector2.RIGHT.rotated(deg2rad(rand_range(0, 360)))
-				bullet.velocity = random_direction.rotated(global_rotation) * explosion_speed
+				var random_direction := polar2cartesian(1, rand_range(0, TAU))
 				bullet.acceleration = Vector2(0, 20)
-				Kumo.add_bullet(bullet)
+				Kumo.shoot(bullet, i.global_position, polar2cartesian(explosion_speed, rand_range(0, TAU)))
 			i.queue_free()
