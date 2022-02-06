@@ -4,10 +4,11 @@
 extends Node
 
 func _ready():
-	if OS.has_feature("debug"):
-		check_main_scene()
-	else:
-		queue_free()
+	check_main_scene()
+#	if OS.has_feature("debug"):
+#		check_main_scene()
+#	else:
+#		queue_free()
 
 func check_main_scene():
 	var main := get_tree().current_scene

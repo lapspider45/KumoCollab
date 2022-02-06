@@ -627,7 +627,7 @@ bullet_type = "lana_bomb"
 
 [node name="reverse" type="Position2D" parent="MediumLanaPattern" index="2" groups=["bulletspawner"]]
 position = Vector2( -47, 0.000167847 )
-rotation = 1.72788
+rotation = 1.5708
 script = ExtResource( 2 )
 bullet_speed = 200.0
 

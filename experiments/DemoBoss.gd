@@ -9,8 +9,8 @@ func on_spawn():
 
 func die():
 	print("boss died")
-	emit_signal("died")
 	invincible = true
+	emit_signal("died")
 
 func take_damage(dmg=1):
 	if invincible: return

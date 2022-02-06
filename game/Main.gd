@@ -11,6 +11,10 @@ func _init():
 func _ready():
 	init_danmaku()
 	set_player("cornelia")
+	set_scene("res://experiments/Boss.tscn")
+	
+	# hack to make sure viewport is correctly sized upon game start
+	$AspectRatioContainer/MarginContainer/ViewportContainer/GameViewport.emit_signal("size_changed")
 #	Danmaku.demo_pattern_dir("lana", 25)
 
 func _unhandled_key_input(event):
@@ -58,3 +62,9 @@ func dbg_load_pattern(path:String):
 		push_error("no Danmaku node in main scene!!!")
 		return
 	Danmaku.load_pattern(path)
+
+func set_scene(path):
+	var scn:PackedScene = load(path)
+	get_node(
+		"AspectRatioContainer/MarginContainer/ViewportContainer/GameViewport"
+		).add_child(scn.instance())
