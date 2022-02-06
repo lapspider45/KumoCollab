@@ -32,3 +32,13 @@ func _register():
 
 func _finish():
 	emit_signal("finished")
+
+
+func make_remotetransform2d(source:Node2D, target:Node2D=self)-> RemoteTransform2D:
+	var rxform = RemoteTransform2D.new()
+	rxform.update_rotation = false
+	rxform.update_scale = false
+	source.add_child(rxform)
+	rxform.remote_path = target.get_path()
+	
+	return rxform

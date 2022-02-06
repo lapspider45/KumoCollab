@@ -52,6 +52,7 @@ var player_pickup_line = 200
 
 var slowdown = 1 # multiply with delta
 
+var boss : Node
 var boss_pos : Vector2
 
 var fields = {}
@@ -59,8 +60,20 @@ var FIELD_EMPTY = VectorField.new()
 
 
 var pattern_timer : Node # the visible countdown that times out a boss pattern or bonus section
+var boss_healthbar : Node # boss healthbar
 
 func start_timeout(time:float):
 	while !is_instance_valid(pattern_timer):
 		yield(self, "nodes_updated")
 	yield(pattern_timer.start_timer(time), "completed")
+
+func stop_timeout():
+	pattern_timer.disable()
+
+
+func show_healthbar_for(enemy:Node, max_hp:int):
+	assert(enemy.get("hp") != null)
+	while !is_instance_valid(boss_healthbar):
+		yield(self, "nodes_updated")
+	boss_healthbar.set_max(max_hp)
+	boss_healthbar.set_enemy(enemy)

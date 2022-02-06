@@ -28,6 +28,8 @@ func enable():
 	$AnimationPlayer.play("RESET")
 
 func disable():
+	active = false
+	emit_signal("timeout")
 	$AnimationPlayer.play("fadeout")
 
 func advance(delta:float):

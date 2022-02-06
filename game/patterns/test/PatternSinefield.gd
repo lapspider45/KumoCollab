@@ -5,6 +5,7 @@ export var field_strength := 1.0 setget set_field_strength
 export var rot_speed := 1.0
 
 func start():
+	make_remotetransform2d(Blackboard.boss, $BulletSpawner).position = Vector2(0, 64)
 	$BulletSpawner/shoot.play("shoot2")
 	$AnimationPlayer.play("vary_strength")
 

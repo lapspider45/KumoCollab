@@ -4,6 +4,7 @@ var anim1:AnimationPlayer
 var anim2:AnimationPlayer
 
 func _ready():
+	make_remotetransform2d(Blackboard.boss, get_child(0))
 	anim1 = get_child(0).get_node_or_null("AnimationPlayer")
 	anim2 = get_child(0).get_node_or_null("AnimationPlayer2")
 
