@@ -1,4 +1,3 @@
-#tool
 class_name SimpleBullet
 extends Sprite
 
@@ -41,3 +40,13 @@ func waitfor(end_time:float):
 # Called when the bullet instance is shot.
 func _on_shot():
 	pass
+
+func bounce(rect:Rect2):
+	if position.x < rect.position.x:
+		velocity = velocity.bounce(Vector2.RIGHT)
+	elif position.x > rect.end.x:
+		velocity = velocity.bounce(Vector2.LEFT)
+	if position.y < rect.position.y:
+		velocity = velocity.bounce(Vector2.DOWN)
+	elif position.y > rect.end.y:
+		velocity = velocity.bounce(Vector2.UP)

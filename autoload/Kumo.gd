@@ -56,3 +56,21 @@ func shoot(bullet:Node, from_pos:Vector2, velocity:Vector2):
 
 func shoot_at(bullet:Node, from_pos:Vector2, target_pos:Vector2, speed:float):
 	shoot(bullet, from_pos, (target_pos-from_pos).clamped(1) * speed)
+
+func shoot_ring(bullet:Node, from_pos:Vector2, velocity:Vector2, spokes:int):
+	var rot_angle := TAU / spokes
+	for i in spokes-1:
+		shoot(bullet.duplicate(), from_pos, velocity.rotated((i+1) * rot_angle))
+	shoot(bullet, from_pos, velocity)
+
+# shoot 'count' number of bullets
+# with speeds ranging from min_speed_f * bullet_speed to max_speed_f * bullet speed
+func shoot_ray(bullet:Node, from_pos:Vector2, velocity:Vector2, \
+		count:int, min_speed_f:float, max_speed_f:float):
+	if count < 2:
+		shoot(bullet, from_pos, velocity)
+		return
+	var speed_fac_increment:float = (max_speed_f - min_speed_f) / (count-1)
+	for i in count-1:
+		shoot(bullet.duplicate(), from_pos, velocity * (min_speed_f + i * speed_fac_increment))
+	shoot(bullet, from_pos, velocity * max_speed_f)

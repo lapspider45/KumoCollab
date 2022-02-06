@@ -23,11 +23,18 @@ var spells = [
 	},
 	{
 		spell = preload("res://game/patterns/test/SineFieldTest.tscn"),
-#		hp = 500, # with no "hp" property, you are forced to time this spell out
-		timeout = 60,
+		hp = 150, # with no "hp" property, you are forced to time this spell out
+		timeout = 20,
 		delay = 3,
 		animation = "test_movement"
 	},
+	{
+		spell = preload("res://game/patterns/lana/LanaRecursive.tscn"),
+		hp = 500,
+		delay = 2,
+		timeout = 45,
+		animation = "test_movement"
+	}
 ]
 
 func _init():
