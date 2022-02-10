@@ -10,11 +10,13 @@ func on_spawn():
 func die():
 	print("boss died")
 	invincible = true
+	Score.increment(400000)
 	emit_signal("died")
 
 func take_damage(dmg=1):
 	if invincible: return
 	SFX.play("hit")
+	Score.increment(100 * dmg)
 	.take_damage(dmg)
 
 func _on_Hitbox_Main_took_damage(value):

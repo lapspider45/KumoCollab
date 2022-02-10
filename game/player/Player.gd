@@ -43,7 +43,8 @@ func bomb():
 	if popper:
 		for d in Kumo.deletion_queue:
 			if is_instance_valid(d):
-				popper.queue_popup(d.position, 250)
+				popper.queue_popup(d.position, 50)
+				Score.increment(50)
 	emit_signal("bombed")
 
 func _physics_process(_delta):

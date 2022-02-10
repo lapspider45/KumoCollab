@@ -20,4 +20,4 @@ func shoot():
 	bullet.wait_time = bullet_wait_time
 	bullet.sub_bullet = subbullet_scene
 #	Kumo.shoot(bullet, global_position, polar2cartesian(bullet_speed, deg2rad(angle)))
-	Kumo.shoot_at(bullet, global_position, Blackboard.predict_player_pos(0.2).rotated(rand_range(-TAU/16, TAU/16)), bullet_speed)
+	Kumo.shoot_at(bullet, global_position, Blackboard.player_pos, bullet_speed)

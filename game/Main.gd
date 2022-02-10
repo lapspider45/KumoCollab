@@ -3,6 +3,7 @@ extends Control
 const DANMAKU_SCENE = preload("res://game/Danmaku2.tscn")
 
 var Danmaku:Node
+onready var GameViewport:Node = find_node("GameViewport")
 var Player:Node
 
 func _init():
@@ -14,7 +15,7 @@ func _ready():
 	set_scene("res://experiments/Boss.tscn")
 	
 	# hack to make sure viewport is correctly sized upon game start
-	$AspectRatioContainer/MarginContainer/ViewportContainer/GameViewport.emit_signal("size_changed")
+	GameViewport.emit_signal("size_changed")
 #	Danmaku.demo_pattern_dir("lana", 25)
 
 func _unhandled_key_input(event):
@@ -29,16 +30,16 @@ func _unhandled_key_input(event):
 
 
 func init_danmaku():
-	var game_viewport = $AspectRatioContainer/MarginContainer/ViewportContainer/GameViewport
 	# todo: check that this isn't run twice
 	var _danmaku:Node = DANMAKU_SCENE.instance()
 	_danmaku.name = "Danmaku"
-	game_viewport.add_child(_danmaku)
+	GameViewport.add_child(_danmaku)
 	Danmaku = _danmaku
 	
 	yield(get_tree(), "idle_frame")
-	Kumo.reparent(game_viewport)
+	Kumo.reparent(GameViewport)
 	
+	Score.reparent($MarginContainer)
 
 func set_player(player_name:String):
 	var player_scene: PackedScene
@@ -65,6 +66,10 @@ func dbg_load_pattern(path:String):
 
 func set_scene(path):
 	var scn:PackedScene = load(path)
-	get_node(
-		"AspectRatioContainer/MarginContainer/ViewportContainer/GameViewport"
-		).add_child(scn.instance())
+	GameViewport.add_child(scn.instance())
+
+
+func _exit_tree():
+	# don't let these nodes get deleted, as they are used in multiple scenes
+	Kumo.reparent($"/root/")
+	Score.reparent($"/root/")

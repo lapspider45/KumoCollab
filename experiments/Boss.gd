@@ -102,3 +102,8 @@ func validate_spells():
 	for s in spells:
 		assert(s.get("spell") is PackedScene, "Tried to add a phase with no attached spell!")
 		assert(s.has("hp") or s.has("timeout"), "Spell has to have at least one of 'hp' or 'timeout'!")
+
+
+func _input(event):
+	if event.is_action_pressed("DEBUG_F1"):
+		emit_signal("phase_completed")

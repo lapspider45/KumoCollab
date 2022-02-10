@@ -79,6 +79,7 @@ Blackboard="*res://autoload/Blackboard.tscn"
 Kumo="*res://autoload/Kumo.tscn"
 MainSceneFactory="*res://autoload/MainSceneFactory.tscn"
 SFX="*res://autoload/SFX.tscn"
+Score="*res://autoload/Score.tscn"
 
 [debug]
 
@@ -89,7 +90,7 @@ gdscript/warnings/return_value_discarded=false
 
 [display]
 
-window/size/width=480
+window/size/width=853
 window/size/height=640
 window/size/test_width=853
 window/size/test_height=640
