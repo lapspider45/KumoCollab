@@ -3,6 +3,7 @@
 [ext_resource path="res://autoload/Score.gd" type="Script" id=1]
 
 [node name="Score" type="Label"]
+visible = false
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -128.0

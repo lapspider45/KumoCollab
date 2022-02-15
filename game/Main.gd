@@ -3,7 +3,7 @@ extends Control
 const DANMAKU_SCENE = preload("res://game/Danmaku2.tscn")
 
 var Danmaku:Node
-onready var GameViewport:Node = find_node("GameViewport")
+onready var GameViewport:Viewport = find_node("GameViewport")
 var Player:Node
 
 func _init():
@@ -11,12 +11,17 @@ func _init():
 
 func _ready():
 	init_danmaku()
-	set_player("cornelia")
-	set_scene("res://experiments/Boss.tscn")
+	start()
 	
 	# hack to make sure viewport is correctly sized upon game start
 	GameViewport.emit_signal("size_changed")
+
+func start():
+	set_player("cornelia")
+	#set_scene("res://experiments/Boss.tscn")
+	
 #	Danmaku.demo_pattern_dir("lana", 25)
+
 
 func _unhandled_key_input(event):
 	if event.is_action_pressed("restart"):
@@ -37,9 +42,12 @@ func init_danmaku():
 	Danmaku = _danmaku
 	
 	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
 	Kumo.reparent(GameViewport)
 	
 	Score.reparent($MarginContainer)
+	Score.show()
 
 func set_player(player_name:String):
 	var player_scene: PackedScene
@@ -73,3 +81,4 @@ func _exit_tree():
 	# don't let these nodes get deleted, as they are used in multiple scenes
 	Kumo.reparent($"/root/")
 	Score.reparent($"/root/")
+	Score.hide()
