@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/lana-demo1-looped.ogg-1a0f7730e1fe51013fc8b5608b577f78.oggstr"
+
+[deps]
+
+source_file="res://music/lana-demo1-looped.ogg"
+dest_files=[ "res://.import/lana-demo1-looped.ogg-1a0f7730e1fe51013fc8b5608b577f78.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=2.33
