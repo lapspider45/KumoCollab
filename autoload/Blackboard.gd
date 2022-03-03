@@ -38,6 +38,7 @@ func init_screen_points(left, right, top, bottom):
 
 func init_screen_rect(rect:Rect2):
 	init_screen_points(rect.position.x, rect.end.x, rect.position.y, rect.end.y)
+	enemy_death_rect = rect.grow(1000) # enemies will be deleted when 1000 pixels outside of the screen
 
 ## these values are to be pushed by the player, so if there is no player they are simply ZERO
 var player_pos : Vector2  = Vector2(240, 900) # position of the player
@@ -58,6 +59,7 @@ var boss_pos : Vector2
 var fields = {}
 var FIELD_EMPTY = VectorField.new()
 
+var enemy_death_rect : Rect2
 
 var pattern_timer : Node # the visible countdown that times out a boss pattern or bonus section
 var boss_healthbar : Node # boss healthbar

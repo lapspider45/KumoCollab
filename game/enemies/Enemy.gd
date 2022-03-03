@@ -6,6 +6,14 @@ signal died
 export var hp := 10.0
 export var invincible := false
 
+func on_spawn(init_data=null):
+	pass
+
+func advance(delta:float):
+	movement(delta)
+	if not Blackboard.enemy_death_rect.has_point(global_position):
+		queue_free()
+
 func take_damage(dmg=1):
 	if invincible: return
 	hp -= dmg
@@ -20,7 +28,8 @@ func die():
 	# give player score
 	# drop pickups
 
-func _on_Hitbox_took_damage(value):
+# called when hit by a bullet or similar
+func on_hit(value):
 	if invincible: return
 	take_damage(value)
 
@@ -35,7 +44,7 @@ var velocity := Vector2()
 #export var acceleration
 
 enum MOVE {
-	STATIC, TOWARDS_POINT, AWAY_FROM_POINT, DIRECTION, CHASE_PLAYER, CHASE_NODE, INERTIA, INERTIA_BOUNCE
+	STATIC, TOWARDS_POINT, AWAY_FROM_POINT, DIRECTION, KEEP_HEADING, CHASE_PLAYER, CHASE_NODE, INERTIA, INERTIA_BOUNCE
 }
 export(MOVE) var movement_mode := MOVE.STATIC
 export var enable_acceleration := false
@@ -44,9 +53,6 @@ export var target_is_player := false # whether to automatically set target_pos t
 export var target_point : Vector2
 export var movement_direction := Vector2.DOWN
 export var target_path : NodePath
-
-func advance(delta:float):
-	movement(delta)
 
 func movement(delta:float):
 	if target_is_player:
@@ -60,6 +66,8 @@ func movement(delta:float):
 			move_direction(target_point.direction_to(position), delta)
 		MOVE.DIRECTION:
 			move_direction(movement_direction.normalized(), delta)
+		MOVE.KEEP_HEADING:
+			move_direction(velocity.normalized(), delta)
 		MOVE.CHASE_PLAYER:
 			move_towards_point(Blackboard.player_pos, delta)
 		MOVE.CHASE_NODE:
@@ -71,7 +79,7 @@ func movement(delta:float):
 
 func move_direction(vec:Vector2, delta:float):
 	if enable_acceleration:
-		velocity = (velocity + vec * acceleration).clamped(move_speed)
+		velocity = (velocity + vec * acceleration * delta).clamped(move_speed)
 		translate(velocity * delta)
 	else:
 		translate(vec * move_speed * delta)

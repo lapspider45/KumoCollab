@@ -1,43 +1,32 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://game/enemies/Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://game/enemies/ShipEnemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://music/lana-demo1-looped.ogg" type="AudioStream" id=2]
 [ext_resource path="res://experiments/EnemyTest.gd" type="Script" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "New Anim"
-length = 10.0
+length = 5.0
 loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Enemy:movement_mode")
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath("Enemy")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 3 ),
+"times": PoolRealArray( 2 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ Vector2( 0, 0 ), 0.0 ],
-"method": "movement_direction"
+"args": [  ],
+"method": "_spawn"
 } ]
 }
 
 [sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Enemy:movement_mode")
+tracks/0/path = NodePath(".:enemy_behavior")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -46,22 +35,85 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0 ]
+"values": [ "chase_player" ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "challenge"
+length = 20.0
+loop = true
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1, 6, 12, 19 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_spawn"
+}, {
+"args": [  ],
+"method": "_spawn"
+}, {
+"args": [  ],
+"method": "_spawn"
+}, {
+"args": [  ],
+"method": "turn_up_the_heat"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "one of each"
+length = 12.0
+loop = true
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1, 7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_spawn"
+}, {
+"args": [  ],
+"method": "_spawn"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:enemy_behavior")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "chase_player", "target_then_strafe" ]
 }
 
 [node name="EnemyTest" type="Node2D"]
 script = ExtResource( 3 )
-
-[node name="Enemy" parent="." instance=ExtResource( 2 )]
-position = Vector2( 225, 147 )
-
-[node name="Enemy2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 358, 177 )
-
-[node name="Enemy3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 65, 221 )
+enemy_scene = ExtResource( 1 )
+spawn_offset = Vector2( 240, -100 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "New Anim"
+playback_process_mode = 0
+playback_speed = 2.0
 "anims/New Anim" = SubResource( 1 )
 anims/RESET = SubResource( 2 )
+anims/challenge = SubResource( 4 )
+"anims/one of each" = SubResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+bus = "Music"

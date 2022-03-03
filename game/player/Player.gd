@@ -147,3 +147,7 @@ func setup_guns():
 		g.set_player()
 	for s in get_spawners():
 		s.set_player()
+
+
+func _on_Hitbox_took_damage(_v):
+	on_hit()

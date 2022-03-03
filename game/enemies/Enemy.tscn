@@ -1,23 +1,18 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://game/components/Hitbox.tscn" type="PackedScene" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://game/components/Hurtbox.gd" type="Script" id=2]
 [ext_resource path="res://game/enemies/Enemy.gd" type="Script" id=3]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 27 )
 
 [node name="Enemy" type="Node2D"]
 script = ExtResource( 3 )
-
-[node name="Icon" type="Sprite" parent="."]
-texture = ExtResource( 2 )
 
 [node name="Hitbox" parent="." instance=ExtResource( 1 )]
 collision_layer = 2
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource( 1 )
+[node name="Hurtbox" type="Area2D" parent="." groups=["hitbox"]]
+collision_layer = 0
+script = ExtResource( 2 )
 
-[connection signal="took_damage" from="Hitbox" to="." method="_on_Hitbox_took_damage"]
+[connection signal="took_damage" from="Hitbox" to="." method="on_hit"]

@@ -19,7 +19,7 @@ func advance(delta):
 	translate(velocity * delta)
 	lifetime -= delta
 
-func on_hit():
+func on_hit_something(_what):
 	Kumo.emit_signal("bullet_hit", self)
 	queue_free()
 

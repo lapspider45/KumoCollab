@@ -1,10 +1,10 @@
-extends "res://game/Enemy.gd"
+extends Enemy
 
 func _ready():
 	Registry.register("boss", self)
 	Blackboard.boss = self
 
-func on_spawn():
+func on_spawn(data=null):
 	invincible = false
 
 func die():

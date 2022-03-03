@@ -198,4 +198,6 @@ anims/shoot = SubResource( 5 )
 
 [node name="Guns" type="Node2D" parent="."]
 
+[connection signal="took_damage" from="Hitbox" to="." method="_on_Hitbox_took_damage"]
+
 [editable path="Hitbox"]
