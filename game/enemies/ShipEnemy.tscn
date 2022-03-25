@@ -71,6 +71,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [ 400.0 ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:acceleration")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 360.0 ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "chase_player"
@@ -107,7 +119,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15 ),
+"times": PoolRealArray( 0, 0.408 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 5, 4 ]
@@ -119,9 +131,9 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.116667 ),
+"times": PoolRealArray( 0, 0.391 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 0,
+"update": 1,
 "values": [ 20.0, 400.0 ]
 }
 tracks/2/type = "animation"
@@ -132,7 +144,19 @@ tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
 "clips": PoolStringArray( "shoot" ),
-"times": PoolRealArray( 0.15 )
+"times": PoolRealArray( 0.323 )
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:acceleration")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.357 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 300.0, 500.0 ]
 }
 
 [sub_resource type="Animation" id=6]
