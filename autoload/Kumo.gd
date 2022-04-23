@@ -42,6 +42,7 @@ func autoregister_bullets():
 
 
 ### And now, some utility functions for shooting bullets.
+# (I wonder if all shoot methods should duplicate the bullet by default)
 
 
 # Shoot the specified bullet from the given position, with the given velocity
@@ -74,3 +75,21 @@ func shoot_ray(bullet:Node, from_pos:Vector2, velocity:Vector2, \
 	for i in count-1:
 		shoot(bullet.duplicate(), from_pos, velocity * (min_speed_f + i * speed_fac_increment))
 	shoot(bullet, from_pos, velocity * max_speed_f)
+
+# shoot a bullet from each point in `from_points` with its corresponding given velocity
+# man, lambda support in gd4 would be so sweet
+# TODO: test if this actually works
+func shoot_points_with_velocities(bullet:Node, from_points:PoolVector2Array, velocities:PoolVector2Array):
+	assert(from_points.size() == velocities.size())
+	for idx in from_points.size():
+		shoot(bullet.duplicate(), from_points[idx], velocities[idx])
+
+# shoots out a cloud of points in the pattern given by `points`
+# if `origin` is omitted or Vector2.INF, points will be shot relative from `from_pos`
+# if `origin` is Vector2(0,0) the points will be treated as individual velocities.
+# TODO: also test if this actually works
+func shoot_points(bullet:Node, from_pos:Vector2, points:PoolVector2Array, origin:=Vector2.INF):
+	if origin == Vector2.INF:
+		origin = from_pos
+	for idx in points.size():
+		shoot(bullet.duplicate(), from_pos, points[idx]-origin)
