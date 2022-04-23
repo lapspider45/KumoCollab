@@ -35,7 +35,7 @@ func shoot():
 
 
 func shoot_velocity(velocity:Vector2):
-	var bullet = bullet_template.duplicate(DUPLICATE_GROUPS + DUPLICATE_SCRIPTS)
+	var bullet = bullet_template
 	bullet.acceleration = bullet_acceleration
 	bullet.lifetime = bullet_lifetime
 	Kumo.shoot(bullet, global_position, velocity * speedscale)

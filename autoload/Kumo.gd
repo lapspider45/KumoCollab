@@ -3,6 +3,8 @@ extends SimpleBulletServer
 # warning-ignore:unused_signal
 signal bullet_hit(bullet)
 
+var BULLET_DUP_FLAGS = DUPLICATE_GROUPS | DUPLICATE_SCRIPTS
+
 var BULLET_PATH = "res://game/bullets/"
 
 var preloaded_bullets = {
@@ -42,14 +44,13 @@ func autoregister_bullets():
 
 
 ### And now, some utility functions for shooting bullets.
-# (I wonder if all shoot methods should duplicate the bullet by default)
-
 
 # Shoot the specified bullet from the given position, with the given velocity
 # Acceleration or other properties will not be set by this function.
-# example usage: Kumo.shoot(bullet_template.duplicate(), global_position, polar2cartesian(global_rotation, bullet_speed))
-func shoot(bullet:Node, from_pos:Vector2, velocity:Vector2):
-	bullet.set_as_toplevel(true) # TODO: this might be unnecessary
+# example usage: `Kumo.shoot(bullet_template, global_position, polar2cartesian(global_rotation, bullet_speed))`
+func shoot(bullet_template:Node, from_pos:Vector2, velocity:Vector2):
+	var bullet = bullet_template.duplicate(BULLET_DUP_FLAGS)
+#	bullet.set_as_toplevel(true) # TODO: this might be unnecessary
 	bullet.position = from_pos
 	bullet.velocity = velocity
 	add_bullet(bullet)
@@ -61,7 +62,7 @@ func shoot_at(bullet:Node, from_pos:Vector2, target_pos:Vector2, speed:float):
 func shoot_ring(bullet:Node, from_pos:Vector2, velocity:Vector2, spokes:int):
 	var rot_angle := TAU / spokes
 	for i in spokes-1:
-		shoot(bullet.duplicate(), from_pos, velocity.rotated((i+1) * rot_angle))
+		shoot(bullet, from_pos, velocity.rotated((i+1) * rot_angle))
 	shoot(bullet, from_pos, velocity)
 
 # shoot 'count' number of bullets
@@ -73,7 +74,7 @@ func shoot_ray(bullet:Node, from_pos:Vector2, velocity:Vector2, \
 		return
 	var speed_fac_increment:float = (max_speed_f - min_speed_f) / (count-1)
 	for i in count-1:
-		shoot(bullet.duplicate(), from_pos, velocity * (min_speed_f + i * speed_fac_increment))
+		shoot(bullet, from_pos, velocity * (min_speed_f + i * speed_fac_increment))
 	shoot(bullet, from_pos, velocity * max_speed_f)
 
 # shoot a bullet from each point in `from_points` with its corresponding given velocity
@@ -82,7 +83,7 @@ func shoot_ray(bullet:Node, from_pos:Vector2, velocity:Vector2, \
 func shoot_points_with_velocities(bullet:Node, from_points:PoolVector2Array, velocities:PoolVector2Array):
 	assert(from_points.size() == velocities.size())
 	for idx in from_points.size():
-		shoot(bullet.duplicate(), from_points[idx], velocities[idx])
+		shoot(bullet, from_points[idx], velocities[idx])
 
 # shoots out a cloud of points in the pattern given by `points`
 # if `origin` is omitted or Vector2.INF, points will be shot relative from `from_pos`
@@ -92,4 +93,4 @@ func shoot_points(bullet:Node, from_pos:Vector2, points:PoolVector2Array, origin
 	if origin == Vector2.INF:
 		origin = from_pos
 	for idx in points.size():
-		shoot(bullet.duplicate(), from_pos, points[idx]-origin)
+		shoot(bullet, from_pos, points[idx]-origin)

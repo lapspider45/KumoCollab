@@ -72,13 +72,13 @@ func shoot():
 	shoot_single()
 
 func shoot_single():
-	var bullet = bullet_template.duplicate(DUPLICATE_GROUPS + DUPLICATE_SCRIPTS)
+	var bullet = bullet_template
 	bullet.acceleration = bullet_acceleration
 	Kumo.shoot(bullet, global_position, polar2cartesian(bullet_speed, global_rotation) * speedscale)
 	emit_signal("spawned", bullet)
 
 func shoot_velocity(velocity:Vector2):
-	var bullet = bullet_template.duplicate(DUPLICATE_GROUPS + DUPLICATE_SCRIPTS)
+	var bullet = bullet_template
 	bullet.acceleration = bullet_acceleration
 	bullet.lifetime = bullet_lifetime
 	Kumo.shoot(bullet, global_position, velocity * speedscale)
@@ -149,8 +149,7 @@ func _notification(what):
 
 func set_bullet_type(t:String):
 	bullet_type = t
-	bullet_template = Kumo.instantiate_bullet(bullet_type)
-	bullet_template.add_to_group(bullet_group_id)
+	setup_bullet_template()
 
 func set_bullet_collision(c:int):
 	if bullet_template is Area2D:
@@ -158,6 +157,12 @@ func set_bullet_collision(c:int):
 
 func set_player(v=true): # belongs to player
 	set_bullet_collision(8 if v else 16)
+
+func setup_bullet_template():
+	if is_instance_valid(bullet_template):
+		bullet_template.queue_free()
+	bullet_template = Kumo.instantiate_bullet(bullet_type)
+	bullet_template.add_to_group(bullet_group_id)
 
 func generate_unique_group_id():
 	return "bullet@%s" % get_instance_id()

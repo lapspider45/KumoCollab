@@ -35,7 +35,7 @@ func shoot_hard():
 	rotate(3.0/12)
 
 func shoot_single():
-	var bullet = bullet_template.duplicate(DUPLICATE_GROUPS + DUPLICATE_SCRIPTS)
+	var bullet = bullet_template
 	bullet.acceleration = bullet_acceleration
 	
 	for param in bullet_parameters:
