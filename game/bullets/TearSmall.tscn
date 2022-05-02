@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://game/bullets/SimpleBullet.gd" type="Script" id=1]
+[ext_resource path="res://art/bullets/tear_small.png" type="Texture" id=2]
+[ext_resource path="res://art/shader/color_add_shader.tres" type="Shader" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 3 )
+shader_param/new_color = Color( 1, 0.32549, 0.403922, 1 )
+
+[node name="TearSmall" type="Sprite"]
+material = SubResource( 1 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )

@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://game/bullets/SimpleBullet.gd" type="Script" id=1]
+[ext_resource path="res://art/bullets/bullet_tiny.png" type="Texture" id=2]
+[ext_resource path="res://art/shader/color_add_material.tres" type="Material" id=3]
+
+[node name="BulletTiny" type="Sprite"]
+material = ExtResource( 3 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+radius = 0.8
