@@ -11,13 +11,12 @@ func _init():
 
 func _ready():
 	init_danmaku()
-	start()
 	
 	# hack to make sure viewport is correctly sized upon game start
 	GameViewport.emit_signal("size_changed")
 
 func start():
-	set_player("cornelia")
+	load_player("cornelia")
 	#set_scene("res://experiments/Boss.tscn")
 	
 #	Danmaku.demo_pattern_dir("lana", 25)
@@ -30,7 +29,7 @@ func _unhandled_key_input(event):
 	if event.is_action_pressed("DEBUG_FULLSCREEN"):
 		OS.window_fullscreen = not OS.window_fullscreen
 	if event.is_action_pressed("DEBUG_QUIT"):
-		"DEBUG_QUIT key pressed, quitting..."
+		print("DEBUG_QUIT key pressed, quitting...")
 		get_tree().quit()
 
 
@@ -49,7 +48,7 @@ func init_danmaku():
 	Score.reparent($MarginContainer)
 	Score.show()
 
-func set_player(player_name:String):
+func load_player(player_name:String):
 	var player_scene: PackedScene
 	match player_name:
 		"lana", "cornelia":
@@ -57,12 +56,15 @@ func set_player(player_name:String):
 		_:
 			player_scene = load("res://game/player/Player.tscn") # this player is basically useless
 	
+	set_player(player_scene.instance())
+
+func set_player(player_node:Node):
 	if is_instance_valid(Player):
 		Player.queue_free()
 	if !is_instance_valid(Danmaku):
 		push_error("no Danmaku node in main scene!!!")
 		return
-	Player = player_scene.instance()
+	Player = player_node
 	Danmaku.add_child(Player)
 	Player.position = Vector2(240, 600) # spawn position
 

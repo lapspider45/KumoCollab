@@ -1,4 +1,4 @@
-extends Node2D
+extends Entity
 
 signal phase_completed
 signal boss_defeated

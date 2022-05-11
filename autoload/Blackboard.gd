@@ -5,6 +5,8 @@ extends Node
 # warning-ignore:unused_signal
 signal nodes_updated
 
+# TODO: this stuff is outdated
+
 var SCREEN = { # this dictionary has some useful points for manipulating stuff on the screen
 	TOPLEFT = Vector2(),
 	TOPRIGHT = Vector2(),

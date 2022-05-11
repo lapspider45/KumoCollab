@@ -6,3 +6,7 @@
 [node name="Danmakumo" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
 process_batch_size = 2400
+max_batches = 3
+max_bullets = 3600
+player_hitbox_pos = Vector2( 0, 0 )
+player_hitbox_radius = 1.0

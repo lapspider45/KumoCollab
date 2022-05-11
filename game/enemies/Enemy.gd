@@ -1,5 +1,5 @@
 class_name Enemy
-extends Node2D
+extends Entity
 
 signal died
 

@@ -29,10 +29,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://utils/DirUtils.gd"
 }, {
-"base": "Node2D",
+"base": "Entity",
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://game/enemies/Enemy.gd"
+}, {
+"base": "Node2D",
+"class": "Entity",
+"language": "GDScript",
+"path": "res://game/Entity.gd"
 }, {
 "base": "Node",
 "class": "FXPool",
@@ -60,6 +65,11 @@ _global_script_classes=[ {
 "path": "res://game/components/SimpleBulletServer.gd"
 }, {
 "base": "Reference",
+"class": "Utils",
+"language": "GDScript",
+"path": "res://utils/Utils.gd"
+}, {
+"base": "Reference",
 "class": "VectorField",
 "language": "GDScript",
 "path": "res://utils/Field.gd"
@@ -70,18 +80,20 @@ _global_script_class_icons={
 "Curves": "",
 "DirUtils": "",
 "Enemy": "",
+"Entity": "",
 "FXPool": "",
 "LanaBombSprite": "",
 "Pattern": "",
 "SimpleBullet": "",
 "SimpleBulletServer": "",
+"Utils": "",
 "VectorField": ""
 }
 
 [application]
 
 config/name="KumoCollab"
-run/main_scene="res://game/Main.tscn"
+run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -89,7 +101,7 @@ config/icon="res://icon.png"
 Registry="*res://autoload/Registry.tscn"
 Blackboard="*res://autoload/Blackboard.tscn"
 Kumo="*res://autoload/Kumo.tscn"
-MainSceneFactory="*res://autoload/MainSceneFactory.tscn"
+MainSceneFactory="res://autoload/MainSceneFactory.tscn"
 SFX="*res://autoload/SFX.tscn"
 Score="*res://autoload/Score.tscn"
 
@@ -226,6 +238,12 @@ DEBUG_FULLSCREEN={
 DEBUG_QUIT={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777217,"unicode":0,"echo":false,"script":null)
+ ]
+}
+pause={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":32,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777217,"unicode":0,"echo":false,"script":null)
  ]
 }
 

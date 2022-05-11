@@ -1,4 +1,4 @@
-extends Node2D
+extends Entity
 
 signal bombed
 
@@ -84,9 +84,8 @@ func set_shooting(shoot:bool):
 		$ShootAnimation.stop()
 
 func on_hit():
-	if invincible or !$DeathbombTimer.is_stopped():
+	if invincible or deathbomb_available:
 		return
-	SFX.play("boom1")
 	# deathbomb
 	deathbomb_available = true
 	$DeathbombTimer.start()
