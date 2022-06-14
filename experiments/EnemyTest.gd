@@ -1,9 +1,9 @@
 extends Node2D
 
-export var enemy_scene:PackedScene = preload("res://game/enemies/Enemy.tscn")
-export var spawn_offset := Vector2.ZERO
-export var max_enemies := 3
-export var enemy_behavior := "chase_player"
+@export var enemy_scene:PackedScene = preload("res://game/enemies/Enemy.tscn")
+@export var spawn_offset := Vector2.ZERO
+@export var max_enemies := 3
+@export var enemy_behavior := "chase_player"
 
 func _ready():
 	Kumo.connect("bullet_hit", self, "bullet_hit_sfx")
@@ -26,7 +26,7 @@ func turn_up_the_heat():
 func _spawn():
 	if get_tree().get_nodes_in_group(get_unique_group("spawned")).size() >= max_enemies:
 		return
-	var e := spawn_enemy(enemy_scene.instance(), spawn_offset)
+	var e := spawn_enemy(enemy_scene.instantiate(), spawn_offset)
 	e.add_to_group(get_unique_group("spawned"))
 #	e.movement_mode = Enemy.MOVE.CHASE_PLAYER
 

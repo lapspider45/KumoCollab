@@ -23,16 +23,16 @@ var batches: Array #[[bullet, bullet, bullet], [], []]
 var batches_remaining: int
 var num_batches: int
 
-export var process_batch_size = 1200
-export var max_batches = 3
-#export var dynamic_batch_size = false
-#export var smooth_slowdown = false
-export var max_bullets = 3600
+@export var process_batch_size = 1200
+@export var max_batches = 3
+#@export var dynamic_batch_size = false
+#@export var smooth_slowdown = false
+@export var max_bullets = 3600
 
-export var player_hitbox_pos : Vector2
-export var player_hitbox_radius : float = 1.0
+@export var player_hitbox_pos : Vector2
+@export var player_hitbox_radius : float = 1.0
 
-export var bullet_limits: Rect2
+@export var bullet_limits: Rect2
 
 var deletion_queue := []
 
@@ -102,7 +102,7 @@ func process_single_batch(batch:Array, delta:float):
 func process_deletion_queue():
 	# maximum bullets to delete per frame, otherwise there will be stutter
 	for _i in range(min(256, deletion_queue.size())):
-		var b = deletion_queue.pop_back()
+		var b:Node = deletion_queue.pop_back()
 		if is_instance_valid(b):
 			b.queue_free()
 
@@ -115,7 +115,8 @@ func create_batches():
 	
 	# split bullets evenly into the minimum number of batches smaller than 'process_batch_size'
 	var batches_needed = min(ceil(float(bullet_count) / process_batch_size), max_batches)
-	var batch_size = ceil(float(bullet_count) / batches_needed)
+	@warning_ignore(narrowing_conversion)
+	var batch_size:int = ceil(float(bullet_count) / batches_needed)
 	for i in range(0, bullet_count, batch_size):
 		batches.append(bullets.slice(i, i + batch_size - 1))
 	num_batches = batches.size()
@@ -123,5 +124,5 @@ func create_batches():
 	emit_signal("batches_created", num_batches)
 
 
-func get_slowdown():
+func get_slowdown()->float:
 	return 1.0 / max(num_batches, 1.0)

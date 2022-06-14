@@ -4,15 +4,15 @@ enum Colors {
 	GREEN, CYAN, BLUE, PURPLE, PINK, RED, ORANGE, YELLOW
 }
 
-export(Colors) var color = 0 setget set_color
+@export var color:Colors = Colors.GREEN:
+	set(c):
+		color = c
+		frame = color % hframes
 
-export var rot_velocity = 2.5
+@export var rot_velocity = 2.5
 
-func set_color(c:int):
-	color = c
-	frame = color % hframes
 
 
 func advance(delta):
 	rotate(rot_velocity * delta)
-	.advance(delta)
+	super(delta)

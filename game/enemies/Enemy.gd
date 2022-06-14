@@ -3,10 +3,10 @@ extends Entity
 
 signal died
 
-export var hp := 10.0
-export var invincible := false
+@export var hp := 10.0
+@export var invincible := false
 
-func on_spawn(init_data=null):
+func on_spawn(_init_data=null):
 	pass
 
 func advance(delta:float):
@@ -36,23 +36,23 @@ func on_hit(value):
 
 ### MOVEMENT
 
-export var move_speed := 120.0 # maximum movement speed
-export var acceleration := 360.0
-export(float, 0, 1) var damping := 0.2
+@export var move_speed := 120.0 # maximum movement speed
+@export var acceleration := 360.0
+@export_range(0.0, 1.0) var damping := 0.2
 var velocity := Vector2()
 
-#export var acceleration
+#@export var acceleration
 
 enum MOVE {
 	STATIC, TOWARDS_POINT, AWAY_FROM_POINT, DIRECTION, KEEP_HEADING, CHASE_PLAYER, CHASE_NODE, INERTIA, INERTIA_BOUNCE
 }
-export(MOVE) var movement_mode := MOVE.STATIC
-export var enable_acceleration := false
-export var target_is_player := false # whether to automatically set target_pos to player_pos on each frame
+@export var movement_mode:MOVE = MOVE.STATIC
+@export var enable_acceleration := false
+@export var target_is_player := false # whether to automatically set target_pos to player_pos on each frame
 
-export var target_point : Vector2
-export var movement_direction := Vector2.DOWN
-export var target_path : NodePath
+@export var target_point : Vector2
+@export var movement_direction := Vector2.DOWN
+@export var target_path : NodePath
 
 func movement(delta:float):
 	if target_is_player:
@@ -73,13 +73,14 @@ func movement(delta:float):
 		MOVE.CHASE_NODE:
 			move_towards_point(get_node_pos(get_node_or_null(target_path)), delta)
 		_:
-			assert(false, "movement mode %s is not implemented yet" % [MOVE.keys()[movement_mode]])
+			@warning_ignore(assert_always_false)
+			assert(false, "movement mode is not implemented yet")
 	
 	velocity_damp(delta)
 
 func move_direction(vec:Vector2, delta:float):
 	if enable_acceleration:
-		velocity = (velocity + vec * acceleration * delta).clamped(move_speed)
+		velocity = (velocity + vec * acceleration * delta).limit_length(move_speed)
 		translate(velocity * delta)
 	else:
 		translate(vec * move_speed * delta)
@@ -94,4 +95,4 @@ func get_node_pos(node:Node2D)->Vector2:
 		return Vector2( 240, 320 )
 
 func velocity_damp(delta):
-	velocity = velocity.linear_interpolate(Vector2.ZERO, damping * delta)
+	velocity = velocity.lerp(Vector2.ZERO, damping * delta)

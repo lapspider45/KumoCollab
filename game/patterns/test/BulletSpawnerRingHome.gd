@@ -1,6 +1,6 @@
 extends BulletSpawner
 
-export var ring_size := 16
+@export var ring_size := 16
 
 var bullet_parameters := {}
 
@@ -41,11 +41,11 @@ func shoot_single():
 	for param in bullet_parameters:
 		bullet.set(param, bullet_parameters[param])
 	
-	Kumo.shoot(bullet, global_position, polar2cartesian(bullet_speed, global_rotation) * speedscale)
+	Kumo.shoot(bullet, global_position, bullet_speed * Vector2.from_angle(global_rotation) * speedscale)
 	emit_signal("spawned", bullet)
 
 func _notification(what):
-	._notification(what)
+	super(what)
 
 
 func update_children():

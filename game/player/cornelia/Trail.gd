@@ -1,8 +1,8 @@
-extends Sprite
+extends Sprite2D
 
 var last_movement := []
 var last_z_index := []
-onready var has_trail := true
+@onready var has_trail := true
 signal position_set(_position, _index, current_z_index)
 var index := 0
 

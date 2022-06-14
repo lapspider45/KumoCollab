@@ -1,10 +1,10 @@
-[gd_resource type="Shader" format=2]
+[gd_resource type="Shader" format=3 uid="uid://08qj577f2538"]
 
 [resource]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
-uniform vec4 new_color : hint_color = vec4(1.0);
+uniform vec4 new_color = vec4(1.0); // idk what hint_color is supposed to be nowadays...
 
 void fragment(){
 	vec4 color = texture(TEXTURE, UV);

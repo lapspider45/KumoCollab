@@ -1,6 +1,6 @@
 extends BulletSpawner
 
-export var rot_speed := deg2rad(45.0/2)
+@export var rot_speed := deg2rad(45.0/2)
 
 func _init():
 	add_to_group("autoadvance")

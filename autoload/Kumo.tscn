@@ -1,12 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://bk7re8uf4pocc"]
 
-[ext_resource path="res://autoload/Kumo.gd" type="Script" id=1]
-[ext_resource path="res://game/components/SimpleBulletServer.tscn" type="PackedScene" id=2]
+[ext_resource type="Script" path="res://autoload/Kumo.gd" id="1"]
+[ext_resource type="PackedScene" path="res://game/components/SimpleBulletServer.tscn" id="2"]
 
-[node name="Danmakumo" instance=ExtResource( 2 )]
-script = ExtResource( 1 )
-process_batch_size = 2400
-max_batches = 3
-max_bullets = 3600
-player_hitbox_pos = Vector2( 0, 0 )
-player_hitbox_radius = 1.0
+[node name="Danmakumo" instance=ExtResource( "2" )]
+script = ExtResource( "1" )

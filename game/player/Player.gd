@@ -2,28 +2,33 @@ extends Entity
 
 signal bombed
 
-export var MOVE_SPEED := 320.0
-export var SLOW_SPEED := 160.0
+@export var MOVE_SPEED := 320.0
+@export var SLOW_SPEED := 160.0
 
-export var bullet_speed := 100 setget set_bullet_speed
+@export var bullet_speed := 100:
+	set(v):
+		set_bullet_speed(v)
 
 var velocity := Vector2.ZERO
 var bullets = []
 
-export var invincible := false setget set_invincible
-export var screen_rect := Rect2(0,0,480,640)
-export var max_hp := 30
+@export var invincible := false:
+	set(v):
+#		$Hitbox.set_deferred("monitoring", v)
+		invincible = v
+@export var screen_rect := Rect2(0,0,480,640)
+@export var max_hp := 30
 
-onready var hp = max_hp
+var hp = max_hp
 
 var movement_frame:int = 0
 var last_pos := Vector2.ZERO
-export var deathbomb_available := false
+@export var deathbomb_available := false
 
 
 func _ready():
 	setup_guns()
-	set_invincible(false)
+	self.invincible = false
 
 func shoot():
 	get_tree().call_group("player_bulletspawner", "shoot")
@@ -77,8 +82,8 @@ func advance(delta):
 	
 	$ShootAnimation.advance(delta * Blackboard.slowdown)
 
-func set_shooting(shoot:bool):
-	if shoot:
+func set_shooting(s:bool):
+	if s:
 		$ShootAnimation.play("shoot")
 	else:
 		$ShootAnimation.stop()
@@ -89,7 +94,7 @@ func on_hit():
 	# deathbomb
 	deathbomb_available = true
 	$DeathbombTimer.start()
-	yield($DeathbombTimer, "timeout")
+	await $DeathbombTimer.timeout
 	deathbomb_available = false
 	hurt() # if player has used a bomb, they will be invincible during this time :)
 
@@ -108,9 +113,6 @@ func hurt(dmg:=1):
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play("invincible")
 
-func set_invincible(v:bool):
-#	$Hitbox.set_deferred("monitoring", v)
-	invincible = v
 
 
 func update_blackboard():
@@ -137,7 +139,7 @@ func get_movement_dir()-> Vector2:
 		return vec
 
 func set_bullet_speed(v):
-	bullet_speed = v
+#	bullet_speed = v
 	for s in get_spawners():
 		s.bullet_speed = v
 

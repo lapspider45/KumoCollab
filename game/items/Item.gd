@@ -1,7 +1,7 @@
 extends Area2D
 
-export var speed = 600
-export var acceleration = 1200
+@export var speed = 600
+@export var acceleration = 1200
 var velocity := Vector2.ZERO
 var direction := Vector2.DOWN
 var is_player_found := false

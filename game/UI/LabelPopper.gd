@@ -7,7 +7,7 @@ extends Node2D
 const POPUP = preload("res://game/UI/ScorePopup.tscn")
 
 var frame:int = 0
-export var frame_period:int = 7
+@export var frame_period:int = 7
 
 var popup_buckets = {}
 
@@ -15,7 +15,7 @@ func _ready():
 	Registry.register("LabelPopper", self)
 
 func popup_at(vec:Vector2, number):
-	var pp = POPUP.instance()
+	var pp = POPUP.instantiate()
 	add_child(pp)
 	pp.set_value(number)
 	pp.popup_at(vec)

@@ -1,36 +1,29 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://kx6r4aao313a"]
 
-[ext_resource path="res://utils/BasedViewport.gd" type="Script" id=2]
-[ext_resource path="res://art/placeholder/rick.jpg" type="Texture" id=3]
-[ext_resource path="res://game/Main.gd" type="Script" id=4]
-[ext_resource path="res://debug/DebugInfoLabel.tscn" type="PackedScene" id=5]
-[ext_resource path="res://game/UI/GameHUD.tscn" type="PackedScene" id=7]
-[ext_resource path="res://game/UI/LabelPopper.tscn" type="PackedScene" id=9]
+[ext_resource type="Script" path="res://utils/BasedViewport.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://bur71qo1adnut" path="res://art/placeholder/rick.jpg" id="3"]
+[ext_resource type="Script" path="res://game/Main.gd" id="4"]
+[ext_resource type="PackedScene" path="res://debug/DebugInfoLabel.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://game/UI/GameHUD.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://game/UI/LabelPopper.tscn" id="9"]
 
 [node name="Main" type="Control" groups=["MainScene"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 4 )
+script = ExtResource( "4" )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color(0, 0, 0, 1)
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
-texture = ExtResource( 3 )
-expand = true
+texture = ExtResource( "3" )
 stretch_mode = 7
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 anchor_right = 1.0
@@ -38,73 +31,48 @@ anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 ratio = 0.75
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": "note: this is to keep the game in a 3:4 ratio"
-}
 
 [node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer"]
-margin_left = 186.5
-margin_right = 666.5
-margin_bottom = 640.0
-custom_constants/margin_right = 16
-custom_constants/margin_top = 16
-custom_constants/margin_left = 16
-custom_constants/margin_bottom = 16
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = 287.0
+offset_right = 737.0
+offset_bottom = 600.0
 
-[node name="ViewportContainer" type="ViewportContainer" parent="AspectRatioContainer/MarginContainer"]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 464.0
-margin_bottom = 624.0
+[node name="ViewportContainer" type="SubViewportContainer" parent="AspectRatioContainer/MarginContainer"]
+offset_right = 450.0
+offset_bottom = 600.0
 stretch = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="GameViewport" type="Viewport" parent="AspectRatioContainer/MarginContainer/ViewportContainer"]
-size = Vector2( 448, 608 )
-size_override_stretch = true
+[node name="GameViewport" type="SubViewport" parent="AspectRatioContainer/MarginContainer/ViewportContainer"]
 handle_input_locally = false
 msaa = 2
-render_target_update_mode = 3
 audio_listener_enable_2d = true
 audio_listener_enable_3d = true
-script = ExtResource( 2 )
-actual_size = Vector2( 480, 640 )
+size = Vector2i(450, 600)
+size_2d_override = Vector2i(360, 640)
+render_target_update_mode = 4
+script = ExtResource( "2" )
 
-[node name="GameHUD" parent="AspectRatioContainer/MarginContainer/ViewportContainer/GameViewport" instance=ExtResource( 7 )]
+[node name="GameHUD" parent="AspectRatioContainer/MarginContainer/ViewportContainer/GameViewport" instance=ExtResource( "7" )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 464.0
-margin_bottom = 624.0
 
-[node name="LabelPopper" parent="AspectRatioContainer/MarginContainer/ViewportContainer/GameViewport" instance=ExtResource( 9 )]
+[node name="LabelPopper" parent="AspectRatioContainer/MarginContainer/ViewportContainer/GameViewport" instance=ExtResource( "9" )]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_right = 16
-custom_constants/margin_top = 16
-custom_constants/margin_left = 16
-custom_constants/margin_bottom = 16
 
 [node name="Label2" type="Label" parent="MarginContainer"]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 136.0
-margin_bottom = 30.0
+offset_right = 143.0
+offset_bottom = 26.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "Objective: Survive!"
 
-[node name="DebugInfoLabel" parent="MarginContainer" instance=ExtResource( 5 )]
-margin_left = 745.0
-margin_right = 837.0
+[node name="DebugInfoLabel" parent="MarginContainer" instance=ExtResource( "5" )]
+offset_left = 913.0
+offset_top = 548.0
+offset_right = 1024.0
+offset_bottom = 600.0
 
 [connection signal="size_changed" from="AspectRatioContainer/MarginContainer/ViewportContainer/GameViewport" to="AspectRatioContainer/MarginContainer/ViewportContainer/GameViewport" method="_on_Viewport_size_changed"]

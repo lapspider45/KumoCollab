@@ -4,7 +4,7 @@ func _ready():
 	Registry.register("boss", self)
 	Blackboard.boss = self
 
-func on_spawn(data=null):
+func on_spawn(_data=null):
 	invincible = false
 
 func die():
@@ -17,10 +17,10 @@ func take_damage(dmg=1):
 	if invincible: return
 	SFX.play("hit")
 	Score.increment(100 * dmg)
-	.take_damage(dmg)
+	super(dmg)
 
 func _on_Hitbox_Main_took_damage(value):
 	take_damage(value)
 
-func _process(delta):
+func _process(_delta):
 	Blackboard.boss_pos = position

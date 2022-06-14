@@ -1,12 +1,12 @@
 extends Area2D
 
-export var damage_disabled := false
-export var damage_multiplier := 1.0 # for making "weak spots"
+@export var damage_disabled := false
+@export var damage_multiplier := 1.0 # for making "weak spots"
 
 signal took_damage(value)
 
 func _init():
-	connect("area_entered", self, "on_hit_by")
+	area_entered.connect(on_hit_by)
 
 func on_hit_by(area:Area2D):
 	if damage_disabled:

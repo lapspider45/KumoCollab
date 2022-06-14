@@ -24,8 +24,8 @@ func reparent(to:Node):
 	to.add_child(self)
 
 func instantiate_bullet(type:String):
-	assert(type in preloaded_bullets, "'%s' is not a valid bullet" % type)
-	return preloaded_bullets.get(type).instance()
+	assert(type in preloaded_bullets, "not a valid bullet")
+	return preloaded_bullets.get(type).instantiate()
 
 func register_bullet(bullet:PackedScene, _name:String):
 	preloaded_bullets[_name] = bullet
@@ -47,7 +47,7 @@ func autoregister_bullets():
 
 # Shoot the specified bullet from the given position, with the given velocity
 # Acceleration or other properties will not be set by this function.
-# example usage: `Kumo.shoot(bullet_template, global_position, polar2cartesian(global_rotation, bullet_speed))`
+# example usage: `Kumo.shoot(bullet_template, global_position, Vector2.from_angle(global_rotation, bullet_speed))`
 func shoot(bullet_template:Node, from_pos:Vector2, velocity:Vector2):
 	var bullet = bullet_template.duplicate(BULLET_DUP_FLAGS)
 #	bullet.set_as_toplevel(true) # TODO: this might be unnecessary
@@ -57,7 +57,7 @@ func shoot(bullet_template:Node, from_pos:Vector2, velocity:Vector2):
 	bullet.call("_on_shot")
 
 func shoot_at(bullet:Node, from_pos:Vector2, target_pos:Vector2, speed:float):
-	shoot(bullet, from_pos, (target_pos-from_pos).clamped(1) * speed)
+	shoot(bullet, from_pos, (target_pos-from_pos).limit_length(1) * speed)
 
 func shoot_ring(bullet:Node, from_pos:Vector2, velocity:Vector2, spokes:int):
 	var rot_angle := TAU / spokes
@@ -80,7 +80,7 @@ func shoot_ray(bullet:Node, from_pos:Vector2, velocity:Vector2, \
 # shoot a bullet from each point in `from_points` with its corresponding given velocity
 # man, lambda support in gd4 would be so sweet
 # TODO: test if this actually works
-func shoot_points_with_velocities(bullet:Node, from_points:PoolVector2Array, velocities:PoolVector2Array):
+func shoot_points_with_velocities(bullet:Node, from_points:PackedVector2Array, velocities:PackedVector2Array):
 	assert(from_points.size() == velocities.size())
 	for idx in from_points.size():
 		shoot(bullet, from_points[idx], velocities[idx])
@@ -89,8 +89,8 @@ func shoot_points_with_velocities(bullet:Node, from_points:PoolVector2Array, vel
 # if `origin` is omitted or Vector2.INF, points will be shot relative from `from_pos`
 # if `origin` is Vector2(0,0) the points will be treated as individual velocities.
 # TODO: also test if this actually works
-func shoot_points(bullet:Node, from_pos:Vector2, points:PoolVector2Array, origin:=Vector2.INF):
-	if origin == Vector2.INF:
+func shoot_points(bullet:Node, from_pos:Vector2, points:PackedVector2Array, origin:=Vector2(INF,INF)):
+	if origin == Vector2(INF,INF): # Vector2.INF is broken!!! see https://github.com/godotengine/godot/issues/45139
 		origin = from_pos
 	for idx in points.size():
 		shoot(bullet, from_pos, points[idx]-origin)

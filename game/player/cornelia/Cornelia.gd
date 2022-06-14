@@ -7,15 +7,15 @@ var index := 0
 
 
 func _ready():
-	orbit_options.append(orbit_option.instance())
-	orbit_options.append(orbit_option.instance())
-	orbit_options.append(orbit_option.instance())
+	orbit_options.append(orbit_option.instantiate())
+	orbit_options.append(orbit_option.instantiate())
+	orbit_options.append(orbit_option.instantiate())
 	
 	_on_Cheat_pressed()
 	_on_Cheat_pressed()
 	
 	for o in orbit_options:
-		o.connect("spawned", self, "_on_bullet_shot")
+		o.spawned.connect(_on_bullet_shot)
 
 
 func _on_Cheat_pressed():

@@ -11,8 +11,8 @@ var score:int = 0 # Don't set this value directly, use one of the functions
 var hiscore:int = 0 # same for this var
 
 func _ready():
-	connect("score_changed", self, "update_display")
-	connect("hiscore_changed", self, "update_display")
+	score_changed.connect(update_display)
+	hiscore_changed.connect(update_display)
 
 
 # Adds x to the current score.
@@ -35,8 +35,7 @@ func set_hiscore(v:int):
 	emit_signal("hiscore_changed")
 
 func format_score(v:int):
-	# warning-ignore:integer_division
-	# warning-ignore:integer_division
+	@warning_ignore(integer_division)
 	return "%3d %03d %03d" % [v/1000000, v/1000 % 1000, v % 1000]
 
 func update_display():

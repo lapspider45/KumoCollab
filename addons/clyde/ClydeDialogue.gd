@@ -1,4 +1,4 @@
-extends Reference
+extends RefCounted
 
 const Interpreter = preload('./interpreter/Interpreter.gd')
 

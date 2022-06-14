@@ -17,12 +17,12 @@ func _process(delta):
 
 func init_danmaku():
 	# todo: check that this isn't run twice
-	var _danmaku:Node = DANMAKU_SCENE.instance()
+	var _danmaku:Node = DANMAKU_SCENE.instantiate()
 	_danmaku.name = "Danmaku"
 	GameViewport.add_child(_danmaku)
 	Danmaku = _danmaku
 	
-	yield(get_tree(), "idle_frame")
+	await get_tree().process_frame
 	Kumo.reparent(GameViewport)
 
 

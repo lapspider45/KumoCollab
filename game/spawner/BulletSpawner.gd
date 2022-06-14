@@ -10,27 +10,36 @@ enum NOTIFICATION {
 var children_spawners = []
 var bullet_group_id := ""
 
-export var timescale := 1.0
-export var speedscale := 1.0
-export var bullet_speed := 40.0
-export var bullet_lifetime := 10.0
-export var bullet_acceleration := Vector2(0,100)
-export(float, 0, 1) var bullet_damping := 0.0
-export var autoaim := false
+# Godot 4 compatibility fix
+var rotation_degrees:float = rad2deg(rotation):
+	set(v):
+		rotation_degrees = v
+		rotation = deg2rad(v)
+
+@export var timescale := 1.0
+@export var speedscale := 1.0
+@export var bullet_speed := 40.0
+@export var bullet_lifetime := 10.0
+@export var bullet_acceleration := Vector2(0,100)
+@export_range(0.0, 1.0) var bullet_damping := 0.0
+@export var autoaim := false
 # IDEA: allow autoaim strengths between 0-1; 0 means no autoaim, 0.5 means aiming has a 50% influence
 # would be useful mostly for smoothly transitioning to/from aiming and fixed/relative
-export var aim_offset := 0.0
+@export var aim_offset := 0.0
 
-export var disabled := false
-export var children_disabled := false
+@export var disabled := false
+@export var children_disabled := false
 # TODO: add a way to override properties and enable/disable per difficulty?
 # also add some functions to arrange children in various patterns
 # and maybe to duplicate child spawners
 
-export var follow_node:NodePath
-export var enable_follow_node := false
+@export var follow_node:NodePath
+@export var enable_follow_node := false
 
-export var bullet_type := "basic1" setget set_bullet_type
+@export var bullet_type := "basic1":
+	set(v):
+		bullet_type = v
+		setup_bullet_template()
 var bullet_template: Node
 var bullet_params := {}
 
@@ -38,7 +47,7 @@ func _init():
 	bullet_group_id = generate_unique_group_id()
 
 func _ready():
-	set_bullet_type(bullet_type)
+	setup_bullet_template()
 
 func _shoot(params:Dictionary={}):
 	bullet_params.speedscale = params.get("speedscale", speedscale)
@@ -74,7 +83,7 @@ func shoot():
 func shoot_single():
 	var bullet = bullet_template
 	bullet.acceleration = bullet_acceleration
-	Kumo.shoot(bullet, global_position, polar2cartesian(bullet_speed, global_rotation) * speedscale)
+	Kumo.shoot(bullet, global_position, bullet_speed * Vector2.from_angle(global_rotation) * speedscale)
 	emit_signal("spawned", bullet)
 
 func shoot_velocity(velocity:Vector2):
@@ -146,10 +155,6 @@ func _notification(what):
 			update_children()
 		_:
 			pass
-
-func set_bullet_type(t:String):
-	bullet_type = t
-	setup_bullet_template()
 
 func set_bullet_collision(c:int):
 	if bullet_template is Area2D:

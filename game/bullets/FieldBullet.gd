@@ -1,6 +1,6 @@
 extends SimpleBullet
 
-var field : Reference
+var field : RefCounted
 var field_strength = 300.0 # rename to field_influence
 
 func advance(delta):

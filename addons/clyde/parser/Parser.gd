@@ -1,4 +1,4 @@
-extends Reference
+extends RefCounted
 
 const Lexer = preload("./Lexer.gd")
 const TokenWalker = preload("./TokenWalker.gd")

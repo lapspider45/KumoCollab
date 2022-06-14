@@ -17,8 +17,8 @@ func _enter_tree():
 func _ready():
 	print("Game: Ready.")
 	load_vertical_shmup()
-#	$Main.load_player("lana")
-	$Main.load_player("cornelia")
+	$Main.load_player("lana")
+#	$Main.load_player("cornelia") # cornelia options not good so far on 4.0
 	$Main.set_scene("res://experiments/Boss.tscn")
 
 
@@ -33,4 +33,4 @@ func set_branch(_name, _node):
 
 func load_vertical_shmup():
 	print("loading danmaku game module")
-	set_branch("Main", GAME_VERTICAL_SHMUP.instance())
+	set_branch("Main", GAME_VERTICAL_SHMUP.instantiate())

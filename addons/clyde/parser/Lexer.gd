@@ -1,4 +1,4 @@
-extends Reference
+extends RefCounted
 
 const TOKEN_TEXT = "TEXT"
 const TOKEN_INDENT = "INDENT"

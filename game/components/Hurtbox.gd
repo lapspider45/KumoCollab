@@ -1,5 +1,5 @@
 extends Area2D
-export var damage := 1.0
+@export var damage := 1.0
 
 func _init():
 	connect("area_entered", self, "on_hit_something")

@@ -1,8 +1,12 @@
 extends Pattern
 
 var sinefield
-export var field_strength := 1.0 setget set_field_strength
-export var rot_speed := 1.0
+@export var field_strength := 1.0:
+	set(v):
+		if sinefield is VectorField:
+			sinefield.strength = v
+		field_strength = v
+@export var rot_speed := 1.0
 
 func start():
 	make_remotetransform2d(Blackboard.boss, $BulletSpawner).position = Vector2(0, 64)
@@ -25,9 +29,3 @@ func _physics_process(delta):
 #		sinefield.CENTER = Blackboard.boss_pos
 		sinefield.sample_transform = sinefield.sample_transform.rotated(delta * 2.4)
 	$BulletSpawner.rotate(delta * rot_speed)
-
-
-func set_field_strength(v:float):
-	if sinefield is VectorField:
-		sinefield.strength = v
-	field_strength = v

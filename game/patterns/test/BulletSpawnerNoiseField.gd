@@ -10,4 +10,4 @@ func shoot_single():
 	var bullet = bullet_template
 	bullet.acceleration = bullet_acceleration
 	bullet.set("field", Blackboard.fields.get("noise1", Blackboard.FIELD_EMPTY))
-	Kumo.shoot(bullet, global_position, polar2cartesian(bullet_speed, global_rotation) * speedscale)
+	Kumo.shoot(bullet, global_position, bullet_speed * Vector2.from_angle(global_rotation) * speedscale)

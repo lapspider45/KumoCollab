@@ -9,11 +9,11 @@ func register(_name:String, ref:Node):
 	emit_signal("registry_updated")
 #	print_debug("registry updated: %s <- %s" % [name, ref])
 
-func get_entry(name:String):
-	return node_registry.get(name)
+func get_entry(_name:String):
+	return node_registry.get(_name)
 
-func wait_for_node(name:String):
-	while not node_registry.has(name):
-		yield(self, "registry_updated")
-	yield(get_tree(), "idle_frame") # In godot 4, this line can be removed...
-	return node_registry[name]
+func wait_for_node(_name:String):
+	while not node_registry.has(_name):
+		await registry_updated
+	# There was a YIELD here. It's gone now.
+	return node_registry[_name]

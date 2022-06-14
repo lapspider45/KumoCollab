@@ -41,10 +41,10 @@ func _init():
 	validate_spells()
 
 func _ready():
-	game = yield(Registry.wait_for_node("current_gamescene"), "completed")
+	game = await Registry.wait_for_node("current_gamescene")
 	
 	for spell_data in spells:
-		yield(play_spell(spell_data), "completed")
+		await play_spell(spell_data)
 	emit_signal("boss_defeated")
 	print("game over")
 	$DemoBoss.queue_free()
@@ -57,15 +57,15 @@ func play_spell(spell:Dictionary):
 	
 	var delay = spell.get("delay", -1)
 	if delay > 0:
-		yield(get_tree().create_timer(delay), "timeout")
+		await get_tree().create_timer(delay).timeout
 	
-	current_pattern = spell.spell.instance()
+	current_pattern = spell.spell.instantiate()
 	game.add_child(current_pattern)
 	
 	# setup the health for the spell
 	var BossEnemy = $DemoBoss
 	if spell.has("hp"):
-		BossEnemy.connect("died", self, "on_spell_defeated", [BossEnemy])
+		BossEnemy.died.connect(on_spell_defeated.bind(BossEnemy))
 		BossEnemy.hp = spell.hp
 		BossEnemy.on_spawn()
 		Blackboard.show_healthbar_for(BossEnemy, spell.hp)
@@ -74,7 +74,7 @@ func play_spell(spell:Dictionary):
 	
 	
 	# setup the timeout for the spell
-	Blackboard.pattern_timer.connect("timeout", self, "pattern_timeout")
+	Blackboard.pattern_timer.timeout.connect(pattern_timeout)
 	Blackboard.start_timeout(spell.get("timeout", 99.0))
 	
 	if spell.has("animation"):
@@ -84,19 +84,19 @@ func play_spell(spell:Dictionary):
 	
 	current_pattern.start()
 	
-	yield(self, "phase_completed")
+	await phase_completed
 	Blackboard.stop_timeout()
-	Blackboard.pattern_timer.disconnect("timeout", self, "pattern_timeout")
-	if BossEnemy.is_connected("died", self, "on_spell_defeated"):
+	Blackboard.pattern_timer.timeout.disconnect(pattern_timeout)
+	if BossEnemy.died.is_connected(on_spell_defeated):
 		BossEnemy.die()
-		BossEnemy.disconnect("died", self, "on_spell_defeated")
+		BossEnemy.died.disconnect(on_spell_defeated)
 
 func on_spell_defeated(emitter):
-	emitter.disconnect("died", self, "on_spell_defeated")
-	emit_signal("phase_completed")
+	emitter.died.disconnect(on_spell_defeated)
+	phase_completed.emit()
 
 func pattern_timeout():
-	emit_signal("phase_completed")
+	phase_completed.emit()
 
 func validate_spells():
 	for s in spells:
@@ -106,4 +106,4 @@ func validate_spells():
 
 func _input(event):
 	if event.is_action_pressed("DEBUG_F1"):
-		emit_signal("phase_completed")
+		phase_completed.emit()

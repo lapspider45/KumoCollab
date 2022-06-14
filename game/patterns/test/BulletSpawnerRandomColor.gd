@@ -4,7 +4,7 @@ var shot_idx = 0
 
 var the_point = Vector2()
 
-export var seq_id = 0
+@export var seq_id = 0
 
 func _process(delta):
 	look_at(the_point)

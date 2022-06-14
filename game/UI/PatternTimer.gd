@@ -21,7 +21,7 @@ func start_timer(time:float):
 	active = true
 	enable()
 	emit_signal("started")
-	yield(self, "timeout")
+	await timeout
 
 func enable():
 	show()

@@ -6,9 +6,9 @@ var popper:Node
 
 func _ready():
 	Registry.register("current_gamescene", self)
-	Kumo.connect("bullet_collided", self, "on_collision")
+	Kumo.bullet_collided.connect(on_collision)
 	
-	popper = yield(Registry.wait_for_node("LabelPopper"), "completed")
+	popper = await Registry.wait_for_node("LabelPopper")
 
 func _process(delta):
 	var slowdown:float = Kumo.get_slowdown()
@@ -49,6 +49,6 @@ func demo_pattern_dir(dir:String, time:float):
 	for pattern in D.ls(): if pattern.name.ends_with(".tscn"):
 		print("Demoing pattern: %s" % pattern.name)
 		load_pattern(dir.plus_file(pattern.name))
-		yield(Blackboard.start_timeout(time), "completed")
+		await Blackboard.start_timeout(time)
 		current_pattern.stop()
-		yield(get_tree().create_timer(1.5), "timeout")
+		await get_tree().create_timer(1.5).timeout

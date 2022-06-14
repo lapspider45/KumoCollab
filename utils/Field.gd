@@ -1,9 +1,9 @@
 class_name VectorField
-extends Reference
+extends RefCounted
 
-export var offset := Vector2.ZERO
-export var strength := 1.0
-export var sample_transform := Transform2D.IDENTITY
+@export var offset := Vector2.ZERO
+@export var strength := 1.0
+@export var sample_transform := Transform2D.IDENTITY
 
 func sample_scalar(pos:Vector2)->float:
 	return 0.0

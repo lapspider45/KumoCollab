@@ -7,6 +7,10 @@ enum {
 	TYPE_DIR,
 }
 
+func _init():
+	include_navigational = false
+	include_hidden = true
+
 # returns an array enumerating the current directory
 # each array index contains a dictionary with three keys:
 # 	* name - the filename
@@ -15,8 +19,7 @@ enum {
 func ls()->Array:
 	var contents := []
 	var path := get_current_dir()
-	
-	var err := list_dir_begin(true)
+	var err := list_dir_begin()
 	if err:
 		push_error("failed to begin dir listing of %s with code %d" % [path, err])
 	while true:

@@ -3,11 +3,11 @@ extends Control
 const DANMAKU_SCENE = preload("res://game/Danmaku2.tscn")
 
 var Danmaku:Node
-onready var GameViewport:Viewport = find_node("GameViewport")
+@onready var GameViewport:Viewport = find_child("GameViewport")
 var Player:Node
 
 func _init():
-	OS.min_window_size = Vector2(480, 640) + Vector2(16,16) * 2
+	DisplayServer.window_set_min_size(Vector2i(480, 640) + Vector2i(16,16) * 2, DisplayServer.get_window_list()[0])
 
 func _ready():
 	init_danmaku()
@@ -35,14 +35,14 @@ func _unhandled_key_input(event):
 
 func init_danmaku():
 	# todo: check that this isn't run twice
-	var _danmaku:Node = DANMAKU_SCENE.instance()
+	var _danmaku:Node = DANMAKU_SCENE.instantiate()
 	_danmaku.name = "Danmaku"
 	GameViewport.add_child(_danmaku)
 	Danmaku = _danmaku
 	
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
+	await get_tree().process_frame
+	await get_tree().process_frame
+	await get_tree().process_frame
 	Kumo.reparent(GameViewport)
 	
 	Score.reparent($MarginContainer)
@@ -56,7 +56,7 @@ func load_player(player_name:String):
 		_:
 			player_scene = load("res://game/player/Player.tscn") # this player is basically useless
 	
-	set_player(player_scene.instance())
+	set_player(player_scene.instantiate())
 
 func set_player(player_node:Node):
 	if is_instance_valid(Player):
@@ -76,7 +76,7 @@ func dbg_load_pattern(path:String):
 
 func set_scene(path):
 	var scn:PackedScene = load(path)
-	GameViewport.add_child(scn.instance())
+	GameViewport.add_child(scn.instantiate())
 
 
 func _exit_tree():

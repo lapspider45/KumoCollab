@@ -26,11 +26,11 @@ static func circle(origin:Vector2, radius:float):
 
 static func polygon(origin:Vector2, radius:float, edges:int):
 	assert(edges >= 3)
-	var points := PoolVector2Array()
+	var points := PackedVector2Array()
 	points.resize(edges)
 	for i in range(edges):
 		var angle = i/float(edges) * TAU
-		points[i] = origin + polar2cartesian(radius, angle)
+		points[i] = origin + radius * Vector2.from_angle(angle)
 	return waypoints(points, true)
 
 static func sine(scale = 100, periods = 2):
@@ -48,9 +48,9 @@ static func sine(scale = 100, periods = 2):
 	
 	return curve
 
-# converts a Curve2D into a PoolVector2Array of control points, which can be transformed normally, among other things
-static func unpack(curve:Curve2D)->PoolVector2Array:
-	var result := PoolVector2Array()
+# converts a Curve2D into a PackedVector2Array of control points, which can be transformed normally, among other things
+static func unpack(curve:Curve2D)->PackedVector2Array:
+	var result := PackedVector2Array()
 	result.resize(curve.get_point_count() * 3)
 	for idx in curve.get_point_count():
 		var pos = curve.get_point_position(idx)
@@ -61,8 +61,8 @@ static func unpack(curve:Curve2D)->PoolVector2Array:
 	
 	return result
 
-# converts a PoolVector2Array of points created by `unpack()` into the corresponding Curve2D.
-static func pack(points:PoolVector2Array)->Curve2D:
+# converts a PackedVector2Array of points created by `unpack()` into the corresponding Curve2D.
+static func pack(points:PackedVector2Array)->Curve2D:
 	var curve := Curve2D.new()
 	# warning-ignore:integer_division
 	for idx in points.size() / 3:
@@ -75,7 +75,7 @@ static func pack(points:PoolVector2Array)->Curve2D:
 	return curve
 
 static func transform(curve:Curve2D, trans:Transform2D)->Curve2D:
-	return pack(trans.xform(unpack(curve)))
+	return pack(trans * unpack(curve))
 
 static func merge(c1:Curve2D, c2:Curve2D, loop:=false)->Curve2D:
 	var points = unpack(c1)

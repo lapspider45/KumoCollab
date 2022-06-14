@@ -10,7 +10,7 @@ func advance(delta):
 	velocity += acceleration * delta
 	translate(velocity * delta)
 	lifetime -= delta
-	rotation_degrees += 360 * delta
+	rotation += TAU * delta
 
 func freeze():
 	is_stopped = true
