@@ -3,7 +3,6 @@ extends Control
 const DANMAKU_SCENE = preload("res://game/Danmaku2.tscn")
 
 var Danmaku:Node
-@onready var GameViewport:Viewport = find_child("GameViewport")
 var Player:Node
 
 func _init():
@@ -13,7 +12,7 @@ func _ready():
 	init_danmaku()
 	
 	# hack to make sure viewport is correctly sized upon game start
-	GameViewport.emit_signal("size_changed")
+	%GameViewport.emit_signal("size_changed")
 
 func start():
 	load_player("cornelia")
@@ -37,13 +36,12 @@ func init_danmaku():
 	# todo: check that this isn't run twice
 	var _danmaku:Node = DANMAKU_SCENE.instantiate()
 	_danmaku.name = "Danmaku"
-	GameViewport.add_child(_danmaku)
+	%GameViewport.add_child(_danmaku)
 	Danmaku = _danmaku
 	
-	await get_tree().process_frame
-	await get_tree().process_frame
-	await get_tree().process_frame
-	Kumo.reparent(GameViewport)
+	for _i in 3:
+		await get_tree().process_frame
+	Kumo.reparent(%GameViewport)
 	
 	Score.reparent($MarginContainer)
 	Score.show()
@@ -76,7 +74,7 @@ func dbg_load_pattern(path:String):
 
 func set_scene(path):
 	var scn:PackedScene = load(path)
-	GameViewport.add_child(scn.instantiate())
+	%GameViewport.add_child(scn.instantiate())
 
 
 func _exit_tree():

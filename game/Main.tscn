@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://utils/BasedViewport.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://bur71qo1adnut" path="res://art/placeholder/rick.jpg" id="3"]
 [ext_resource type="Script" path="res://game/Main.gd" id="4"]
-[ext_resource type="PackedScene" path="res://debug/DebugInfoLabel.tscn" id="5"]
-[ext_resource type="PackedScene" path="res://game/UI/GameHUD.tscn" id="7"]
-[ext_resource type="PackedScene" path="res://game/UI/LabelPopper.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://dv4bjcfq1ckmd" path="res://debug/DebugInfoLabel.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://bppqs2wihflm6" path="res://game/UI/GameHUD.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://byik62n7e5oxu" path="res://game/UI/LabelPopper.tscn" id="9"]
 
 [node name="Main" type="Control" groups=["MainScene"]]
 anchor_right = 1.0
@@ -43,6 +43,7 @@ offset_bottom = 600.0
 stretch = true
 
 [node name="GameViewport" type="SubViewport" parent="AspectRatioContainer/MarginContainer/ViewportContainer"]
+unique_name_in_owner = true
 handle_input_locally = false
 msaa = 2
 audio_listener_enable_2d = true
