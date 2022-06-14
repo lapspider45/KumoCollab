@@ -1,13 +1,14 @@
 [remap]
 
-importer="ogg_vorbis"
+importer="oggvorbisstr"
 type="AudioStreamOGGVorbis"
-path="res://.import/lana-demo1-looped.ogg-1a0f7730e1fe51013fc8b5608b577f78.oggstr"
+uid="uid://ynonvrwco227"
+path="res://.godot/imported/lana-demo1-looped.ogg-1a0f7730e1fe51013fc8b5608b577f78.oggvorbisstr"
 
 [deps]
 
 source_file="res://music/lana-demo1-looped.ogg"
-dest_files=[ "res://.import/lana-demo1-looped.ogg-1a0f7730e1fe51013fc8b5608b577f78.oggstr" ]
+dest_files=["res://.godot/imported/lana-demo1-looped.ogg-1a0f7730e1fe51013fc8b5608b577f78.oggvorbisstr"]
 
 [params]
 
