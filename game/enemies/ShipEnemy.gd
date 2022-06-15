@@ -4,9 +4,9 @@ extends Enemy
 
 func set_behavior(behavior:String):
 	return
-	if $behavior.is_playing():
-		$behavior.play("RESET")
-	$behavior.play(behavior)
+#	if $behavior.is_playing():
+#		$behavior.play("RESET")
+#	$behavior.play(behavior)
 
 
 func move_direction(vec:Vector2, delta:float):

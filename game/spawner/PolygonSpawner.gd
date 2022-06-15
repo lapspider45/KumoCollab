@@ -20,10 +20,13 @@ func shoot_ngon(_edges:int, shots_per_edge:int, skip:int=1):
 
 func shoot_star(corners:int, shots_per_edge:int):
 	if corners % 2 == 1: # odd
+		@warning_ignore(narrowing_conversion)
 		shoot_ngon(corners, shots_per_edge, 0.5 * (corners-1))
 	elif corners > 4:
+		@warning_ignore(integer_division)
 		shoot_star(corners/2, shots_per_edge)
 		rotate(TAU/corners)
+		@warning_ignore(integer_division)
 		shoot_star(corners/2, shots_per_edge)
 		rotate(-TAU/corners)
 	else:

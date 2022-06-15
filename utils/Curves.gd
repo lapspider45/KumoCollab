@@ -65,6 +65,7 @@ static func unpack(curve:Curve2D)->PackedVector2Array:
 static func pack(points:PackedVector2Array)->Curve2D:
 	var curve := Curve2D.new()
 	# warning-ignore:integer_division
+	@warning_ignore(integer_division)
 	for idx in points.size() / 3:
 		var pos = points[3 * idx + 1]
 		curve.add_point(
