@@ -133,3 +133,13 @@ func create_batches():
 
 func get_slowdown()->float:
 	return 1.0 / max(num_batches, 1.0)
+
+
+func _enter_tree():
+	# Custom monitors were added in 4.0: https://github.com/godotengine/godot/pull/39302
+	Performance.add_custom_monitor("Bullets/Bullet Count", (func(): return bullet_count))
+	Performance.add_custom_monitor("Bullets/Batches", (func(): return num_batches))
+
+func _exit_tree():
+	Performance.remove_custom_monitor("Bullets/Bullet Count")
+	Performance.remove_custom_monitor("Bullets/Batches")

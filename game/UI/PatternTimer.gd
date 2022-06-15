@@ -40,3 +40,8 @@ func advance(delta:float):
 		active = false
 		emit_signal("timeout")
 #		$AnimationPlayer.play("timeout_flash")
+
+func _unhandled_input(event):
+	if Blackboard.DEBUG:
+		if event.is_action_pressed("DEBUG_F1"):
+			time_remaining = 0.0

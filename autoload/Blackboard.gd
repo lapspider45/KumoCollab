@@ -2,8 +2,10 @@
 # A singleton useful for sharing data with multiple nodes
 extends Node
 
-# warning-ignore:unused_signal
 signal nodes_updated
+signal pattern_timer_timeout
+
+const DEBUG = true
 
 # TODO: this stuff is outdated
 
