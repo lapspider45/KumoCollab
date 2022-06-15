@@ -1,0 +1,95 @@
+[gd_scene load_steps=9 format=3 uid="uid://bbco6f657htmo"]
+
+[ext_resource type="Script" path="res://game/Main_v4.gd" id="1_goinr"]
+[ext_resource type="Texture2D" uid="uid://bur71qo1adnut" path="res://art/placeholder/rick.jpg" id="2_rfp1l"]
+[ext_resource type="Script" path="res://utils/BasedViewport.gd" id="3_34aiy"]
+[ext_resource type="PackedScene" path="res://game/UI/GameHUD.tscn" id="4_txqge"]
+[ext_resource type="PackedScene" path="res://game/UI/LabelPopper.tscn" id="5_0h2pf"]
+[ext_resource type="PackedScene" path="res://debug/DebugInfoLabel.tscn" id="6_4u6mf"]
+[ext_resource type="PackedScene" uid="uid://dynuy7sbgwwve" path="res://game/Danmaku2.tscn" id="6_yichb"]
+[ext_resource type="Texture2D" uid="uid://gvgptko57ueg" path="res://icon.png" id="7_hvqu5"]
+
+[node name="Main" type="Control" groups=["MainScene"]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( "1_goinr" )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 1)
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+texture = ExtResource( "2_rfp1l" )
+stretch_mode = 7
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+ratio = 0.75
+metadata/_edit_layout_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer"]
+offset_left = 287.0
+offset_right = 737.0
+offset_bottom = 600.0
+
+[node name="ViewportContainer" type="SubViewportContainer" parent="AspectRatioContainer/MarginContainer"]
+offset_right = 450.0
+offset_bottom = 600.0
+stretch = true
+
+[node name="GameViewport" type="SubViewport" parent="AspectRatioContainer/MarginContainer/ViewportContainer"]
+unique_name_in_owner = true
+handle_input_locally = false
+msaa = 2
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
+size = Vector2i(360, 640)
+size_2d_override = Vector2i(100, 100)
+render_target_update_mode = 4
+script = ExtResource( "3_34aiy" )
+
+[node name="GameHUD" parent="AspectRatioContainer/MarginContainer/ViewportContainer/GameViewport" instance=ExtResource( "4_txqge" )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+
+[node name="LabelPopper" parent="AspectRatioContainer/MarginContainer/ViewportContainer/GameViewport" instance=ExtResource( "5_0h2pf" )]
+
+[node name="Danmaku" parent="AspectRatioContainer/MarginContainer/ViewportContainer/GameViewport" instance=ExtResource( "6_yichb" )]
+unique_name_in_owner = true
+
+[node name="Icon" type="Sprite2D" parent="AspectRatioContainer/MarginContainer/ViewportContainer/GameViewport"]
+position = Vector2(360, 640)
+texture = ExtResource( "7_hvqu5" )
+
+[node name="Icon2" type="Sprite2D" parent="AspectRatioContainer/MarginContainer/ViewportContainer/GameViewport"]
+position = Vector2(100, 500)
+texture = ExtResource( "7_hvqu5" )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label2" type="Label" parent="MarginContainer"]
+offset_right = 143.0
+offset_bottom = 26.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Objective: Survive!"
+
+[node name="DebugInfoLabel" parent="MarginContainer" instance=ExtResource( "6_4u6mf" )]
+offset_left = 913.0
+offset_top = 548.0
+offset_right = 1024.0
+offset_bottom = 600.0
+
+[connection signal="size_changed" from="AspectRatioContainer/MarginContainer/ViewportContainer/GameViewport" to="AspectRatioContainer/MarginContainer/ViewportContainer/GameViewport" method="_on_Viewport_size_changed"]

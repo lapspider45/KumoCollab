@@ -34,7 +34,7 @@ func load_pattern(ptn:String):
 		ptn += ".tscn"
 	ptn = ptn.trim_prefix("res://game/patterns/")
 	var packed:PackedScene = load("res://game/patterns/".plus_file(ptn))
-	var pattern = packed.instance() # preloading or caching could be a plus
+	var pattern = packed.instantiate() # preloading or caching could be a plus
 	add_child(pattern)
 	current_pattern = pattern
 	Kumo.clear_bullets()

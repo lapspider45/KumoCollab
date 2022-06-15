@@ -8,7 +8,7 @@ anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -128.0
 margin_bottom = 31.0
-rect_min_size = Vector2( 128, 0 )
+min_size = Vector2( 128, 0 )
 size_flags_vertical = 0
 text = "score:   0 000 000
 hiscore:   0 000 000"

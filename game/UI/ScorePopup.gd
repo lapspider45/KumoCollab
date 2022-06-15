@@ -3,8 +3,9 @@ extends Label
 @export var acceleration := Vector2.ZERO
 @export var velocity := Vector2.ZERO
 @export var value = 0:
-	set(v):
-		set_value(v)
+	set(num):
+		value = num
+		text = "%d" % num
 
 func _ready():
 	$AnimationPlayer.playback_speed = randf_range(0.7, 1.3)
@@ -19,11 +20,6 @@ func popup_at(pos:Vector2):
 	# god help you if you use rect_scale for anything
 	
 	pivot_offset = 0.5 * size
-
-
-func set_value(num):
-	value = num
-	text = "%d" % num
 
 
 func _process(delta):

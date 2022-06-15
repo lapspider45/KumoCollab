@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://44i5avrx2igr"]
 
-[ext_resource path="res://game/spawner/BulletSpawner.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://game/spawner/BulletSpawner.gd" id="1"]
 
 [node name="BulletSpawner" type="Position2D" groups=["bulletspawner"]]
-script = ExtResource( 1 )
+script = ExtResource( "1" )

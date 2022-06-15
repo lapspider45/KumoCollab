@@ -35,6 +35,7 @@ func _finish():
 
 
 func make_remotetransform2d(source:Node2D, target:Node2D=self)-> RemoteTransform2D:
+	return RemoteTransform2D.new() # TODO: temp disabled
 	if !is_instance_valid(source):
 		push_error("no source for remotetransform2d!!")
 		return RemoteTransform2D.new()

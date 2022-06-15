@@ -22,6 +22,7 @@ var batches: Array #[[bullet, bullet, bullet], [], []]
 
 var batches_remaining: int
 var num_batches: int
+var force_single_batch := true
 
 @export var process_batch_size = 1200
 @export var max_batches = 3
@@ -102,7 +103,7 @@ func process_single_batch(batch:Array, delta:float):
 func process_deletion_queue():
 	# maximum bullets to delete per frame, otherwise there will be stutter
 	for _i in range(min(256, deletion_queue.size())):
-		var b:Node = deletion_queue.pop_back()
+		var b = deletion_queue.pop_back()
 		if is_instance_valid(b):
 			b.queue_free()
 
@@ -113,6 +114,12 @@ func create_batches():
 	if bullet_count == 0:
 		return
 	
+	if force_single_batch:
+		batches = [bullets]
+		num_batches = 1
+		return
+	
+	# TODO: in Godot 4, there might be a bug where some bullets (usually 1) aren't batched
 	# split bullets evenly into the minimum number of batches smaller than 'process_batch_size'
 	var batches_needed = min(ceil(float(bullet_count) / process_batch_size), max_batches)
 	@warning_ignore(narrowing_conversion)

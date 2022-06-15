@@ -32,8 +32,6 @@ func _ready():
 
 func shoot():
 	get_tree().call_group("player_bulletspawner", "shoot")
-	for g in $Guns.get_children():
-		g.shoot()
 
 func bomb():
 	if invincible:
@@ -144,8 +142,6 @@ func set_bullet_speed(v):
 		s.bullet_speed = v
 
 func setup_guns():
-	for g in $Guns.get_children():
-		g.set_player()
 	for s in get_spawners():
 		s.set_player()
 

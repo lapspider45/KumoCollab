@@ -17,7 +17,7 @@ func _ready():
 func popup_at(vec:Vector2, number):
 	var pp = POPUP.instantiate()
 	add_child(pp)
-	pp.set_value(number)
+	pp.value = number
 	pp.popup_at(vec)
 
 func queue_popup(vec:Vector2, number):
