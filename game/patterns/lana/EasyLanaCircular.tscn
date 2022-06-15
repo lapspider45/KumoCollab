@@ -1,116 +1,118 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://d0dbmi8lqejt3"]
 
-[ext_resource path="res://game/patterns/Pattern.tscn" type="PackedScene" id=1]
-[ext_resource path="res://utils/TickedAnimationPlayer.gd" type="Script" id=2]
-[ext_resource path="res://game/patterns/lana/EasyLanaCircular.gd" type="Script" id=5]
-[ext_resource path="res://game/patterns/lana/BulletSpawnerLanaPattern.gd" type="Script" id=6]
+[ext_resource type="PackedScene" uid="uid://bpn8lvehwlt6y" path="res://game/patterns/Pattern.tscn" id="1"]
+[ext_resource type="Script" path="res://utils/TickedAnimationPlayer.gd" id="2"]
+[ext_resource type="Script" path="res://game/patterns/lana/EasyLanaCircular.gd" id="5"]
+[ext_resource type="Script" path="res://game/patterns/lana/BulletSpawnerLanaPattern.gd" id="6"]
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id="5"]
 length = 0.001
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:timescale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ 1.0 ]
+"values": [1.0]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id="6"]
 resource_name = "asd"
 length = 7.0
-loop = true
+loop_mode = 1
 tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 2, 3, 4, 4.2, 5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
-"values": [ {
-"args": [ {
-} ],
-"method": "_shoot"
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 4.2, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [{}],
+"method": &"_shoot"
 }, {
-"args": [ {
-} ],
-"method": "_shoot"
+"args": [{}],
+"method": &"_shoot"
 }, {
-"args": [ {
-} ],
-"method": "_shoot"
+"args": [{}],
+"method": &"_shoot"
 }, {
-"args": [ {
-} ],
-"method": "_shoot"
+"args": [{}],
+"method": &"_shoot"
 }, {
-"args": [ {
-} ],
-"method": "_shoot"
+"args": [{}],
+"method": &"_shoot"
 }, {
-"args": [  ],
-"method": "_stop_bullet_to_explode"
+"args": [],
+"method": &"_stop_bullet_to_explode"
 }, {
-"args": [  ],
-"method": "_bullets_explode"
-} ]
+"args": [],
+"method": &"_bullets_explode"
+}]
 }
 
-[node name="EasyLanaCircular" instance=ExtResource( 1 )]
-script = ExtResource( 5 )
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i1o64"]
+_data = {
+"RESET": SubResource( "5" ),
+"asd": SubResource( "6" )
+}
+
+[node name="EasyLanaCircular" instance=ExtResource( "1" )]
+script = ExtResource( "5" )
 
 [node name="EasyLanaCircularPattern" type="Position2D" parent="." index="0" groups=["bulletspawner"]]
-position = Vector2( 240, 114 )
+position = Vector2(240, 114)
 rotation = 1.5708
-script = ExtResource( 6 )
+script = ExtResource( "6" )
 bullet_speed = 100.0
 bullet_type = "LanaBombSprite"
 
 [node name="BulletSpawner" type="Position2D" parent="EasyLanaCircularPattern" index="0" groups=["bulletspawner"]]
 rotation = 1.0472
-script = ExtResource( 6 )
+script = ExtResource( "6" )
 bullet_speed = 100.0
-bullet_acceleration = Vector2( 0, 0 )
+bullet_acceleration = Vector2(0, 0)
 bullet_type = "LanaBombSprite"
 
 [node name="BulletSpawner" type="Position2D" parent="EasyLanaCircularPattern/BulletSpawner" index="0" groups=["bulletspawner"]]
 rotation = 1.0472
-script = ExtResource( 6 )
+script = ExtResource( "6" )
 bullet_speed = 100.0
-bullet_acceleration = Vector2( 0, 0 )
+bullet_acceleration = Vector2(0, 0)
 bullet_type = "LanaBombSprite"
 
 [node name="BulletSpawner2" type="Position2D" parent="EasyLanaCircularPattern/BulletSpawner/BulletSpawner" index="0" groups=["bulletspawner"]]
 rotation = 1.0472
-script = ExtResource( 6 )
+script = ExtResource( "6" )
 bullet_speed = 100.0
-bullet_acceleration = Vector2( 0, 0 )
+bullet_acceleration = Vector2(0, 0)
 bullet_type = "LanaBombSprite"
 
 [node name="BulletSpawner3" type="Position2D" parent="EasyLanaCircularPattern/BulletSpawner/BulletSpawner/BulletSpawner2" index="0" groups=["bulletspawner"]]
 rotation = 1.0472
-script = ExtResource( 6 )
+script = ExtResource( "6" )
 bullet_speed = 100.0
-bullet_acceleration = Vector2( 0, 0 )
+bullet_acceleration = Vector2(0, 0)
 bullet_type = "LanaBombSprite"
 
 [node name="BulletSpawner4" type="Position2D" parent="EasyLanaCircularPattern/BulletSpawner/BulletSpawner/BulletSpawner2/BulletSpawner3" index="0" groups=["bulletspawner"]]
 rotation = 1.0472
-script = ExtResource( 6 )
+script = ExtResource( "6" )
 bullet_speed = 100.0
-bullet_acceleration = Vector2( 0, 0 )
+bullet_acceleration = Vector2(0, 0)
 bullet_type = "LanaBombSprite"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EasyLanaCircularPattern" index="1"]
 playback_speed = 1.5
-anims/RESET = SubResource( 5 )
-anims/asd = SubResource( 6 )
-script = ExtResource( 2 )
+libraries = {
+"": SubResource( "AnimationLibrary_i1o64" )
+}
+script = ExtResource( "2" )
 
 [node name="Node2D" type="Node2D" parent="EasyLanaCircularPattern" index="2"]

@@ -5,8 +5,7 @@ var noise_y := FastNoiseLite.new()
 
 func _init():
 	for noise in [noise_x, noise_y]: if noise is FastNoiseLite:
-		noise.octaves = 1
-		noise.period = 150
+		noise.frequency = 0.007
 
 
 func sample_vector(pos:Vector2)->Vector2:

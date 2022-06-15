@@ -1,9 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://bpn8lvehwlt6y"]
 
-[ext_resource path="res://game/patterns/Pattern.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://game/patterns/Pattern.gd" id="1"]
 
 [node name="Pattern" type="Node2D"]
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_vertical_guides_": [ 480.0 ]
-}
+script = ExtResource( "1" )

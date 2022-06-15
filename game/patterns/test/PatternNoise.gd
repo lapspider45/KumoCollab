@@ -9,8 +9,8 @@ func _ready():
 	noisefield.noise_y.seed = 5678
 	Blackboard.fields["noise1"] = noisefield
 	
-	noisefield.noise_x.period = 130
-	noisefield.noise_y.period = 130
+	noisefield.noise_x.frequency = 1.0/130
+	noisefield.noise_y.frequency = 1.0/130
 	
 	set_physics_process(false)
 
