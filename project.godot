@@ -15,6 +15,11 @@ _global_script_classes=[{
 "path": "res://game/spawner/BulletSpawner.gd"
 }, {
 "base": "RefCounted",
+"class": &"ClydeDialogue",
+"language": &"GDScript",
+"path": "res://addons/clyde/ClydeDialogue.gd"
+}, {
+"base": "RefCounted",
 "class": &"Curves",
 "language": &"GDScript",
 "path": "res://utils/Curves.gd"
@@ -71,6 +76,7 @@ _global_script_classes=[{
 }]
 _global_script_class_icons={
 "BulletSpawner": "",
+"ClydeDialogue": "",
 "Curves": "",
 "DirUtils": "",
 "Enemy": "",

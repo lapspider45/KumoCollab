@@ -14,8 +14,8 @@ func _ready():
 	await get_tree().create_timer(0.5).timeout
 	_dialogue = ClydeDialogue.new()
 	_dialogue.load_dialogue("test_dialog")
-	_dialogue.connect("event_triggered", self, "_on_event_triggered")
-	_dialogue.connect("variable_changed", self, "_on_variable_changed")
+	_dialogue.event_triggered.connect(_on_event_triggered)
+	_dialogue.variable_changed.connect(_on_variable_changed)
 	_get_next_dialogue_line()
 
 

@@ -1,8 +1,9 @@
 extends RefCounted
+class_name ClydeDialogue
 
 const Interpreter = preload('./interpreter/Interpreter.gd')
+var _JSON = JSON.new()
 
-class_name ClydeDialogue
 
 signal variable_changed(name, value, previous_value)
 signal event_triggered(name)
@@ -79,26 +80,26 @@ func _load_file(path) -> Dictionary:
 
 	var f := File.new()
 	f.open(path, File.READ)
-	var result := JSON.parse(f.get_as_text())
+	var err := _JSON.parse(f.get_as_text())
 	f.close()
-	if result.error:
+	if err:
 		printerr("Failed to parse file: ", f.get_error())
 		return {}
 
-	return result.result as Dictionary
+	return _JSON.get_data() as Dictionary
 
 
 func _load_clyde_file(path):
 	var data = load(path).__data__.get_string_from_utf8()
-	var parsed_json = JSON.parse(data)
+	var json_err = _JSON.parse(data)
 
-	if OK != parsed_json.error:
-		var format = [parsed_json.error_line, parsed_json.error_string]
+	if json_err.error != OK:
+		var format = [_JSON.error_line, _JSON.error_string]
 		var error_string = "%d: %s" % format
 		printerr("Could not parse json", error_string)
 		return null
 
-	return parsed_json.result
+	return _JSON.get_data()
 
 
 func _trigger_variable_changed(name, value, previous_value):

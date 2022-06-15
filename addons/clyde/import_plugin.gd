@@ -1,4 +1,4 @@
-tool
+@tool
 extends EditorImportPlugin
 
 const Parser = preload("./parser/Parser.gd")
@@ -38,7 +38,8 @@ func import(source_file, save_path, options, platform_variants, gen_files):
 	file.close()
 
 	var container = PackedDataContainer.new()
-	container.__data__ = JSON.print(result).to_utf8()
+	var json = JSON.new()
+	container.__data__ = json.stringify(result).to_utf8_buffer()
 
 	return ResourceSaver.save("%s.%s" % [save_path, get_save_extension()], container)
 
