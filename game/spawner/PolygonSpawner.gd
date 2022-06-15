@@ -3,11 +3,11 @@ extends BulletSpawner
 @export var edges:int = 3
 @export var shots_p_edge:int = 6
 
-func shoot_ngon(edges:int, shots_per_edge:int, skip:int=1):
-	assert(edges >= 3)
+func shoot_ngon(_edges:int, shots_per_edge:int, skip:int=1):
+	assert(_edges >= 3)
 	var points := []
-	for i in range(edges):
-		var angle = global_rotation + (i/float(edges) * TAU)
+	for i in range(_edges):
+		var angle = global_rotation + (i/float(_edges) * TAU)
 		var point = Vector2.from_angle(angle)
 		points.append(point)
 	for i in range(points.size()):

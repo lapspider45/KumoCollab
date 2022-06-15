@@ -40,5 +40,5 @@ func spawn_enemy(enemy_instance:Enemy, pos:Vector2)->Enemy:
 	return enemy_instance
 
 
-func get_unique_group(prefix:String = name)-> String:
+func get_unique_group(prefix:String = String(name))-> String:
 	return "%s@%d" % [prefix, get_instance_id()]

@@ -1,10 +1,10 @@
 extends VectorField
 
-var noise_x := OpenSimplexNoise.new()
-var noise_y := OpenSimplexNoise.new()
+var noise_x := FastNoiseLite.new()
+var noise_y := FastNoiseLite.new()
 
 func _init():
-	for noise in [noise_x, noise_y]: if noise is OpenSimplexNoise:
+	for noise in [noise_x, noise_y]: if noise is FastNoiseLite:
 		noise.octaves = 1
 		noise.period = 150
 

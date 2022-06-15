@@ -23,7 +23,7 @@ func shoot():
 		0: shoot_ring(7)
 		1: shoot_ray_ring(6, 4, 0.5, 2.5)
 		2: shoot_arc(10, deg2rad(120))
-		3: .shoot()
+		3: super()
 
 
 # these functions should be moved into the BulletSpawner class

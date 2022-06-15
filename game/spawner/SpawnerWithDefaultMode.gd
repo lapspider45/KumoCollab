@@ -8,7 +8,7 @@ enum modes {
 	ARC
 }
 
-@export var mode:modes = 0
+@export var mode:modes = modes.SINGLE
 
 
 

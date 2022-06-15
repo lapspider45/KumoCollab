@@ -17,7 +17,7 @@ func _physics_process(delta):
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, acceleration * delta / 16)
 	velocity += Vector2(0,speed) * delta / 4
-	velocity = velocity.clamped(speed)
+	velocity = velocity.limit_length(speed)
 	translate(velocity * delta)
 
 

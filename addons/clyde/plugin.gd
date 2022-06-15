@@ -1,4 +1,4 @@
-tool
+@tool
 extends EditorPlugin
 
 const ImportPlugin = preload("import_plugin.gd")
